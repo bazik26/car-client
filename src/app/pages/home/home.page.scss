@@ -1,0 +1,93 @@
+.promo {
+  height: 500px;
+  width: calc(100% + 40px);
+
+  margin-top: -10px;
+  margin-left: -20px;
+  padding-left: 40px;
+
+  position: relative;
+
+  background-image: url("/promo.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  &__address,
+  &__description {
+    color: var(--blue);
+  }
+
+  &__slogan {
+    margin-top: 40px;
+    margin-bottom: 60px;
+
+    color: var(--yellow);
+
+    font-size: 36px;
+    font-weight: 700;
+  }
+
+  &__button {
+    width: fit-content;
+
+    position: absolute;
+
+    bottom: 40px;
+  }
+}
+
+.cars {
+  margin-top: 40px;
+
+  &__title {
+    margin-top: 40px;
+    margin-bottom: 60px;
+
+    font-size: 36px;
+    font-weight: 700;
+  }
+
+  & > .row {
+    @keyframes fadeInUpCard {
+      from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    div {
+      animation: fadeInUpCard 0.8s
+        cubic-bezier(0.22, 1.05, 0.51, 0.93) forwards;
+    }
+
+    div:nth-child(1) {
+      opacity: 0;
+      animation-delay: 0.12s;
+    }
+    div:nth-child(2) {
+      opacity: 0;
+      animation-delay: 0.24s;
+    }
+    div:nth-child(3) {
+      opacity: 0;
+      animation-delay: 0.36s;
+    }
+    div:nth-child(4) {
+      opacity: 0;
+      animation-delay: 0.48s;
+    }
+    div:nth-child(5) {
+      opacity: 0;
+      animation-delay: 0.60s;
+    }
+    div:nth-child(6) {
+      opacity: 0;
+      animation-delay: 0.72s;
+    }
+  }
+}

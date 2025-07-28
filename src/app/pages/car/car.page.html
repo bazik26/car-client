@@ -1,0 +1,117 @@
+@if (car) {
+  <div class="car">
+    <div class="row">
+      <div class="col-lg-7 col-md-6 col-12">
+        <swiper-container
+          slides-per-view="1"
+          navigation="true"
+          pagination="true"
+        >
+          @for (image of car.images; track image) {
+            <swiper-slide>
+              <img [src]="image" />
+            </swiper-slide>
+          }
+        </swiper-container>
+      </div>
+
+      <div class="mt-3 mt-md-0 col-lg-5 col-md-6 col-12">
+        <div class="car__card card">
+          <div class="card__title card__title-car">
+            {{ car.brand }}
+            {{ car.model }}
+            {{ car.year }}
+          </div>
+
+          <div class="card__title card__title-price">
+            {{ car.price | currency: "USD" : "symbol" : "1.0-0" }}
+          </div>
+
+          <div class="car__info row">
+            <div class="col-md-6 col-12">
+              <p><span>VIN:</span><a href="#">Показать</a></p>
+              <p><span>Двигатель:</span>{{ car.engine }} л</p>
+              <p><span>Коробка передач:</span>{{ car.gearbox }}</p>
+            </div>
+
+            <div class="mt-md-3 col-md-6 col-12">
+              <p><span>Привод:</span>{{ car.drive }}</p>
+              <p><span>Топливо:</span>{{ car.fuel }}</p>
+              <p><span>Пробег:</span>{{ car.mileage }} км</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-3 row">
+      <div class="col-lg-7 col-md-6 col-12">
+        <div class="car__card card">
+          <div class="card__title">Описание</div>
+
+          <div class="card__description" [innerHTML]="car.description"></div>
+        </div>
+      </div>
+
+      <div class="mt-3 mt-md-0 col-lg-5 col-md-6 col-12">
+        <div class="car__card card">
+          <div class="card__title">Конфигурации</div>
+
+          <div class="card__description">
+            <div class="features-grid">
+              <div class="feature-item">
+                <i class="fas fa-check-circle"></i>
+                Климат-контроль
+              </div>
+
+              <div class="feature-item">
+                <i class="fas fa-check-circle"></i>
+                Кожаный салон
+              </div>
+
+              <div class="feature-item">
+                <i class="fas fa-check-circle"></i>
+                Круиз-контроль
+              </div>
+
+              <div class="feature-item">
+                <i class="fas fa-check-circle"></i>
+                Парктроник
+              </div>
+
+              <div class="feature-item">
+                <i class="fas fa-check-circle"></i>
+                Электропакет
+              </div>
+
+              <div class="feature-item">
+                <i class="fas fa-check-circle"></i>
+                Ксеноновые фары
+              </div>
+
+              <div class="feature-item">
+                <i class="fas fa-check-circle"></i>
+                Люк
+              </div>
+
+              <div class="feature-item">
+                <i class="fas fa-check-circle"></i>
+                Мультимедиа
+              </div>
+
+              <div class="feature-item">
+                <i class="fas fa-check-circle"></i>
+                Подогрев сидений
+              </div>
+
+              <div class="feature-item">
+                <i class="fas fa-check-circle"></i>
+                Камера заднего вида
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+}

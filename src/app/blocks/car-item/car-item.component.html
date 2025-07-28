@@ -1,0 +1,55 @@
+<div class="car-item">
+  <div class="car-item__slider">
+    <swiper-container slides-per-view="1" navigation="true" pagination="true">
+      @for (image of car.images; track image) {
+        <swiper-slide>
+          <img [src]="image" />
+        </swiper-slide>
+      }
+    </swiper-container>
+  </div>
+
+  <div class="car-item__details details">
+    <a class="details__title" [routerLink]="['/cars', car.id]">
+      <p>{{ car.brand }}</p>
+
+      <p>
+        <span> {{ car.model }}</span>
+        {{ car.year }}
+      </p>
+    </a>
+
+    <div class="details__params params">
+      <div>
+        <p>Пробег</p>
+        <p>{{ car.mileage }} км</p>
+      </div>
+
+      <div>
+        <p>Двигатель</p>
+        <p>{{ car.fuel }}, {{ car.engine }} л</p>
+      </div>
+    </div>
+
+    <div class="details__params params">
+      <div>
+        <p>Коробка передач</p>
+        <p>{{ car.gearbox }}</p>
+      </div>
+
+      <div>
+        <p>Привод</p>
+        <p>{{ car.drive }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="car-item__price">
+    <p>Цена</p>
+    <p>{{ car.price | currency: "USD" : "symbol" : "1.0-0" }}</p>
+  </div>
+
+  <div class="car-item__more">
+    <a class="button" [routerLink]="['/cars', car.id]"> Подробнее </a>
+  </div>
+</div>

@@ -1,0 +1,98 @@
+@use "bootstrap/scss/bootstrap" as *;
+
+header,
+aside {
+  background-color: var(--black-2);
+
+  position: fixed;
+  z-index: 1000;
+  top: 5px;
+
+  border-radius: 10px;
+}
+
+header {
+  @extend .d-flex !optional;
+  @extend .justify-content-between !optional;
+  @extend .align-items-center !optional;
+
+  height: 60px;
+  width: calc(100% - 80px);
+
+  margin-left: 70px;
+  padding: 0 20px;
+
+  @include media-breakpoint-down(md) {
+    width: 100%;
+
+    margin-left: 0;
+  }
+
+  .button {
+    background-color: var(--yellow);
+
+
+    @include media-breakpoint-down(md) {
+      padding: 4px 8px !important;
+
+      font-size: 14px;
+    }
+  }
+
+  .phone {
+    @extend .ms-3 !optional;
+
+    color: var(--white);
+
+    font-weight: 400;
+    text-decoration: none;
+
+    transition: color 0.2s ease-in-out;
+
+    @include media-breakpoint-down(md) {
+      font-size: 14px;
+    }
+
+    &:hover {
+      color: var(--yellow);
+    }
+
+
+  }
+}
+
+aside {
+  height: calc(100vh - 10px);
+  width: 60px;
+
+  left: 5px;
+  bottom: 5px;
+
+  @include media-breakpoint-down(md) {
+    height: 60px;
+    width: 100vw;
+
+    top: calc(100vh - 60px);
+    left: 0;
+    bottom: 0;
+  }
+}
+
+.content {
+  width: 100%;
+  max-width: calc(100vw - 65px);
+
+  margin-top: 60px;
+  margin-left: 60px;
+
+  padding: 20px;
+
+  @include media-breakpoint-down(md) {
+    max-width: 100vw;
+
+    margin-bottom: 60px;
+    margin-left: 0;
+  }
+
+  overflow: hidden;
+}

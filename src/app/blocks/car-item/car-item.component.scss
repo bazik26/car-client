@@ -1,0 +1,126 @@
+@use "bootstrap/scss/bootstrap" as *;
+
+p {
+  margin: 0;
+}
+
+.car-item {
+  width: 100%;
+
+  border: 1px solid var(--gray);
+  border-radius: 4px;
+
+  background-color: var(--black);
+
+  transition: border-color 0.25s, box-shadow 0.15s;
+
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    border-color: var(--yellow);
+
+    box-shadow: 0 8px 16px var(--yellow);
+  }
+
+  &__slider {
+    &,
+    swiper-container {
+      height: 320px;
+      width: 100%;
+    }
+
+    img {
+      height: 100%;
+      width: 100%;
+
+      display: block;
+
+      object-fit: cover;
+
+      border-top-right-radius: 4px;
+      border-top-left-radius: 4px;
+    }
+  }
+
+  &__details,
+  &__price,
+  &__more {
+    padding: 10px 20px 20px;
+  }
+
+  &__details {
+    & .details {
+      &__title {
+        display: inline-block;
+
+        margin-top: 5px;
+
+        color: var(--white);
+        font-size: 18px;
+        font-weight: 600;
+        font-style: normal;
+        text-decoration: none;
+        line-height: 1.3em;
+
+        span {
+          color: var(--yellow);
+        }
+      }
+    }
+
+    & .params {
+      @extend .d-flex !optional;
+      @extend .justify-content-between !optional;
+      @extend .align-items-center !optional;
+
+      padding: 10px 0;
+
+      border-bottom: 1px solid var(--gray-2);
+
+      div {
+        p:first-child {
+          color: var(--gray-3);
+          font-size: 12px;
+        }
+
+        p:last-child {
+          font-size: 14px;
+          font-weight: 500;
+        }
+      }
+
+      div:last-child {
+        text-align: right;
+      }
+    }
+  }
+
+  &__price {
+    @extend .d-flex !optional;
+    @extend .justify-content-between !optional;
+    @extend .align-items-center !optional;
+
+    p {
+      line-height: 1.7;
+    }
+
+    p:first-child {
+      color: var(--gray-3);
+      font-size: 16px;
+    }
+
+    p:last-child {
+      color: var(--yellow);
+      font-weight: 600;
+    }
+  }
+
+  &__more {
+    a {
+      color: var(--white) !important;
+
+      background-color: var(--green);
+    }
+  }
+}

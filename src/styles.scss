@@ -1,1 +1,53 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --white: #fff;
+  --black: #000;
+  --black-1: #070707;
+  --black-2: #111;
+  --black-3: #1f1e1e;
+  --gray: #2f2f2f;
+  --gray-1: #747474;
+  --gray-2: #838383;
+  --gray-3: #aaa;
+  --yellow: #f0dc20;
+  --error: #ff9c45;
+  --green: #217e02;
+  --blue: #e0eeee;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+}
+
+body.client {
+  font-size: 18px;
+  font-family: "Montserrat", sans-serif;
+
+  color: var(--white);
+
+  background: var(--black);
+
+  swiper-container {
+    --swiper-navigation-color: var(--yellow);
+
+    --swiper-pagination-color: var(--yellow);
+    --swiper-pagination-bullet-inactive-color: gray;
+  }
+
+  .button {
+    padding: 8px 24px;
+    display: block;
+
+    color: var(--gray) !important;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none !important;
+
+    cursor: pointer;
+
+    border-radius: 4px;
+
+    background-color: var(--white);
+  }
+}
