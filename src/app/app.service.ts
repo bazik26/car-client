@@ -22,6 +22,12 @@ export class AppService {
       .pipe(map((response) => response));
   }
 
+  getCarsAll(): Observable<any> {
+    return this.http
+      .get(`http://localhost:3001/cars/all`)
+      .pipe(map((response) => response));
+  }
+
   createCar(car: any): Observable<any> {
     return this.http
       .post(`http://localhost:3001/cars`, car)
@@ -31,6 +37,24 @@ export class AppService {
   getCar(carId: number): Observable<any> {
     return this.http
       .get(`http://localhost:3001/cars/${carId}`)
+      .pipe(map((response) => response));
+  }
+
+  updateCar(carId: number, car: any): Observable<any> {
+    return this.http
+      .patch(`http://localhost:3001/cars/${carId}`, car)
+      .pipe(map((response) => response));
+  }
+
+  deleteCar(carId: number): Observable<any> {
+    return this.http
+      .delete(`http://localhost:3001/cars/${carId}`)
+      .pipe(map((response) => response));
+  }
+
+  restoreCar(carId: number): Observable<any> {
+    return this.http
+      .get(`http://localhost:3001/cars/${carId}/restore`)
       .pipe(map((response) => response));
   }
 }

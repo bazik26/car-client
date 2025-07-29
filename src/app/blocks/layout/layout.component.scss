@@ -31,7 +31,6 @@ header {
   .button {
     background-color: var(--yellow);
 
-
     @include media-breakpoint-down(md) {
       padding: 4px 8px !important;
 
@@ -56,8 +55,6 @@ header {
     &:hover {
       color: var(--yellow);
     }
-
-
   }
 }
 
@@ -87,12 +84,12 @@ aside {
 
   padding: 20px;
 
+  overflow: hidden;
+
   @include media-breakpoint-down(md) {
     max-width: 100vw;
 
     margin-bottom: 60px;
     margin-left: 0;
   }
-
-  overflow: hidden;
 }
