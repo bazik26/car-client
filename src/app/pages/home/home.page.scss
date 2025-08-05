@@ -1,17 +1,18 @@
 .promo {
-  height: 500px;
-  width: calc(100% + 40px);
-
-  margin-top: -10px;
-  margin-left: -20px;
-  padding-left: 40px;
-
+  width: 99%;
+  height: 600px; /* Можно увеличить под нужный размер */
   position: relative;
-
-  background-image: url("/promo.jpg");
+  background-image: url("image.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 40px;
+  box-sizing: border-box;
+  border-radius: 24px; /* Для современности */
+  overflow: hidden;
 
   &__address,
   &__description {

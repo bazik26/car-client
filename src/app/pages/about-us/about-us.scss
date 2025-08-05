@@ -1,0 +1,213 @@
+.about-us {
+  .hero-section {
+    //background: linear-gradient(rgba(0, 0, 0, 0.8), url('assets/about-bg.jpg') center/cover no-repeat;
+    padding: 80px 20px;
+    text-align: center;
+    color: white;
+
+    h1 {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+
+      .highlight {
+        color: var(--yellow);
+      }
+    }
+
+    .subtitle {
+      font-size: 1.5rem;
+      max-width: 700px;
+      margin: 0 auto 50px;
+      opacity: 0.9;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      margin-top: 50px;
+
+      .stat-item {
+        .number {
+          font-size: 3rem;
+          font-weight: bold;
+          color: var(--yellow);
+        }
+
+        .label {
+          font-size: 1.1rem;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+        }
+      }
+    }
+  }
+
+  .advantages-section {
+    padding: 100px 20px;
+    background-color: var(--black-2);
+
+    h2 {
+      text-align: center;
+      margin-bottom: 60px;
+      font-size: 2.5rem;
+      color: var(--yellow);
+    }
+
+    .advantages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .advantage-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      padding: 40px 30px;
+      text-align: center;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: translateY(-10px);
+      }
+
+      .icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 217, 0, 0.1);
+        border-radius: 50%;
+
+        svg {
+          color: var(--yellow);
+        }
+      }
+
+      h3 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+      }
+
+      p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        opacity: 0.8;
+      }
+    }
+  }
+
+  .process-section {
+    padding: 100px 20px;
+    background: linear-gradient(to right, #121212, #1a1a1a);
+
+    h2 {
+      text-align: center;
+      margin-bottom: 60px;
+      font-size: 2.5rem;
+      color: var(--yellow);
+    }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+      counter-reset: step-counter;
+    }
+
+    .step {
+      position: relative;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 15px;
+      border-left: 3px solid var(--yellow);
+
+      &::before {
+        counter-increment: step-counter;
+        content: counter(step-counter);
+        position: absolute;
+        top: -25px;
+        left: -25px;
+        width: 50px;
+        height: 50px;
+        background: var(--yellow);
+        color: black;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+
+      h3 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        color: var(--yellow);
+      }
+
+      p {
+        opacity: 0.8;
+        line-height: 1.6;
+      }
+    }
+  }
+
+  .social-section {
+    padding: 100px 20px;
+    text-align: center;
+    background: var(--black);
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: var(--yellow);
+    }
+
+    p {
+      font-size: 1.2rem;
+      opacity: 0.8;
+      margin-bottom: 50px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 15px 30px;
+      border-radius: 50px;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: var(--yellow);
+        color: black;
+        transform: translateY(-5px);
+      }
+
+      img {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+}

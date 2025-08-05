@@ -1,17 +1,101 @@
 <div class="modal-header">
-  <h4 class="modal-title">Оставить заявку</h4>
+  <div class="modal-header-content">
+    <h4 class="modal-title">Оставить заявку</h4>
+    <p>Мы свяжемся с вами в удобном мессенджере</p>
+  </div>
   <button
     type="button"
     class="btn-close"
     aria-label="Close"
     (click)="activeModal.hide()"
-  ></button>
+  >
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+      <path d="M13 1L1 13M1 1L13 13" stroke="#FFD700" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button>
 </div>
+
 <div class="modal-body">
-  <p>Здесь данные по выбранной машине 🚗</p>
+  <form class="contact-form">
+    <!-- Выбор мессенджера -->
+    <div class="form-section">
+      <label class="form-label">Выберите мессенджер</label>
+      <div class="messenger-selector">
+        <div class="messenger-option" [class.active]="selectedMessenger === 'whatsapp'">
+          <input type="radio" id="whatsapp" name="messenger" value="whatsapp"
+                 [(ngModel)]="selectedMessenger">
+          <label for="whatsapp">
+            <img src="assets/social/whatsapp.svg" alt="WhatsApp">
+            <span>WhatsApp</span>
+          </label>
+        </div>
+
+        <div class="messenger-option" [class.active]="selectedMessenger === 'telegram'">
+          <input type="radio" id="telegram" name="messenger" value="telegram"
+                 [(ngModel)]="selectedMessenger">
+          <label for="telegram">
+            <img src="assets/social/telegram.svg" alt="Telegram">
+            <span>Telegram</span>
+          </label>
+        </div>
+
+        <div class="messenger-option" [class.active]="selectedMessenger === 'viber'">
+          <input type="radio" id="viber" name="messenger" value="viber"
+                 [(ngModel)]="selectedMessenger">
+          <label for="viber">
+            <img src="assets/social/viber.svg" alt="Viber">
+            <span>Viber</span>
+          </label>
+        </div>
+
+        <div class="messenger-option" [class.active]="selectedMessenger === 'phone'">
+          <input type="radio" id="phone" name="messenger" value="phone"
+                 [(ngModel)]="selectedMessenger">
+          <label for="phone">
+            <img src="assets/social/phone.svg" alt="Phone">
+            <span>Звонок</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Поля ввода -->
+    <div class="form-section">
+      <div class="form-group">
+        <label for="firstName" class="form-label">Имя</label>
+        <input type="text" id="firstName" class="form-control"
+               [(ngModel)]="contactData.firstName" name="firstName" required>
+      </div>
+
+      <div class="form-group">
+        <label for="lastName" class="form-label">Фамилия</label>
+        <input type="text" id="lastName" class="form-control"
+               [(ngModel)]="contactData.lastName" name="lastName" required>
+      </div>
+
+      <div class="form-group">
+        <label for="phone" class="form-label">Номер телефона</label>
+        <input type="tel" id="phone" class="form-control"
+               [(ngModel)]="contactData.phone" name="phone" required
+               placeholder="+38 (___) ___-__-__">
+      </div>
+    </div>
+
+    <!-- Комментарий -->
+    <div class="form-section">
+      <label for="message" class="form-label">Комментарий (необязательно)</label>
+      <textarea id="message" class="form-control" rows="3"
+                [(ngModel)]="contactData.message" name="message"
+                placeholder="Укажите удобное время для связи или дополнительные пожелания"></textarea>
+    </div>
+  </form>
 </div>
+
 <div class="modal-footer">
   <button class="btn btn-secondary" (click)="activeModal.hide()">
-    Закрыть
+    Отменить
+  </button>
+  <button class="btn btn-primary" (click)="submitContactForm()">
+    Отправить заявку
   </button>
 </div>

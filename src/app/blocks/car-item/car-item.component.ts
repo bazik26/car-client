@@ -1,6 +1,7 @@
-import { CurrencyPipe } from '@angular/common';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, Input } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import {CurrencyPipe} from '@angular/common';
+import {Component, CUSTOM_ELEMENTS_SCHEMA, Input} from '@angular/core';
+import {RouterLink} from '@angular/router';
+
 
 @Component({
   selector: 'app-car-item',
