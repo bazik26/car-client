@@ -18,7 +18,7 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 
-import { AppService } from '../../../app.service';
+import { AppService } from '../../../../../app.service';
 
 @Component({
   selector: 'app-car',
@@ -28,7 +28,7 @@ import { AppService } from '../../../app.service';
   styleUrls: ['./management.modal.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class ManagementModal implements OnInit {
+export class AdminCarsManagementModal implements OnInit {
   public readonly fb = inject(FormBuilder);
 
   public readonly activeModal = inject(BsModalRef);

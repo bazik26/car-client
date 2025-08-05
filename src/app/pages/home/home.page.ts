@@ -4,6 +4,7 @@ import {
   inject,
   OnInit,
 } from '@angular/core';
+
 import { BsModalService } from 'ngx-bootstrap/modal';
 
 import { AppService } from '../../app.service';
@@ -24,7 +25,7 @@ export class HomePage implements OnInit {
 
   public readonly appService = inject(AppService);
 
-  public cars!: any;
+  public cars!: any[];
 
   public ngOnInit() {
     this.appService.getCars().subscribe((cars) => (this.cars = cars));

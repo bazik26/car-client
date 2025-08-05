@@ -1,10 +1,13 @@
-import { Routes } from '@angular/router';
-import { LayoutComponent } from './blocks/layout/layout.component';
-import { HomePage } from './pages/home/home.page';
-import { CarPage } from './pages/car/car.page';
-import { AdminPage } from './pages/admin/admin.page';
-import {Team} from './pages/team/team';
+import {Routes} from '@angular/router';
+
+import {LayoutComponent} from './blocks/layout/layout.component';
+
+import {HomePage} from './pages/home/home.page';
+import {CarPage} from './pages/car/car.page';
 import {AboutUs} from './pages/about-us/about-us';
+import {Team} from './pages/team/team';
+
+import {AdminCarsPage} from './pages/admin/pages/cars/cars.page';
 
 export const routes: Routes = [
   {
@@ -37,6 +40,7 @@ export const routes: Routes = [
         component: AboutUs,
         title: 'О компании TopCars'
       },
+
       {
         path: 'team',
         component: Team,
@@ -47,8 +51,19 @@ export const routes: Routes = [
 
   {
     path: 'admin',
-    component: AdminPage,
-    title: 'Администрирование'
+
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: '/admin',
+      },
+
+      {
+        path: 'cars',
+        component: AdminCarsPage,
+      },
+    ],
   },
 
   {

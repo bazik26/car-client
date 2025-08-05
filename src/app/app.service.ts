@@ -30,31 +30,31 @@ export class AppService {
 
   createCar(car: any): Observable<any> {
     return this.http
-      .post(`http://localhost:3001/cars`, car)
+      .post(`http://localhost:3001/cars/car`, car)
       .pipe(map((response) => response));
   }
 
   getCar(carId: number): Observable<any> {
     return this.http
-      .get(`http://localhost:3001/cars/${carId}`)
+      .get(`http://localhost:3001/cars/car/${carId}`)
       .pipe(map((response) => response));
   }
 
   updateCar(carId: number, car: any): Observable<any> {
     return this.http
-      .patch(`http://localhost:3001/cars/${carId}`, car)
+      .patch(`http://localhost:3001/cars/car/${carId}`, car)
       .pipe(map((response) => response));
   }
 
   deleteCar(carId: number): Observable<any> {
     return this.http
-      .delete(`http://localhost:3001/cars/${carId}`)
+      .delete(`http://localhost:3001/cars/car/${carId}`)
       .pipe(map((response) => response));
   }
 
   restoreCar(carId: number): Observable<any> {
     return this.http
-      .get(`http://localhost:3001/cars/${carId}/restore`)
+      .get(`http://localhost:3001/cars/car/${carId}/restore`)
       .pipe(map((response) => response));
   }
 }
