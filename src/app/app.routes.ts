@@ -5,7 +5,7 @@ import { LayoutComponent } from './blocks/layout/layout.component';
 import { HomePage } from './pages/home/home.page';
 import { CarPage } from './pages/car/car.page';
 
-import { AdminPage } from './pages/admin/admin.page';
+import { AdminCarsPage } from './pages/admin/pages/cars/cars.page';
 
 export const routes: Routes = [
   {
@@ -37,6 +37,18 @@ export const routes: Routes = [
 
   {
     path: 'admin',
-    component: AdminPage,
+
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: '/admin',
+      },
+
+      {
+        path: 'cars',
+        component: AdminCarsPage,
+      },
+    ],
   },
 ];

@@ -5,21 +5,22 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { BsModalService } from 'ngx-bootstrap/modal';
 
-import { AppService } from '../../app.service';
-import { ManagementModal } from './blocks/management.modal';
+import { AppService } from '../../../../app.service';
+
+import { AdminCarsManagementModal } from './blocks/management.modal';
 
 @Component({
-  selector: 'app-car',
+  selector: 'app-admin-cars',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, NgSelectModule],
-  templateUrl: './admin.page.html',
-  styleUrls: ['./admin.page.scss'],
+  templateUrl: './cars.page.html',
+  styleUrls: ['./cars.page.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class AdminPage implements OnInit {
-  public readonly appService = inject(AppService);
-
+export class AdminCarsPage implements OnInit {
   public readonly modal = inject(BsModalService);
+
+  public readonly appService = inject(AppService);
 
   public cars!: any;
 
@@ -28,7 +29,7 @@ export class AdminPage implements OnInit {
   }
 
   openModal(car?: any) {
-    const modalRef = this.modal.show(ManagementModal, {
+    const modalRef = this.modal.show(AdminCarsManagementModal, {
       initialState: {
         car,
       },
