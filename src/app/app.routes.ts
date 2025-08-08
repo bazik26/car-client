@@ -9,6 +9,8 @@ import { Team } from './pages/team/team';
 
 import { AdminLayoutComponent } from './pages/admin/pages/layout/layout.component';
 
+import { SigninPage } from './pages/admin/pages/login/signin.page';
+
 import { AdminAdminsPage } from './pages/admin/pages/admins/admins.page';
 import { AdminCarsPage } from './pages/admin/pages/cars/cars.page';
 
@@ -54,23 +56,33 @@ export const routes: Routes = [
 
   {
     path: 'admin',
-    component: AdminLayoutComponent,
 
     children: [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: '/admin/cars',
+        redirectTo: '/admin/signin',
       },
 
       {
-        path: 'admins',
-        component: AdminAdminsPage,
+        path: 'signin',
+        component: SigninPage,
       },
 
       {
-        path: 'cars',
-        component: AdminCarsPage,
+        path: '',
+        component: AdminLayoutComponent,
+        children: [
+          {
+            path: 'admins',
+            component: AdminAdminsPage,
+          },
+
+          {
+            path: 'cars',
+            component: AdminCarsPage,
+          },
+        ],
       },
     ],
   },

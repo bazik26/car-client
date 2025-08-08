@@ -58,6 +58,18 @@ export class AppService {
       .pipe(map((response) => response));
   }
 
+  auth(): Observable<any> {
+    return this.http
+      .get('http://localhost:3001/auth')
+      .pipe(map((response) => response));
+  }
+
+  signin(payload: any): Observable<any> {
+    return this.http
+      .post('http://localhost:3001/auth/signin', payload)
+      .pipe(map((response) => response));
+  }
+
   getAdminsAll(): Observable<any> {
     return this.http
       .get(`http://localhost:3001/admins/all`)

@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+
+import { AppService } from '../../../../app.service';
 
 @Component({
   selector: 'app-admin-layout',
@@ -8,4 +10,12 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss'],
 })
-export class AdminLayoutComponent {}
+export class AdminLayoutComponent implements OnInit {
+  public appService = inject(AppService);
+
+  public admin!: any;
+
+  ngOnInit() {
+    this.appService.auth().subscribe((admin) => (this.admin = admin));
+  }
+}
