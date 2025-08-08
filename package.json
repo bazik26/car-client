@@ -1,6 +1,9 @@
 {
   "name": "auto-client",
   "version": "0.0.0",
+  "engines": {
+    "node": ">=20.19 <21 || >=22.12"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -18,7 +21,6 @@
       }
     ]
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "^20.1.4",
     "@angular/common": "^20.1.4",
