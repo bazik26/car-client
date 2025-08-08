@@ -9,6 +9,8 @@ import { AppService } from '../../../../app.service';
 
 import { AdminCarsManagementModal } from './blocks/management.modal';
 
+import { environment } from '../../../../../environments/environment';
+
 @Component({
   selector: 'app-admin-cars',
   standalone: true,
@@ -23,6 +25,8 @@ export class AdminCarsPage implements OnInit {
   public readonly appService = inject(AppService);
 
   public cars!: any;
+
+  public API_URL = environment.API_URL;
 
   ngOnInit() {
     this.getCarsAll();

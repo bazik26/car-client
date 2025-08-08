@@ -18,7 +18,11 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 
+import { switchMap } from 'rxjs';
+
 import { AppService } from '../../../../../app.service';
+
+import { environment } from '../../../../../../environments/environment';
 
 @Component({
   selector: 'app-admin-cars-car-modal',
@@ -40,7 +44,11 @@ export class AdminCarsManagementModal implements OnInit {
 
   public form!: FormGroup;
 
+  public API_URL = environment.API_URL;
+
   public BRANDS_AND_MODELS!: any[];
+
+  public previews: (string | null)[] = [];
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -79,6 +87,8 @@ export class AdminCarsManagementModal implements OnInit {
       group7: this.fb.array([]),
       group8: this.fb.array([]),
       group9: this.fb.array([]),
+
+      files: this.fb.array([]),
     });
 
     Object.keys(this.form.controls).forEach((key) => {
@@ -95,12 +105,21 @@ export class AdminCarsManagementModal implements OnInit {
       }
     });
 
-    this.form.patchValue(this.car);
+    if (this.car) {
+      this.car.files.forEach((file: any) => {
+        this.previews.push(`${this.API_URL}/${file.path}`);
+      });
+
+      this.form.patchValue(this.car);
+    }
+
+    this.previews.push(null);
+    this.files.push(this.fb.control(null));
 
     this.appService
       .getAllBrandsAndModels()
       .subscribe(
-        (BRANDS_AND_MODELS) => (this.BRANDS_AND_MODELS = BRANDS_AND_MODELS)
+        (BRANDS_AND_MODELS) => (this.BRANDS_AND_MODELS = BRANDS_AND_MODELS),
       );
   }
 
@@ -161,32 +180,75 @@ export class AdminCarsManagementModal implements OnInit {
 
   public readonly drives = ['Полный', 'Передний', 'Задний'];
 
-  get images(): FormArray {
-    return this.form.get('images') as FormArray;
-  }
-
-  addImage() {
-    this.images.push(this.fb.control(null, Validators.required));
-  }
-
-  removeImage(index: number) {
-    if (this.images.length > 1) {
-      this.images.removeAt(index);
-    }
-  }
-
   onCheckboxChange(event: any, groupName: string) {
     const formArray = this.form.get(groupName) as FormArray;
     if (event.target.checked) {
       formArray.push(this.fb.control(event.target.value));
     } else {
       const index = formArray.controls.findIndex(
-        (x) => x.value === event.target.value
+        (x) => x.value === event.target.value,
       );
+
       if (index !== -1) {
         formArray.removeAt(index);
       }
     }
+  }
+
+  get files(): FormArray {
+    return this.form.get('files') as FormArray;
+  }
+
+  private ensureTailSlot() {
+    for (let i = 0; i < this.files.length - 1; i++) {
+      if (!this.files.at(i).value) {
+        this.files.removeAt(i);
+        this.previews.splice(i, 1);
+        i--;
+      }
+    }
+    const needTail =
+      this.files.length === 0 || !!this.files.at(this.files.length - 1).value;
+    if (needTail) {
+      this.files.push(this.fb.control(null));
+      this.previews.push(null);
+    }
+  }
+
+  onFileSelected(event: Event, index: number) {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+      input.value = '';
+      return;
+    }
+
+    this.files.at(index).setValue(file);
+
+    if (this.previews[index]) URL.revokeObjectURL(this.previews[index]!);
+    this.previews[index] = URL.createObjectURL(file);
+
+    input.value = '';
+
+    this.ensureTailSlot();
+  }
+
+  removeFile(index: number, preview: any) {
+    if (preview.id) {
+      if (confirm(`Удалить изображение из базы?`)) {
+        this.appService.deleteCarImage(this.car.id, preview.id).subscribe();
+      } else {
+        return;
+      }
+    }
+
+    if (this.previews[index]) URL.revokeObjectURL(this.previews[index]!);
+    this.previews.splice(index, 1);
+    this.files.removeAt(index);
+
+    this.ensureTailSlot();
   }
 
   public readonly options = [
@@ -424,11 +486,31 @@ export class AdminCarsManagementModal implements OnInit {
     if (this.car) {
       this.appService
         .updateCar(this.car.id, this.form.value)
-        .subscribe(() => this.activeModal.hide());
+        .pipe(
+          switchMap((car: any) =>
+            this.appService.uploadCarImages(
+              car.id,
+              this.form.get('files')!.value,
+            ),
+          ),
+        )
+        .subscribe(() => {
+          this.activeModal.hide();
+        });
     } else {
       this.appService
         .createCar(this.form.value)
-        .subscribe(() => this.activeModal.hide());
+        .pipe(
+          switchMap((car: any) =>
+            this.appService.uploadCarImages(
+              car.id,
+              this.form.get('files')!.value,
+            ),
+          ),
+        )
+        .subscribe(() => {
+          this.activeModal.hide();
+        });
     }
   }
 }

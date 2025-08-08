@@ -32,9 +32,9 @@
                 <td>{{ car.model }}</td>
                 <td>{{ car.year }}</td>
                 <td>
-                  @if (car.images?.length > 0) {
+                  @if (car.files?.length > 0) {
                     <img
-                      [src]="car.images[0]"
+                      [src]="API_URL + '/' + car.files[0].path"
                       alt="car"
                       width="80"
                       class="img-thumbnail"

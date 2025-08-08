@@ -5,6 +5,8 @@
 export const environment = {
   production: true,
 
+  API_URL: 'http://localhost:3001',
+
   firebase: {
     apiKey: 'AIzaSyCRhiHOHxrwXwgud5C3ITPvL2imPQ_qop0',
     authDomain: 'monster-slayer-143.firebaseapp.com',

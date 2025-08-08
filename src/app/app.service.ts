@@ -4,93 +4,118 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { environment } from '../environments/environment';
+
 @Injectable({
   providedIn: 'root',
 })
 export class AppService {
+  public API_URL = environment.API_URL;
+
   constructor(protected readonly http: HttpClient) {}
 
   getAllBrandsAndModels(): Observable<any> {
     return this.http
-      .get(`http://localhost:3001/cars/all-brands-and-models`)
+      .get(`${this.API_URL}/cars/all-brands-and-models`)
       .pipe(map((response) => response));
   }
 
   getCars(): Observable<any> {
     return this.http
-      .get(`http://localhost:3001/cars`)
+      .get(`${this.API_URL}/cars`)
       .pipe(map((response) => response));
   }
 
   getCarsAll(): Observable<any> {
     return this.http
-      .get(`http://localhost:3001/cars/all`)
+      .get(`${this.API_URL}/cars/all`)
       .pipe(map((response) => response));
   }
 
   createCar(car: any): Observable<any> {
     return this.http
-      .post(`http://localhost:3001/cars/car`, car)
+      .post(`${this.API_URL}/cars/car`, car)
       .pipe(map((response) => response));
   }
 
   getCar(carId: number): Observable<any> {
     return this.http
-      .get(`http://localhost:3001/cars/car/${carId}`)
+      .get(`${this.API_URL}/cars/car/${carId}`)
       .pipe(map((response) => response));
   }
 
   updateCar(carId: number, car: any): Observable<any> {
+    delete car.files;
+
     return this.http
-      .patch(`http://localhost:3001/cars/car/${carId}`, car)
+      .patch(`${this.API_URL}/cars/car/${carId}`, car)
+      .pipe(map((response) => response));
+  }
+
+  uploadCarImages(carId: number, files: File[]): Observable<any> {
+    const form = new FormData();
+    files
+      .filter((file): file is File => !!file)
+      .filter((file: any) => !file.id)
+      .forEach((file) => form.append('images', file, file.name));
+
+    return this.http.patch<any>(
+      `${this.API_URL}/cars/car/${carId}/images`,
+      form,
+    );
+  }
+
+  deleteCarImage(carId: number, fileId: number): Observable<any> {
+    return this.http
+      .delete(`${this.API_URL}/cars/car/${carId}/images/image/${fileId}`)
       .pipe(map((response) => response));
   }
 
   deleteCar(carId: number): Observable<any> {
     return this.http
-      .delete(`http://localhost:3001/cars/car/${carId}`)
+      .delete(`${this.API_URL}/cars/car/${carId}`)
       .pipe(map((response) => response));
   }
 
   restoreCar(carId: number): Observable<any> {
     return this.http
-      .get(`http://localhost:3001/cars/car/${carId}/restore`)
+      .get(`${this.API_URL}/cars/car/${carId}/restore`)
       .pipe(map((response) => response));
   }
 
   auth(): Observable<any> {
     return this.http
-      .get('http://localhost:3001/auth')
+      .get(`${this.API_URL}/auth`)
       .pipe(map((response) => response));
   }
 
   signin(payload: any): Observable<any> {
     return this.http
-      .post('http://localhost:3001/auth/signin', payload)
+      .post(`${this.API_URL}/auth/signin`, payload)
       .pipe(map((response) => response));
   }
 
   getAdminsAll(): Observable<any> {
     return this.http
-      .get(`http://localhost:3001/admins/all`)
+      .get(`${this.API_URL}/admins/all`)
       .pipe(map((response) => response));
   }
 
   createAdmin(admin: any): Observable<any> {
     return this.http
-      .post(`http://localhost:3001/admins/admin`, admin)
+      .post(`${this.API_URL}/admins/admin`, admin)
       .pipe(map((response) => response));
   }
 
   deleteAdmin(adminId: number): Observable<any> {
     return this.http
-      .delete(`http://localhost:3001/admins/admin/${adminId}`)
+      .delete(`${this.API_URL}/admins/admin/${adminId}`)
       .pipe(map((response) => response));
   }
 
   restoreAdmin(adminId: number): Observable<any> {
     return this.http
-      .get(`http://localhost:3001/admins/admin/${adminId}/restore`)
+      .get(`${this.API_URL}/admins/admin/${adminId}/restore`)
       .pipe(map((response) => response));
   }
 }
