@@ -38,7 +38,7 @@ export class SigninPage {
     this.error = null;
     this.appService.signin(this.form.value).subscribe({
       next: (res) => {
-        document.cookie = `AUTH_KEY=${res.AUTH_KEY};path=/`;
+        localStorage.setItem('AUTH_KEY', res.AUTH_KEY);
         this.router.navigate(['/admin/cars']);
       },
       error: () => {
