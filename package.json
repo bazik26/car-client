@@ -2,8 +2,8 @@
   "name": "auto-client",
   "version": "0.0.0",
   "engines": {
-    "node": ">=22.12.0"
-  },
+    "node": ">=20.19.0 <21"
+  }
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
