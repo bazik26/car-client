@@ -57,4 +57,46 @@ export class AppService {
       .get(`http://localhost:3001/cars/car/${carId}/restore`)
       .pipe(map((response) => response));
   }
+
+  signin(data: { email: string; password: string }): Observable<any> {
+    return this.http
+      .post('http://localhost:3001/auth/signin', data)
+      .pipe(map((response) => response));
+  }
+
+  signup(data: { email: string; password: string; role?: string }): Observable<any> {
+    return this.http
+      .post('http://localhost:3001/auth/signup', data)
+      .pipe(map((response) => response));
+  }
+
+  getAdminInfo(): Observable<any> {
+    return this.http
+      .get('http://localhost:3001/auth/')
+      .pipe(map((response) => response));
+  }
+
+  getAdmins(): Observable<any> {
+    return this.http
+      .get('http://localhost:3001/admins')
+      .pipe(map((response) => response));
+  }
+
+  createAdmin(admin: any): Observable<any> {
+    return this.http
+      .post('http://localhost:3001/admins', admin)
+      .pipe(map((response) => response));
+  }
+
+  updateAdmin(adminId: number, data: any): Observable<any> {
+    return this.http
+      .patch(`http://localhost:3001/admins/${adminId}`, data)
+      .pipe(map((response) => response));
+  }
+
+  deleteAdmin(adminId: number): Observable<any> {
+    return this.http
+      .delete(`http://localhost:3001/admins/${adminId}`)
+      .pipe(map((response) => response));
+  }
 }

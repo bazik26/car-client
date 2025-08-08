@@ -8,6 +8,7 @@ import {AboutUs} from './pages/about-us/about-us';
 import {Team} from './pages/team/team';
 
 import {AdminCarsPage} from './pages/admin/pages/cars/cars.page';
+import {SigninPage} from './pages/admin/pages/login/signin.page';
 
 export const routes: Routes = [
   {
@@ -51,18 +52,21 @@ export const routes: Routes = [
 
   {
     path: 'admin',
-
     children: [
       {
-        path: '',
-        pathMatch: 'full',
-        redirectTo: '/admin',
+        path: 'signin',
+        component: SigninPage, // <--- ДОЛЖЕН БЫТЬ ТВОЙ SigninPage
       },
-
       {
         path: 'cars',
         component: AdminCarsPage,
+        canActivate: [],
       },
+      // {
+      //   path: 'admins',
+      //   component: AdminsManagementPage,
+      //   canActivate: [AuthGuard, SuperAdminGuard],
+      // },
     ],
   },
 
