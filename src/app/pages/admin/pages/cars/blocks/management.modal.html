@@ -140,41 +140,41 @@
                 />
               </div>
 
-              <div class="form-group mt-3" formArrayName="images">
-                <label class="form-label">Изображения</label>
+<!--              <div class="form-group mt-3" formArrayName="images">-->
+<!--                <label class="form-label">Изображения</label>-->
 
-                @for (
-                  image of images.controls;
-                  track image;
-                  let index = $index
-                ) {
-                  <div class="d-flex align-items-center mt-2">
-                    <input
-                      class="form-control me-2"
-                      [formControlName]="index"
-                      placeholder="URL изображения"
-                    />
+<!--                @for (-->
+<!--                  image of images.controls;-->
+<!--                  track image;-->
+<!--                  let index = $index-->
+<!--                ) {-->
+<!--                  <div class="d-flex align-items-center mt-2">-->
+<!--                    <input-->
+<!--                      class="form-control me-2"-->
+<!--                      [formControlName]="index"-->
+<!--                      placeholder="URL изображения"-->
+<!--                    />-->
 
-                    @if (images.length > 1) {
-                      <button
-                        type="button"
-                        class="btn btn-danger"
-                        (click)="removeImage(index)"
-                      >
-                        Удалить
-                      </button>
-                    }
-                  </div>
-                }
+<!--                    @if (images.length > 1) {-->
+<!--                      <button-->
+<!--                        type="button"-->
+<!--                        class="btn btn-danger"-->
+<!--                        (click)="removeImage(index)"-->
+<!--                      >-->
+<!--                        Удалить-->
+<!--                      </button>-->
+<!--                    }-->
+<!--                  </div>-->
+<!--                }-->
 
-                <button
-                  type="button"
-                  class="btn btn-secondary mt-2"
-                  (click)="addImage()"
-                >
-                  Добавить ещё
-                </button>
-              </div>
+<!--                <button-->
+<!--                  type="button"-->
+<!--                  class="btn btn-secondary mt-2"-->
+<!--                  (click)="addImage()"-->
+<!--                >-->
+<!--                  Добавить ещё-->
+<!--                </button>-->
+<!--              </div>-->
 
               @for (group of options; track group) {
                 <div class="form-group mt-3">

@@ -1,13 +1,16 @@
-import {Routes} from '@angular/router';
+import { Routes } from '@angular/router';
 
-import {LayoutComponent} from './blocks/layout/layout.component';
+import { LayoutComponent } from './blocks/layout/layout.component';
 
-import {HomePage} from './pages/home/home.page';
-import {CarPage} from './pages/car/car.page';
-import {AboutUs} from './pages/about-us/about-us';
-import {Team} from './pages/team/team';
+import { HomePage } from './pages/home/home.page';
+import { CarPage } from './pages/car/car.page';
+import { AboutUs } from './pages/about-us/about-us';
+import { Team } from './pages/team/team';
 
-import {AdminCarsPage} from './pages/admin/pages/cars/cars.page';
+import { AdminLayoutComponent } from './pages/admin/pages/layout/layout.component';
+
+import { AdminAdminsPage } from './pages/admin/pages/admins/admins.page';
+import { AdminCarsPage } from './pages/admin/pages/cars/cars.page';
 
 export const routes: Routes = [
   {
@@ -38,25 +41,31 @@ export const routes: Routes = [
       {
         path: 'about-us',
         component: AboutUs,
-        title: 'О компании TopCars'
+        title: 'О компании TopCars',
       },
 
       {
         path: 'team',
         component: Team,
-        title: 'Наша команда'
+        title: 'Наша команда',
       },
     ],
   },
 
   {
     path: 'admin',
+    component: AdminLayoutComponent,
 
     children: [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: '/admin',
+        redirectTo: '/admin/cars',
+      },
+
+      {
+        path: 'admins',
+        component: AdminAdminsPage,
       },
 
       {
@@ -68,6 +77,6 @@ export const routes: Routes = [
 
   {
     path: '**',
-    redirectTo: '/home'
-  }
+    redirectTo: '/home',
+  },
 ];

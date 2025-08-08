@@ -21,7 +21,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 import { AppService } from '../../../../../app.service';
 
 @Component({
-  selector: 'app-car',
+  selector: 'app-admin-cars-car-modal',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, AccordionModule, NgSelectModule],
   templateUrl: './management.modal.html',
@@ -56,7 +56,6 @@ export class AdminCarsManagementModal implements OnInit {
       engine: [null, [Validators.required]],
       drive: [null, [Validators.required]],
       price: [null, [Validators.required]],
-      images: this.fb.array([this.fb.control(null, Validators.required)]),
 
       conditionerType: [null],
       windowLifter: [null],
@@ -85,6 +84,7 @@ export class AdminCarsManagementModal implements OnInit {
     Object.keys(this.form.controls).forEach((key) => {
       if (
         this.form.get(key) instanceof FormArray &&
+        this.car &&
         Array.isArray(this.car[key])
       ) {
         const formArray = this.form.get(key) as FormArray;
@@ -97,12 +97,10 @@ export class AdminCarsManagementModal implements OnInit {
 
     this.form.patchValue(this.car);
 
-    console.log(this.form.value);
-
     this.appService
       .getAllBrandsAndModels()
       .subscribe(
-        (BRANDS_AND_MODELS) => (this.BRANDS_AND_MODELS = BRANDS_AND_MODELS),
+        (BRANDS_AND_MODELS) => (this.BRANDS_AND_MODELS = BRANDS_AND_MODELS)
       );
   }
 
@@ -183,7 +181,7 @@ export class AdminCarsManagementModal implements OnInit {
       formArray.push(this.fb.control(event.target.value));
     } else {
       const index = formArray.controls.findIndex(
-        (x) => x.value === event.target.value,
+        (x) => x.value === event.target.value
       );
       if (index !== -1) {
         formArray.removeAt(index);

@@ -25,7 +25,7 @@ export class AdminCarsPage implements OnInit {
   public cars!: any;
 
   ngOnInit() {
-    this.getAllCars();
+    this.getCarsAll();
   }
 
   openModal(car?: any) {
@@ -36,21 +36,21 @@ export class AdminCarsPage implements OnInit {
     });
 
     modalRef.onHidden?.subscribe(() => {
-      this.getAllCars();
+      this.getCarsAll();
     });
   }
 
-  getAllCars() {
+  getCarsAll() {
     this.appService.getCarsAll().subscribe((cars) => (this.cars = cars));
   }
 
   deleteCar(car: any) {
     if (confirm(`Удалить ${car.brand} ${car.model}?`)) {
-      this.appService.deleteCar(car.id).subscribe(() => this.getAllCars());
+      this.appService.deleteCar(car.id).subscribe(() => this.getCarsAll());
     }
   }
 
   restoreCar(car: any) {
-    this.appService.restoreCar(car.id).subscribe(() => this.getAllCars());
+    this.appService.restoreCar(car.id).subscribe(() => this.getCarsAll());
   }
 }
