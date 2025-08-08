@@ -25,11 +25,13 @@ export class AdminCarsPage implements OnInit {
   public readonly appService = inject(AppService);
 
   public cars!: any;
+  public admin!: any;
 
   public API_URL = environment.API_URL;
 
   ngOnInit() {
     this.getCarsAll();
+    this.appService.auth().subscribe((admin) => (this.admin = admin));
   }
 
   openModal(car?: any) {

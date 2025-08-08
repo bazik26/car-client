@@ -24,12 +24,16 @@ export class SigninPage {
   constructor(
     private fb: FormBuilder,
     private appService: AppService,
-    private router: Router
+    private router: Router,
   ) {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
     });
+
+    this.appService
+      .auth()
+      .subscribe((auth) => this.router.navigate(['/admin/cars']));
   }
 
   signin() {

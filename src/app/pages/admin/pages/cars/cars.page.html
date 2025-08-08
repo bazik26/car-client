@@ -1,4 +1,4 @@
-@if (cars) {
+@if (cars && admin) {
   <div class="admin">
     <div class="container">
       <div class="row">
@@ -23,6 +23,9 @@
               <th>Фото</th>
               <th>Статус</th>
               <th>Действия</th>
+              @if (admin.isSuper) {
+                <th>Автор</th>
+              }
             </tr>
           </thead>
           <tbody>
@@ -73,6 +76,12 @@
                     </button>
                   }
                 </td>
+
+                @if (admin.isSuper) {
+                  <td>
+                    {{ car.admin.email }}
+                  </td>
+                }
               </tr>
             } @empty {
               <tr>

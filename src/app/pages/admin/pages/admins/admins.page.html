@@ -19,6 +19,7 @@
             <tr>
               <th>Почта</th>
               <th>Статус</th>
+              <th>Роль</th>
             </tr>
           </thead>
           <tbody>
@@ -30,6 +31,13 @@
                     <span class="badge bg-danger">Удален</span>
                   } @else {
                     <span class="badge bg-success">Активен</span>
+                  }
+                </td>
+                <td>
+                  @if (admin.isSuper) {
+                    {{ "Супер" }}
+                  } @else {
+                    {{ "Бомж" }}
                   }
                 </td>
                 <td>

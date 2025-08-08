@@ -10,7 +10,7 @@ import { Team } from './pages/team/team';
 
 import { AdminLayoutComponent } from './pages/admin/pages/layout/layout.component';
 
-import { SigninPage } from './pages/admin/pages/login/signin.page';
+import { SigninPage } from './pages/admin/pages/signin/signin.page';
 
 import { AdminAdminsPage } from './pages/admin/pages/admins/admins.page';
 import { AdminCarsPage } from './pages/admin/pages/cars/cars.page';
