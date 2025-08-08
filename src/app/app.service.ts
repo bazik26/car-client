@@ -20,9 +20,21 @@ export class AppService {
       .pipe(map((response) => response));
   }
 
+  getBrandsAndModelsWithCount(): Observable<any> {
+    return this.http
+      .get(`${this.API_URL}/cars/brands-and-models-with-count`)
+      .pipe(map((response) => response));
+  }
+
   getCars(): Observable<any> {
     return this.http
       .get(`${this.API_URL}/cars`)
+      .pipe(map((response) => response));
+  }
+
+  searchCars(payload: any): Observable<any> {
+    return this.http
+      .post(`${this.API_URL}/cars/search`, payload)
       .pipe(map((response) => response));
   }
 

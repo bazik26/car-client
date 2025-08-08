@@ -3,6 +3,7 @@ import { Routes } from '@angular/router';
 import { LayoutComponent } from './blocks/layout/layout.component';
 
 import { HomePage } from './pages/home/home.page';
+import { SearchPage } from './pages/search/search.page';
 import { CarPage } from './pages/car/car.page';
 import { AboutUs } from './pages/about-us/about-us';
 import { Team } from './pages/team/team';
@@ -33,6 +34,11 @@ export const routes: Routes = [
       {
         path: 'cars',
         children: [
+          {
+            path: 'search',
+            component: SearchPage,
+          },
+
           {
             path: ':carId',
             component: CarPage,
