@@ -31,7 +31,7 @@ export class AdminAdminsPage implements OnInit {
   openModal() {
     const modalRef = this.modal.show(AdminAdminsManagementModal);
 
-    modalRef.onHidden?.subscribe(() => {
+    modalRef.onHide?.subscribe(() => {
       if (modalRef.content?.result?.reload) {
         this.getAdminsAll();
       }

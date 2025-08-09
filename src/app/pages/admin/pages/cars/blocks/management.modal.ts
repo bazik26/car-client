@@ -22,8 +22,6 @@ import { switchMap } from 'rxjs';
 
 import { AppService } from '../../../../../app.service';
 
-import { environment } from '../../../../../../environments/environment';
-
 @Component({
   selector: 'app-admin-cars-car-modal',
   standalone: true,
@@ -43,8 +41,6 @@ export class AdminCarsManagementModal implements OnInit {
   car!: any;
 
   public form!: FormGroup;
-
-  public API_URL = environment.API_URL;
 
   public BRANDS_AND_MODELS!: any[];
 
