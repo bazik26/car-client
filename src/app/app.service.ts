@@ -138,4 +138,9 @@ export class AppService {
       return `${this.API_URL}/${image.path}`;
     }
   }
+  contactUs(payload: any) {
+    return this.http
+      .post(`${this.API_URL}/contact-us`, payload)
+      .pipe(map((response) => response));
+  }
 }
