@@ -29,7 +29,7 @@
             </tr>
           </thead>
           <tbody>
-            @for (car of cars; track car) {
+            @for (car of cars; track car; let index = $index) {
               <tr [class.table-danger]="car.deletedAt">
                 <td>{{ car.brand }}</td>
                 <td>{{ car.model }}</td>
@@ -37,10 +37,12 @@
                 <td>
                   @if (car.files?.length > 0) {
                     <img
-                      [src]="appService.getFileUrl(car.files[0])"
+                      [ngSrc]="appService.getFileUrl(car.files[0])"
                       alt="car"
+                      height="80"
                       width="80"
                       class="img-thumbnail"
+                      [priority]="index < 10"
                     />
                   } @else {
                     <span>Нет фото</span>

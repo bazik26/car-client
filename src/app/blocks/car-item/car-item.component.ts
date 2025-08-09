@@ -1,4 +1,4 @@
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, NgOptimizedImage } from '@angular/common';
 import {
   Component,
   CUSTOM_ELEMENTS_SCHEMA,
@@ -12,7 +12,7 @@ import { AppService } from '../../app.service';
 @Component({
   selector: 'app-car-item',
   standalone: true,
-  imports: [RouterLink, CurrencyPipe],
+  imports: [CurrencyPipe, NgOptimizedImage, RouterLink],
   templateUrl: './car-item.component.html',
   styleUrls: ['./car-item.component.scss'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -22,4 +22,7 @@ export class CarItemComponent {
 
   @Input()
   public car!: any;
+
+  @Input()
+  public lazyPriority: boolean = false;
 }

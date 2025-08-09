@@ -1,11 +1,11 @@
 <div class="promo d-flex flex-column justify-content-center">
-<!--  <div class="promo__address">ул. Пушкина Колотушкина 13</div>-->
+  <!--  <div class="promo__address">ул. Пушкина Колотушкина 13</div>-->
 
-<!--  <div class="promo__slogan">Ахуенные машины не скам</div>-->
+  <!--  <div class="promo__slogan">Ахуенные машины не скам</div>-->
 
-<!--  <div class="promo__description">-->
-<!--    Уже второй автосолон в Хуй занает где<br />ждет на твое авто!-->
-<!--  </div>-->
+  <!--  <div class="promo__description">-->
+  <!--    Уже второй автосолон в Хуй занает где<br />ждет на твое авто!-->
+  <!--  </div>-->
 
   <div class="promo__button">
     <a class="button" (click)="openContactUsModal()"> Оставить заявку </a>
@@ -16,10 +16,10 @@
   <div class="cars__title">Топ заказов</div>
 
   <div class="row">
-    @for (car of cars; track car.id) {
-    <div class="mt-3 col-xl-2 col-lg-4 col-md-6 col-12">
-      <app-car-item [car]="car"></app-car-item>
-    </div>
+    @for (car of cars; track car.id; let index = $index) {
+      <div class="mt-3 col-xl-2 col-lg-4 col-md-6 col-12">
+        <app-car-item [car]="car" [lazyPriority]="index < 20"></app-car-item>
+      </div>
     }
   </div>
 </div>

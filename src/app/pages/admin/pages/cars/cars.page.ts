@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component, inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -12,7 +12,12 @@ import { AdminCarsManagementModal } from './blocks/management.modal';
 @Component({
   selector: 'app-admin-cars',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, NgSelectModule],
+  imports: [
+    CommonModule,
+    NgOptimizedImage,
+    ReactiveFormsModule,
+    NgSelectModule,
+  ],
   templateUrl: './cars.page.html',
   styleUrls: ['./cars.page.scss'],
   encapsulation: ViewEncapsulation.None,

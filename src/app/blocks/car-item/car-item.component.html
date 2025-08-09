@@ -1,9 +1,14 @@
 <div class="car-item">
   <div class="car-item__slider">
     <swiper-container slides-per-view="1" navigation="true" pagination="true">
-      @for (file of car.files; track file) {
+      @for (file of car.files; track file; let index = $index) {
         <swiper-slide>
-          <img [src]="appService.getFileUrl(file)" />
+          <img
+            height="320"
+            width="500"
+            [ngSrc]="appService.getFileUrl(file)"
+            [priority]="index === 0 && lazyPriority"
+          />
         </swiper-slide>
       }
     </swiper-container>
