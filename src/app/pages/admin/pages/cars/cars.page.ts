@@ -9,9 +9,6 @@ import { AppService } from '../../../../app.service';
 
 import { AdminCarsManagementModal } from './blocks/management.modal';
 
-import { environment } from '../../../../../environments/environment';
-
-
 @Component({
   selector: 'app-admin-cars',
   standalone: true,
@@ -27,8 +24,6 @@ export class AdminCarsPage implements OnInit {
 
   public cars!: any;
   public admin!: any;
-
-  public API_URL = environment.API_URL;
 
   ngOnInit() {
     this.getCarsAll();
@@ -60,7 +55,4 @@ export class AdminCarsPage implements OnInit {
   restoreCar(car: any) {
     this.appService.restoreCar(car.id).subscribe(() => this.getCarsAll());
   }
-
-
-
 }
