@@ -109,7 +109,7 @@ export class AdminCarsManagementModal implements OnInit {
 
     if (this.car) {
       this.car.files.forEach((file: any) => {
-        this.previews.push(this.appService.getImageUrl(file));
+        this.previews.push(this.appService.getFileUrl(file));
       });
 
       this.form.patchValue(this.car);

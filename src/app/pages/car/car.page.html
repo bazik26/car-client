@@ -7,9 +7,9 @@
           navigation="true"
           pagination="true"
         >
-          @for (image of car.images; track image) {
+          @for (file of car.files; track file) {
             <swiper-slide>
-              <img [src]="image" />
+              <img [src]="appService.getFileUrl(file)" />
             </swiper-slide>
           }
         </swiper-container>
@@ -29,7 +29,12 @@
 
           <div class="car__info row">
             <div class="col-md-6 col-12">
-              <p><span>VIN:</span><a class="link-info" (click)="openContactUsModal()">Показать</a></p>
+              <p>
+                <span>VIN:</span
+                ><a class="link-info" (click)="openContactUsModal()"
+                  >Показать</a
+                >
+              </p>
               <p><span>Двигатель:</span>{{ car.engine }} л</p>
               <p><span>Коробка передач:</span>{{ car.gearbox }}</p>
             </div>

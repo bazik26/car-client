@@ -131,7 +131,7 @@ export class AppService {
       .pipe(map((response) => response));
   }
 
-  getImageUrl(image: any) {
+  getFileUrl(image: any) {
     if (image.path.startsWith('http')) {
       return `${image.path}`;
     } else {

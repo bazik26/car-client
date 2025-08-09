@@ -1,9 +1,9 @@
 <div class="car-item">
   <div class="car-item__slider">
     <swiper-container slides-per-view="1" navigation="true" pagination="true">
-      @for (image of car.images; track image) {
+      @for (file of car.files; track file) {
         <swiper-slide>
-          <img [src]="image" />
+          <img [src]="appService.getFileUrl(file)" />
         </swiper-slide>
       }
     </swiper-container>
