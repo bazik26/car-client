@@ -135,7 +135,7 @@ export class AppService {
     if (image.path.startsWith('http')) {
       return `${image.path}`;
     } else {
-      return `${this.API_URL}/image.path`;
+      return `${this.API_URL}/${image.path}`;
     }
   }
 }
