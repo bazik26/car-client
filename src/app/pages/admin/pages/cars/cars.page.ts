@@ -38,7 +38,9 @@ export class AdminCarsPage implements OnInit {
     });
 
     modalRef.onHidden?.subscribe(() => {
-      this.getCarsAll();
+      if (modalRef.content?.result?.reload) {
+        this.getCarsAll();
+      }
     });
   }
 

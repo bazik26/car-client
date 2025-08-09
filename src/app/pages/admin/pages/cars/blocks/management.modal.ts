@@ -50,6 +50,8 @@ export class AdminCarsManagementModal implements OnInit {
 
   public previews: (string | null)[] = [];
 
+  result?: { reload: boolean };
+
   ngOnInit() {
     this.form = this.fb.group({
       brand: [null, [Validators.required]],
@@ -509,6 +511,7 @@ export class AdminCarsManagementModal implements OnInit {
           ),
         )
         .subscribe(() => {
+          this.result = { reload: true };
           this.activeModal.hide();
         });
     }

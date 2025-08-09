@@ -36,6 +36,8 @@ export class AdminAdminsManagementModal implements OnInit {
 
   public form!: FormGroup;
 
+  result?: { reload: boolean };
+
   ngOnInit() {
     this.form = this.fb.group({
       email: [null, [Validators.required]],
@@ -45,8 +47,9 @@ export class AdminAdminsManagementModal implements OnInit {
   }
 
   onSubmit() {
-    this.appService
-      .createAdmin(this.form.value)
-      .subscribe(() => this.activeModal.hide());
+    this.appService.createAdmin(this.form.value).subscribe(() => {
+      this.result = { reload: true };
+      this.activeModal.hide();
+    });
   }
 }
