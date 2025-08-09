@@ -11,6 +11,7 @@ import { AdminCarsManagementModal } from './blocks/management.modal';
 
 import { environment } from '../../../../../environments/environment';
 
+
 @Component({
   selector: 'app-admin-cars',
   standalone: true,
@@ -59,4 +60,7 @@ export class AdminCarsPage implements OnInit {
   restoreCar(car: any) {
     this.appService.restoreCar(car.id).subscribe(() => this.getCarsAll());
   }
+
+
+
 }

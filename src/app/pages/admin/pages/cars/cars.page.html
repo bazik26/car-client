@@ -37,7 +37,7 @@
                 <td>
                   @if (car.files?.length > 0) {
                     <img
-                      [src]="API_URL + '/' + car.files[0].path"
+                      [src]="appService.getImageUrl(car.files[0])"
                       alt="car"
                       width="80"
                       class="img-thumbnail"

@@ -130,4 +130,12 @@ export class AppService {
       .get(`${this.API_URL}/admins/admin/${adminId}/restore`)
       .pipe(map((response) => response));
   }
+
+  getImageUrl(image: any) {
+    if (image.path.startsWith('http')) {
+      return `${image.path}`;
+    } else {
+      return `${this.API_URL}/image.path`;
+    }
+  }
 }
