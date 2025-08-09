@@ -1,4 +1,4 @@
-import { CurrencyPipe } from '@angular/common';
+import {CurrencyPipe, JsonPipe} from '@angular/common';
 import {
   Component,
   CUSTOM_ELEMENTS_SCHEMA,
@@ -30,6 +30,22 @@ export class CarPage implements OnInit {
 
   public readonly appService = inject(AppService);
 
+  private readonly singleFeatureFields = [
+    'conditionerType',
+    'windowLifter',
+    'interiorMaterials',
+    'interiorColor',
+    'powerSteering',
+    'steeringWheelAdjustment',
+    'spareWheel',
+    'headlights',
+    'seatAdjustment',
+    'memorySeatModule',
+    'seatHeated',
+    'seatVentilation',
+  ];
+
+
   public car!: any;
 
   ngOnInit() {
@@ -40,5 +56,23 @@ export class CarPage implements OnInit {
 
   openContactUsModal() {
     this.modal.show(ContactUsComponent);
+  }
+
+  get features(): string[] {
+    const car: any = this.car;
+    if (!car) return [];
+
+    const singles = this.singleFeatureFields
+      .map((k) => car[k])
+      .flatMap((v) => (Array.isArray(v) ? v : v ? [v] : []))
+      .filter(Boolean) as string[];
+
+    const grouped: string[] = [];
+    for (let i = 1; i <= 9; i++) {
+      const arr = car[`group${i}`];
+      if (Array.isArray(arr)) grouped.push(...arr);
+    }
+
+    return Array.from(new Set([...singles, ...grouped]));
   }
 }

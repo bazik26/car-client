@@ -279,3 +279,140 @@ about-us {
     }
   }
 }
+.search-page {
+  /* Общие стили для ng-select */
+  .ng-select {
+    .ng-select-container {
+      background-color: var(--black-3);
+      border: 1px solid var(--gray);
+      border-radius: 4px;
+      min-height: 44px;
+      transition: all 0.3s ease;
+
+      &:hover {
+        border-color: var(--gray-1);
+      }
+
+      .ng-value-container {
+        padding-left: 12px;
+
+        .ng-placeholder {
+          color: var(--gray-3);
+          font-weight: 400;
+        }
+
+        .ng-input > input {
+          color: var(--white);
+          &::placeholder {
+            color: var(--gray-2);
+          }
+        }
+      }
+    }
+
+    /* Стили для открытого состояния */
+    &.ng-select-opened {
+      .ng-select-container {
+        border-color: var(--yellow);
+        box-shadow: 0 0 0 1px rgba(240, 220, 32, 0.25);
+      }
+    }
+
+    /* Стили для выпадающего списка */
+    .ng-dropdown-panel {
+      background-color: var(--black-3);
+      border: 1px solid var(--gray);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+
+      .ng-option {
+        background-color: var(--black-3);
+        color: var(--white);
+        padding: 10px 15px;
+
+        &.ng-option-marked {
+          background-color: var(--black-2);
+          color: var(--yellow);
+        }
+
+        &.ng-option-selected {
+          background-color: var(--black-1);
+          color: var(--yellow);
+          font-weight: 600;
+        }
+      }
+
+      .ng-optgroup {
+        color: var(--yellow);
+        font-weight: 600;
+        padding: 8px 15px;
+      }
+    }
+
+    /* Стили для множественного выбора */
+    &.ng-select-multiple {
+      .ng-select-container {
+        .ng-value-container .ng-value {
+          background-color: var(--black-1);
+          border: 1px solid var(--yellow);
+          border-radius: 4px;
+          color: var(--yellow);
+          padding: 2px 8px;
+
+          .ng-value-icon {
+            border-right: 1px solid rgba(240, 220, 32, 0.4);
+            padding: 1px 5px;
+
+            &:hover {
+              background-color: rgba(240, 220, 32, 0.1);
+            }
+          }
+        }
+      }
+    }
+
+    /* Элементы управления */
+    .ng-clear-wrapper {
+      color: var(--gray-2);
+      &:hover {
+        color: var(--white);
+      }
+    }
+
+    .ng-arrow-wrapper {
+      .ng-arrow {
+        border-color: var(--gray-2) transparent transparent;
+      }
+    }
+  }
+
+  /* Стили для полей ввода */
+  .form-control {
+    background-color: var(--black-3);
+    border: 1px solid var(--gray);
+    border-radius: 4px;
+    color: var(--white);
+    transition: border-color 0.3s ease;
+
+    &:focus {
+      border-color: var(--yellow);
+      box-shadow: 0 0 0 1px rgba(240, 220, 32, 0.25);
+      outline: none;
+    }
+
+    &::placeholder {
+      color: var(--gray-2);
+    }
+  }
+
+  /* Дополнительные элементы формы */
+  .form-label {
+    color: var(--gray-3);
+    display: block;
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+}

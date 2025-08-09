@@ -21,6 +21,7 @@
             {{ car.brand }}
             {{ car.model }}
             {{ car.year }}
+
           </div>
 
           <div class="card__title card__title-price">
@@ -64,55 +65,19 @@
 
           <div class="card__description">
             <div class="features-grid">
-              <div class="feature-item">
-                <i class="fas fa-check-circle"></i>
-                Климат-контроль
-              </div>
-
-              <div class="feature-item">
-                <i class="fas fa-check-circle"></i>
-                Кожаный салон
-              </div>
-
-              <div class="feature-item">
-                <i class="fas fa-check-circle"></i>
-                Круиз-контроль
-              </div>
-
-              <div class="feature-item">
-                <i class="fas fa-check-circle"></i>
-                Парктроник
-              </div>
-
-              <div class="feature-item">
-                <i class="fas fa-check-circle"></i>
-                Электропакет
-              </div>
-
-              <div class="feature-item">
-                <i class="fas fa-check-circle"></i>
-                Ксеноновые фары
-              </div>
-
-              <div class="feature-item">
-                <i class="fas fa-check-circle"></i>
-                Люк
-              </div>
-
-              <div class="feature-item">
-                <i class="fas fa-check-circle"></i>
-                Мультимедиа
-              </div>
-
-              <div class="feature-item">
-                <i class="fas fa-check-circle"></i>
-                Подогрев сидений
-              </div>
-
-              <div class="feature-item">
-                <i class="fas fa-check-circle"></i>
-                Камера заднего вида
-              </div>
+              @if (features.length) {
+                @for (f of features; track f) {
+                  <div class="feature-item">
+                    <i class="fas fa-check-circle"></i>
+                    {{ f }}
+                  </div>
+                }
+              } @else {
+                <div class="feature-item">
+                  <i class="fas fa-check-circle"></i>
+                  Нет дополнительных опций
+                </div>
+              }
             </div>
           </div>
         </div>

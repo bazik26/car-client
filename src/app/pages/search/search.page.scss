@@ -106,3 +106,121 @@
     }
   }
 }
+
+:host ::ng-deep .search-page .ng-select .ng-select-container { background-color: var(--black) !important; border: 1px solid rgba(255,255,255,.08) !important; color: var(--white) !important; border-radius: 10px; min-height: 40px; }
+:host ::ng-deep .search-page .ng-select.ng-select-opened .ng-select-container,
+:host ::ng-deep .search-page .ng-select.ng-select-focused .ng-select-container { border-color: var(--yellow) !important; box-shadow: 0 0 0 3px rgba(255,215,0,.18) !important; }
+:host ::ng-deep .search-page .ng-select .ng-input > input { background: transparent !important; color: var(--white) !important; }
+:host ::ng-deep .search-page .ng-dropdown-panel { margin-top:6px; background: var(--black-2); border:1px solid rgba(255,255,255,.08); border-radius:10px; box-shadow:0 8px 30px rgba(0,0,0,.45); }
+:host ::ng-deep .search-page .ng-dropdown-panel .ng-option { color: var(--white); }
+:host ::ng-deep .search-page .ng-dropdown-panel .ng-option.ng-option-marked { background: rgba(255,215,0,.08); }
+:host ::ng-deep .search-page .ng-dropdown-panel .ng-option.ng-option-selected { background: rgba(255,215,0,.12); color: var(--yellow); }
+/* Добавьте эти стили в ваш SCSS файл */
+.search-page {
+  /* Стили для крестика очистки */
+  .ng-clear-wrapper {
+    color: var(--gray-2) !important;
+    &:hover {
+      color: var(--error) !important;
+    }
+  }
+
+  /* Стили для одиночного выбора */
+  .ng-select.ng-select-single .ng-select-container {
+    .ng-value-container .ng-value {
+      color: var(--yellow);
+    }
+  }
+
+  /* Стили для множественного выбора */
+  .ng-select.ng-select-multiple .ng-select-container .ng-value-container {
+    .ng-value {
+      background-color: var(--black-1);
+      border: 1px solid var(--yellow);
+      border-radius: 4px;
+      color: var(--yellow);
+      padding: 2px 8px;
+
+      .ng-value-icon {
+        border-right: 1px solid rgba(240, 220, 32, 0.4);
+        padding: 1px 5px;
+
+        &:hover {
+          background-color: rgba(240, 220, 32, 0.1);
+        }
+      }
+    }
+  }
+
+  /* Общие стили для всех селектов */
+  .ng-select {
+    .ng-select-container {
+      background-color: var(--black-3);
+      border: 1px solid var(--gray);
+      border-radius: 4px;
+      min-height: 44px;
+      transition: all 0.3s ease;
+
+      &:hover {
+        border-color: var(--gray-1);
+      }
+
+      .ng-value-container {
+        padding-left: 12px;
+
+        .ng-placeholder {
+          color: var(--gray-3);
+          font-weight: 400;
+        }
+
+        .ng-input > input {
+          color: var(--white);
+          &::placeholder {
+            color: var(--gray-2);
+          }
+        }
+      }
+    }
+
+    &.ng-select-opened {
+      .ng-select-container {
+        border-color: var(--yellow);
+        box-shadow: 0 0 0 1px rgba(240, 220, 32, 0.25);
+      }
+    }
+
+    .ng-dropdown-panel {
+      background-color: var(--black-3);
+      border: 1px solid var(--gray);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+
+      .ng-option {
+        background-color: var(--black-3);
+        color: var(--white);
+        padding: 10px 15px;
+
+        &.ng-option-marked {
+          background-color: var(--black-2);
+          color: var(--yellow);
+        }
+
+        &.ng-option-selected {
+          background-color: var(--black-1);
+          color: var(--yellow);
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
+.search-page input[type="number"] {
+  /* убираем стрелки в Chrome, Safari, Edge */
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* убираем стрелки в Firefox */
+  -moz-appearance: textfield;
+}

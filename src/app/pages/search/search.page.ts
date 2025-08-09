@@ -351,4 +351,8 @@ export class SearchPage implements OnInit {
     'Ручное управление для людей с инвалидностью',
     'Пандус для людей с инвалидностью',
   ];
+
+  clearControl(controlName: string) {
+    this.form.get(controlName)?.reset();
+  }
 }

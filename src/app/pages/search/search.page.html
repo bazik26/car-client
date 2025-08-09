@@ -14,6 +14,7 @@
                   placeholder="Выберите марку"
                   [searchable]="true"
                   formControlName="brand"
+                  (clear)="clearControl('brand')">
                 >
                 </ng-select>
               </div>
@@ -27,6 +28,7 @@
                   placeholder="Выберите модель"
                   [searchable]="true"
                   formControlName="model"
+                  (clear)="clearControl('model')">
                 >
                 </ng-select>
               </div>

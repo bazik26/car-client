@@ -18,7 +18,7 @@ export class Team implements AfterViewInit {
       position: 'Основатель компании',
       experience: '12 лет опыта',
       bio: 'Специалист по китайскому авторынку. Лично импортировал более 500 автомобилей. Знает все тонкости работы с китайскими производителями.',
-      photo: 'assets/team1.jpg',
+      photo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6PQB6NXeUz0U6M4Km9g5JCmNSdyNUxOj31w&s',
       skills: ['Китайский авторынок', 'Переговоры', 'Стратегическое планирование']
     },
     {
@@ -26,7 +26,7 @@ export class Team implements AfterViewInit {
       position: 'Главный логист',
       experience: '8 лет опыта',
       bio: 'Организует доставку авто из любой точки мира. Знает все тонкости таможенного оформления и оптимизации логистических процессов.',
-      photo: 'assets/team2.jpg',
+      photo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYDRXOP7BX3DIoN1vHJK4QxoRRkjrzRhPtMA&s',
       skills: ['Международная логистика', 'Таможенное оформление', 'Документация']
     },
     {
@@ -34,7 +34,7 @@ export class Team implements AfterViewInit {
       position: 'Менеджер по клиентам',
       experience: '6 лет опыта',
       bio: 'Поможет подобрать авто по вашим параметрам и ответит на все вопросы. Сопровождает клиента на всех этапах сделки.',
-      photo: 'assets/team3.jpg',
+      photo: 'https://aif-s3.aif.ru/images/019/507/eeba36a2a2d37754bab8b462f4262d97.jpg',
       skills: ['Работа с клиентами', 'Консультации', 'Подбор авто']
     },
     {
@@ -42,7 +42,7 @@ export class Team implements AfterViewInit {
       position: 'Технический специалист',
       experience: '10 лет опыта',
       bio: 'Проводит диагностику и технический осмотр автомобилей перед отправкой клиенту. Гарантирует качество и надежность каждого авто.',
-      photo: 'assets/team4.jpg',
+      photo: 'https://www.b17.ru/foto/users/user_803627_900.jpg',
       skills: ['Диагностика авто', 'Технический осмотр', 'Сервисное обслуживание']
     }
   ];
