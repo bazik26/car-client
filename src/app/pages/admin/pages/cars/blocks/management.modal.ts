@@ -497,6 +497,7 @@ export class AdminCarsManagementModal implements OnInit {
           ),
         )
         .subscribe(() => {
+          this.result = { reload: true };
           this.activeModal.hide();
         });
     } else {
