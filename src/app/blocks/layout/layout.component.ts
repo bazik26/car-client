@@ -1,16 +1,15 @@
-import { Component, inject } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
 
-import { BsModalService } from 'ngx-bootstrap/modal';
+import {BsModalService} from 'ngx-bootstrap/modal';
 
-import { ContactUsComponent } from '../contact-us/contact-us.component';
-import { NgForOf} from '@angular/common';
+import {ContactUsComponent} from '../contact-us/contact-us.component';
 
 @Component({
   selector: 'app-layout',
   standalone: true,
-  imports: [RouterOutlet, RouterLinkActive, RouterLink, NgForOf],
+  imports: [RouterOutlet, RouterLink,],
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss'],
 })
@@ -46,10 +45,8 @@ export class LayoutComponent {
   ];
 
 
-
-  constructor(private sanitizer: DomSanitizer) {}
-
-
+  constructor(private sanitizer: DomSanitizer) {
+  }
 
 
   openContactUsModal() {
