@@ -3,9 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
+  production: true,
 
-  API_URL: 'https://auto-api-production.up.railway.app',
+  API_URL: 'https://car-api-production.up.railway.app',
 };
 
 /*
