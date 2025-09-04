@@ -1,6 +1,111 @@
+// Анимации для главной страницы
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 217, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 217, 0, 0.6);
+  }
+}
+
+@keyframes slideInFromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Применяем анимации к элементам
 .promo {
-  width: 99%;
-  height: 600px; /* Можно увеличить под нужный размер */
+  width: 100%;
+  height: 600px;
   position: relative;
   background-image: url("image.png");
   background-repeat: no-repeat;
@@ -11,8 +116,32 @@
   justify-content: flex-end;
   padding: 40px;
   box-sizing: border-box;
-  border-radius: 24px; /* Для современности */
+  border-radius: 24px;
   overflow: hidden;
+  animation: scaleIn 1s ease-out;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  margin: 0;
+  padding-left: 2rem;
+  padding-right: 2rem;
+
+  // Мобильная адаптивность
+  @media (max-width: 767.98px) {
+    height: 400px;
+    padding: 20px;
+    border-radius: 16px;
+    margin: 0;
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  @media (max-width: 575.98px) {
+    height: 350px;
+    padding: 16px;
+    border-radius: 12px;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
 
   &__address,
   &__description {
@@ -22,73 +151,366 @@
   &__slogan {
     margin-top: 40px;
     margin-bottom: 60px;
-
     color: var(--yellow);
-
     font-size: 36px;
     font-weight: 700;
+    animation: slideInFromLeft 0.8s ease-out 0.3s both;
+    transition: all 0.3s ease;
+    
+    @media (max-width: 767.98px) {
+      font-size: 28px;
+      margin-top: 20px;
+      margin-bottom: 30px;
+    }
+    
+    @media (max-width: 575.98px) {
+      font-size: 24px;
+      margin-top: 16px;
+      margin-bottom: 24px;
+    }
+    
+    &:hover {
+      @media (min-width: 1200px) {
+        transform: scale(1.05);
+        text-shadow: 0 0 20px rgba(240, 220, 32, 0.5);
+      }
+    }
   }
 
   &__button {
     width: fit-content;
-
     position: absolute;
-
     bottom: 40px;
+    animation: slideInFromBottom 0.8s ease-out 0.6s both;
+    
+    @media (max-width: 767.98px) {
+      bottom: 20px;
+      width: 100%;
+      
+      .button {
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto;
+        display: block;
+      }
+    }
+    
+    @media (max-width: 575.98px) {
+      bottom: 16px;
+      
+      .button {
+        max-width: 240px;
+        font-size: 16px;
+        padding: 12px 20px;
+      }
+    }
+    
+    .button {
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      
+      @media (min-width: 1200px) {
+        &:hover {
+          transform: translateY(-5px) scale(1.05);
+          box-shadow: 0 15px 30px rgba(255, 255, 255, 0.3);
+          animation: pulse 1.5s ease-in-out infinite;
+        }
+      }
+      
+      &:active {
+        @media (max-width: 1199.98px) {
+          transform: scale(0.98);
+        }
+      }
+    }
+  }
+  
+  // Hover эффекты для промо секции
+  @media (min-width: 1200px) {
+    &:hover {
+      transform: scale(1.02);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      
+      &::before {
+        opacity: 1;
+      }
+    }
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(255, 217, 0, 0.05) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.6s ease-out;
+      pointer-events: none;
+    }
   }
 }
 
 .cars {
   margin-top: 40px;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0;
+  width: 100%;
+  animation: fadeInUp 0.8s ease-out 0.9s both;
 
   &__title {
     margin-top: 40px;
     margin-bottom: 60px;
-
     font-size: 36px;
     font-weight: 700;
+    animation: slideInFromRight 0.8s ease-out 1.2s both;
+    transition: all 0.3s ease;
+    text-align: center;
+    
+    @media (max-width: 767.98px) {
+      font-size: 28px;
+      margin-top: 30px;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    
+    @media (max-width: 575.98px) {
+      font-size: 24px;
+      margin-top: 24px;
+      margin-bottom: 32px;
+    }
+    
+    &:hover {
+      @media (min-width: 1200px) {
+        color: var(--yellow);
+        transform: scale(1.02);
+      }
+    }
   }
 
   & > .row {
-    @keyframes fadeInUpCard {
-      from {
-        opacity: 0;
-        transform: translateY(40px) scale(0.98);
-      }
-      to {
-        opacity: 1;
-        transform: none;
-      }
-    }
+    margin: 0;
+    padding: 0;
+    width: 100%;
 
     div {
-      animation: fadeInUpCard 0.8s
-        cubic-bezier(0.22, 1.05, 0.51, 0.93) forwards;
+      animation: fadeInUp 0.8s cubic-bezier(0.22, 1.05, 0.51, 0.93) forwards;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      
+      &:hover {
+        @media (min-width: 1200px) {
+          transform: translateY(-10px) scale(1.02);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+      }
     }
 
     div:nth-child(1) {
       opacity: 0;
-      animation-delay: 0.12s;
+      animation-delay: 1.5s;
     }
     div:nth-child(2) {
       opacity: 0;
-      animation-delay: 0.24s;
+      animation-delay: 1.6s;
     }
     div:nth-child(3) {
       opacity: 0;
-      animation-delay: 0.36s;
+      animation-delay: 1.7s;
     }
     div:nth-child(4) {
       opacity: 0;
-      animation-delay: 0.48s;
+      animation-delay: 1.8s;
     }
     div:nth-child(5) {
       opacity: 0;
-      animation-delay: 0.60s;
+      animation-delay: 1.9s;
     }
     div:nth-child(6) {
       opacity: 0;
-      animation-delay: 0.72s;
+      animation-delay: 2.0s;
+    }
+
+    // Улучшения для мобильных устройств
+    @media (max-width: 767.98px) {
+      margin: 0;
+      padding: 0;
+
+      div {
+        padding: 0.5rem;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}
+
+// Дополнительные улучшения для мобильных устройств
+@media (max-width: 767.98px) {
+  .cars {
+    margin-top: 30px;
+    padding: 0;
+    margin-left: 0;
+    margin-right: 0;
+
+    .row {
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  // Улучшаем отображение карточек на мобильных
+  .col-12 {
+    @media (max-width: 575.98px) {
+      margin-bottom: 1.5rem;
+    }
+  }
+}
+
+// Touch-friendly улучшения
+@media (max-width: 767.98px) {
+  .button {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+
+  // Улучшаем скролл на мобильных
+  .cars {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+// Анимации для появления при скролле
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  
+  &.animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Специальные анимации для карточек автомобилей
+.car-card {
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 217, 0, 0.1), transparent);
+    transition: left 0.8s ease-out;
+    z-index: 1;
+    pointer-events: none;
+  }
+  
+  &:hover::before {
+    @media (min-width: 1200px) {
+      left: 100%;
+    }
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(0, 0, 0, 0.05) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+    pointer-events: none;
+  }
+  
+  &:hover::after {
+    @media (min-width: 1200px) {
+      opacity: 1;
+    }
+  }
+}
+
+// Анимации для изображений в карточках
+.car-card img {
+  transition: transform 0.5s ease-out;
+  
+  &:hover {
+    @media (min-width: 1200px) {
+      transform: scale(1.1);
+    }
+  }
+}
+
+// Анимации для кнопок в карточках
+.car-card .button {
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.4s ease-out;
+  }
+  
+  &:hover::before {
+    @media (min-width: 1200px) {
+      width: 300px;
+      height: 300px;
+    }
+  }
+  
+  span {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+// Анимации для мобильных устройств
+@media (max-width: 767.98px) {
+  .promo {
+    animation: fadeInUp 0.6s ease-out;
+    
+    &__slogan {
+      animation: slideInFromLeft 0.6s ease-out 0.2s both;
+    }
+    
+    &__button {
+      animation: slideInFromBottom 0.6s ease-out 0.4s both;
+    }
+  }
+  
+  .cars {
+    animation: fadeInUp 0.6s ease-out 0.6s both;
+    
+    &__title {
+      animation: slideInFromRight 0.6s ease-out 0.8s both;
+    }
+    
+    .row div {
+      animation: fadeInUp 0.6s ease-out both;
+      
+      &:nth-child(1) { animation-delay: 1.0s; }
+      &:nth-child(2) { animation-delay: 1.1s; }
+      &:nth-child(3) { animation-delay: 1.2s; }
+      &:nth-child(4) { animation-delay: 1.3s; }
+      &:nth-child(5) { animation-delay: 1.4s; }
+      &:nth-child(6) { animation-delay: 1.5s; }
     }
   }
 }

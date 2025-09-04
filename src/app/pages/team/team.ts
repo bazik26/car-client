@@ -5,6 +5,7 @@ import {NgForOf} from '@angular/common';
 
 @Component({
   selector: 'app-team',
+  standalone: true,
   imports: [
     NgForOf
   ],
@@ -66,7 +67,4 @@ export class Team implements AfterViewInit {
       observer.observe(el);
     });
   }
-
-
-
 }

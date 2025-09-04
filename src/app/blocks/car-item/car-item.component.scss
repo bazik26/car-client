@@ -6,21 +6,37 @@ p {
 
 .car-item {
   width: 100%;
-
   border: 1px solid var(--gray);
   border-radius: 4px;
-
   background-color: var(--black);
-
   transition: border-color 0.25s, box-shadow 0.15s;
-
   display: flex;
   flex-direction: column;
+  
+  // Улучшения для мобильных устройств
+  @media (max-width: 767.98px) {
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    
+    &:hover {
+      border-color: var(--gray);
+      box-shadow: none;
+    }
+    
+    &:active {
+      border-color: var(--yellow);
+      box-shadow: 0 4px 8px rgba(240, 220, 32, 0.3);
+    }
+  }
 
   &:hover {
     border-color: var(--yellow);
-
     box-shadow: 0 8px 16px var(--yellow);
+    
+    @media (max-width: 767.98px) {
+      border-color: var(--gray);
+      box-shadow: none;
+    }
   }
 
   &__slider {
@@ -28,18 +44,28 @@ p {
     swiper-container {
       height: 320px;
       width: 100%;
+      
+      @media (max-width: 767.98px) {
+        height: 240px;
+      }
+      
+      @media (max-width: 575.98px) {
+        height: 200px;
+      }
     }
 
     img {
       height: 100%;
       width: 100%;
-
       display: block;
-
       object-fit: cover;
-
       border-top-right-radius: 4px;
       border-top-left-radius: 4px;
+      
+      @media (max-width: 767.98px) {
+        border-top-right-radius: 8px;
+        border-top-left-radius: 8px;
+      }
     }
   }
 
@@ -47,21 +73,36 @@ p {
   &__price,
   &__more {
     padding: 10px 20px 20px;
+    
+    @media (max-width: 767.98px) {
+      padding: 12px 16px 16px;
+    }
+    
+    @media (max-width: 575.98px) {
+      padding: 10px 12px 12px;
+    }
   }
 
   &__details {
     & .details {
       &__title {
         display: inline-block;
-
         margin-top: 5px;
-
         color: var(--white);
         font-size: 18px;
         font-weight: 600;
         font-style: normal;
         text-decoration: none;
         line-height: 1.3em;
+        
+        @media (max-width: 767.98px) {
+          font-size: 16px;
+          line-height: 1.4em;
+        }
+        
+        @media (max-width: 575.98px) {
+          font-size: 15px;
+        }
 
         span {
           color: var(--yellow);
@@ -75,23 +116,41 @@ p {
       @extend .align-items-center !optional;
 
       padding: 10px 0;
-
       border-bottom: 1px solid var(--gray-2);
+      
+      @media (max-width: 767.98px) {
+        padding: 12px 0;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
 
       div {
         p:first-child {
           color: var(--gray-3);
           font-size: 12px;
+          
+          @media (max-width: 767.98px) {
+            font-size: 11px;
+          }
         }
 
         p:last-child {
           font-size: 14px;
           font-weight: 500;
+          
+          @media (max-width: 767.98px) {
+            font-size: 13px;
+          }
         }
       }
 
       div:last-child {
         text-align: right;
+        
+        @media (max-width: 767.98px) {
+          text-align: left;
+          width: 100%;
+        }
       }
     }
   }
@@ -108,19 +167,123 @@ p {
     p:first-child {
       color: var(--gray-3);
       font-size: 16px;
+      
+      @media (max-width: 767.98px) {
+        font-size: 14px;
+      }
     }
 
     p:last-child {
       color: var(--yellow);
       font-weight: 600;
+      
+      @media (max-width: 767.98px) {
+        font-size: 16px;
+      }
+    }
+    
+    @media (max-width: 767.98px) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
     }
   }
 
   &__more {
     a {
       color: var(--white) !important;
-
       background-color: var(--green);
+      
+      @media (max-width: 767.98px) {
+        display: block;
+        text-align: center;
+        padding: 12px 16px;
+        font-size: 16px;
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+        
+        &:active {
+          transform: scale(0.98);
+          background-color: darken(#217e02, 10%);
+        }
+      }
+    }
+  }
+}
+
+// Дополнительные улучшения для мобильных устройств
+@media (max-width: 767.98px) {
+  .car-item {
+    // Улучшаем touch-события
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    
+    // Добавляем тень для лучшего восприятия
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    
+    // Улучшаем читаемость
+    .car-item__details .details__title {
+      word-wrap: break-word;
+      hyphens: auto;
+    }
+    
+    // Улучшаем параметры
+    .car-item__details .params {
+      div {
+        min-width: 0;
+        flex: 1;
+        
+        p {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+  }
+}
+
+// Улучшения для очень маленьких экранов
+@media (max-width: 575.98px) {
+  .car-item {
+    &__slider {
+      height: 180px;
+    }
+    
+    &__details,
+    &__price,
+    &__more {
+      padding: 8px 10px 10px;
+    }
+    
+    .details__title {
+      font-size: 14px;
+    }
+    
+    .params {
+      div {
+        p:first-child {
+          font-size: 10px;
+        }
+        
+        p:last-child {
+          font-size: 12px;
+        }
+      }
+    }
+    
+    &__price {
+      p:first-child {
+        font-size: 13px;
+      }
+      
+      p:last-child {
+        font-size: 15px;
+      }
     }
   }
 }

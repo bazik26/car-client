@@ -229,3 +229,339 @@
 .row {
   margin-top: -1rem !important;
 }
+
+// Мобильная оптимизация
+@media (max-width: 767.98px) {
+  .search-page {
+    padding: 1rem;
+    
+    .search-header {
+      text-align: center;
+      margin-bottom: 2rem;
+      
+      h1 {
+        font-size: 1.75rem;
+        line-height: 1.3;
+        margin-bottom: 1rem;
+      }
+      
+      p {
+        font-size: 1rem;
+        line-height: 1.5;
+      }
+    }
+    
+    .search-form {
+      .form-row {
+        flex-direction: column;
+        gap: 1rem;
+        
+        .form-group {
+          width: 100%;
+          
+          label {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+          }
+          
+          .ng-select {
+            .ng-select-container {
+              min-height: 48px;
+              
+              .ng-value-container {
+                padding-left: 16px;
+                
+                .ng-placeholder {
+                  font-size: 16px; // Предотвращает зум на iOS
+                }
+                
+                .ng-input > input {
+                  font-size: 16px; // Предотвращает зум на iOS
+                  padding: 12px 16px;
+                }
+              }
+            }
+          }
+          
+          input[type="text"],
+          input[type="number"] {
+            min-height: 48px;
+            padding: 12px 16px;
+            font-size: 16px; // Предотвращает зум на iOS
+          }
+        }
+      }
+      
+      .search-buttons {
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 1.5rem;
+        
+        .search-btn,
+        .reset-btn {
+          width: 100%;
+          min-height: 48px;
+          font-size: 16px;
+          padding: 14px 20px;
+          
+          &:active {
+            transform: scale(0.98);
+          }
+        }
+      }
+    }
+    
+    .search-results {
+      margin-top: 2rem;
+      
+      .results-header {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+        margin-bottom: 1.5rem;
+        
+        h2 {
+          font-size: 1.5rem;
+        }
+        
+        .sort-controls {
+          width: 100%;
+          
+          .ng-select {
+            width: 100%;
+            
+            .ng-select-container {
+              min-height: 44px;
+            }
+          }
+        }
+      }
+      
+      .results-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        
+        .car-card {
+          padding: 1rem;
+          
+          .car-image {
+            height: 200px;
+          }
+          
+          .car-info {
+            h3 {
+              font-size: 1.1rem;
+              margin-bottom: 0.5rem;
+            }
+            
+            .car-details {
+              font-size: 0.9rem;
+              margin-bottom: 1rem;
+            }
+            
+            .car-price {
+              font-size: 1.2rem;
+              margin-bottom: 1rem;
+            }
+            
+            .view-details-btn {
+              width: 100%;
+              min-height: 44px;
+              font-size: 14px;
+              padding: 10px 16px;
+            }
+          }
+        }
+      }
+      
+      .pagination {
+        justify-content: center;
+        gap: 0.5rem;
+        margin-top: 2rem;
+        
+        .page-item {
+          .page-link {
+            min-width: 44px;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            padding: 0.5rem;
+            
+            &:active {
+              transform: scale(0.95);
+            }
+          }
+        }
+      }
+    }
+    
+    .no-results {
+      text-align: center;
+      padding: 3rem 1rem;
+      
+      h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+      
+      p {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+      }
+      
+      .suggestions {
+        text-align: left;
+        
+        ul {
+          padding-left: 1.5rem;
+          
+          li {
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Улучшения для очень маленьких экранов
+@media (max-width: 575.98px) {
+  .search-page {
+    padding: 0.75rem;
+    
+    .search-header {
+      h1 {
+        font-size: 1.5rem;
+      }
+      
+      p {
+        font-size: 0.9rem;
+      }
+    }
+    
+    .search-form {
+      .form-row {
+        gap: 0.75rem;
+        
+        .form-group {
+          label {
+            font-size: 0.85rem;
+          }
+          
+          .ng-select .ng-select-container,
+          input[type="text"],
+          input[type="number"] {
+            min-height: 44px;
+            padding: 10px 14px;
+            font-size: 16px;
+          }
+        }
+      }
+      
+      .search-buttons {
+        .search-btn,
+        .reset-btn {
+          min-height: 44px;
+          font-size: 15px;
+          padding: 12px 18px;
+        }
+      }
+    }
+    
+    .search-results {
+      .results-header {
+        h2 {
+          font-size: 1.25rem;
+        }
+      }
+      
+      .results-grid {
+        .car-card {
+          padding: 0.75rem;
+          
+          .car-image {
+            height: 180px;
+          }
+          
+          .car-info {
+            h3 {
+              font-size: 1rem;
+            }
+            
+            .car-details {
+              font-size: 0.85rem;
+            }
+            
+            .car-price {
+              font-size: 1.1rem;
+            }
+            
+            .view-details-btn {
+              font-size: 13px;
+              padding: 8px 14px;
+              min-height: 40px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Touch-friendly улучшения
+@media (max-width: 767.98px) {
+  .search-page {
+    .form-group,
+    .search-btn,
+    .reset-btn,
+    .view-details-btn,
+    .page-link {
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    // Улучшаем скролл на мобильных
+    .search-results {
+      -webkit-overflow-scrolling: touch;
+    }
+    
+    // Убираем hover эффекты на мобильных
+    .search-btn:hover,
+    .reset-btn:hover,
+    .view-details-btn:hover,
+    .page-link:hover {
+      transform: none;
+      box-shadow: none;
+    }
+    
+    // Улучшаем фокус для accessibility
+    .ng-select-container:focus,
+    input:focus {
+      outline: 2px solid var(--yellow);
+      outline-offset: 2px;
+    }
+  }
+}
+
+// Улучшения для landscape ориентации на мобильных
+@media (max-width: 767.98px) and (orientation: landscape) {
+  .search-page {
+    .search-form {
+      .form-row {
+        flex-direction: row;
+        flex-wrap: wrap;
+        
+        .form-group {
+          width: calc(50% - 0.5rem);
+        }
+      }
+    }
+    
+    .results-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}

@@ -6,7 +6,7 @@
   <button
     type="button"
     class="btn-close"
-    aria-label="Close"
+    aria-label="Закрыть"
     (click)="activeModal.hide()"
   >
     <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -16,43 +16,43 @@
 </div>
 
 <div class="modal-body">
-  <form class="contact-form">
+  <form class="contact-form" (ngSubmit)="submitContactForm()">
     <!-- Выбор мессенджера -->
     <div class="form-section">
-      <label class="form-label">Выберите мессенджер</label>
-      <div class="messenger-selector">
+      <label class="form-label" for="messenger-selector">Выберите мессенджер</label>
+      <div class="messenger-selector" id="messenger-selector" role="radiogroup" aria-labelledby="messenger-selector">
         <div class="messenger-option" [class.active]="selectedMessenger === 'whatsapp'">
           <input type="radio" id="whatsapp" name="messenger" value="whatsapp"
-                 [(ngModel)]="selectedMessenger">
+                 [(ngModel)]="selectedMessenger" required>
           <label for="whatsapp">
-            <img src="assets/social/whatsapp.svg" alt="WhatsApp">
+            <img src="assets/social/whatsapp.svg" alt="WhatsApp" loading="lazy">
             <span>WhatsApp</span>
           </label>
         </div>
 
         <div class="messenger-option" [class.active]="selectedMessenger === 'telegram'">
           <input type="radio" id="telegram" name="messenger" value="telegram"
-                 [(ngModel)]="selectedMessenger">
+                 [(ngModel)]="selectedMessenger" required>
           <label for="telegram">
-            <img src="assets/social/telegram.svg" alt="Telegram">
+            <img src="assets/social/telegram.svg" alt="Telegram" loading="lazy">
             <span>Telegram</span>
           </label>
         </div>
 
         <div class="messenger-option" [class.active]="selectedMessenger === 'viber'">
           <input type="radio" id="viber" name="messenger" value="viber"
-                 [(ngModel)]="selectedMessenger">
+                 [(ngModel)]="selectedMessenger" required>
           <label for="viber">
-            <img src="assets/social/viber.svg" alt="Viber">
+            <img src="assets/social/viber.svg" alt="Viber" loading="lazy">
             <span>Viber</span>
           </label>
         </div>
 
         <div class="messenger-option" [class.active]="selectedMessenger === 'phone'">
           <input type="radio" id="phone" name="messenger" value="phone"
-                 [(ngModel)]="selectedMessenger">
+                 [(ngModel)]="selectedMessenger" required>
           <label for="phone">
-            <img src="assets/social/phone.svg" alt="Phone">
+            <img src="assets/social/phone.svg" alt="Phone" loading="lazy">
             <span>Звонок</span>
           </label>
         </div>
@@ -62,22 +62,31 @@
     <!-- Поля ввода -->
     <div class="form-section">
       <div class="form-group">
-        <label for="firstName" class="form-label">Имя</label>
+        <label for="firstName" class="form-label">Имя *</label>
         <input type="text" id="firstName" class="form-control"
-               [(ngModel)]="contactData.firstName" name="firstName" required>
+               [(ngModel)]="contactData.firstName" name="firstName" 
+               required autocomplete="given-name" 
+               placeholder="Введите ваше имя"
+               maxlength="50">
       </div>
 
       <div class="form-group">
-        <label for="lastName" class="form-label">Фамилия</label>
+        <label for="lastName" class="form-label">Фамилия *</label>
         <input type="text" id="lastName" class="form-control"
-               [(ngModel)]="contactData.lastName" name="lastName" required>
+               [(ngModel)]="contactData.lastName" name="lastName" 
+               required autocomplete="family-name"
+               placeholder="Введите вашу фамилию"
+               maxlength="50">
       </div>
 
       <div class="form-group">
-        <label for="phone" class="form-label">Номер телефона</label>
+        <label for="phone" class="form-label">Номер телефона *</label>
         <input type="tel" id="phone" class="form-control"
-               [(ngModel)]="contactData.phone" name="phone" required
-               placeholder="+38 (___) ___-__-__">
+               [(ngModel)]="contactData.phone" name="phone" 
+               required autocomplete="tel"
+               placeholder="+38 (___) ___-__-__"
+               pattern="[\+]?[0-9\s\-\(\)]+"
+               maxlength="20">
       </div>
     </div>
 
@@ -86,16 +95,20 @@
       <label for="message" class="form-label">Комментарий (необязательно)</label>
       <textarea id="message" class="form-control" rows="3"
                 [(ngModel)]="contactData.message" name="message"
-                placeholder="Укажите удобное время для связи или дополнительные пожелания"></textarea>
+                placeholder="Укажите удобное время для связи или дополнительные пожелания"
+                maxlength="500"
+                aria-describedby="message-help"></textarea>
+      <small id="message-help" class="form-text">Максимум 500 символов</small>
     </div>
   </form>
 </div>
 
 <div class="modal-footer">
-  <button class="btn btn-secondary" (click)="activeModal.hide()">
+  <button type="button" class="btn btn-secondary" (click)="activeModal.hide()">
     Отменить
   </button>
-  <button class="btn btn-primary" (click)="submitContactForm()">
+  <button type="submit" class="btn btn-primary" (click)="submitContactForm()" 
+          [disabled]="!selectedMessenger || !contactData.firstName || !contactData.lastName || !contactData.phone">
     Отправить заявку
   </button>
 </div>
