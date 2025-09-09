@@ -26,9 +26,24 @@ export class AppService {
       .pipe(map((response) => response));
   }
 
-  getCars(): Observable<any> {
+  getCars(params?: any): Observable<any> {
+    let url = `${this.API_URL}/cars`;
+    
+    if (params) {
+      const queryParams = new URLSearchParams();
+      
+      if (params.limit) queryParams.append('limit', params.limit.toString());
+      if (params.sortBy) queryParams.append('sortBy', params.sortBy);
+      if (params.sortOrder) queryParams.append('sortOrder', params.sortOrder);
+      if (params.random) queryParams.append('random', 'true');
+      
+      if (queryParams.toString()) {
+        url += `?${queryParams.toString()}`;
+      }
+    }
+    
     return this.http
-      .get(`${this.API_URL}/cars`)
+      .get(url)
       .pipe(map((response) => response));
   }
 

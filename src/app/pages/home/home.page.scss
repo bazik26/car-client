@@ -1,239 +1,561 @@
-// Анимации для главной страницы
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideInFromLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideInFromRight {
-  from {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes bounceIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.3);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.05);
-  }
-  70% {
-    transform: scale(0.9);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-@keyframes glow {
-  0%, 100% {
-    box-shadow: 0 0 20px rgba(255, 217, 0, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 30px rgba(255, 217, 0, 0.6);
-  }
-}
-
-@keyframes slideInFromBottom {
-  from {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-// Применяем анимации к элементам
-.promo {
-  width: 100%;
-  height: 600px;
+// Hero Section
+.hero-section {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--black) 0%, var(--black-2) 50%, var(--black) 100%);
   position: relative;
-  background-image: url("image.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 40px;
-  box-sizing: border-box;
-  border-radius: 24px;
+  align-items: center;
   overflow: hidden;
-  animation: scaleIn 1s ease-out;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  margin: 0;
-  padding-left: 2rem;
-  padding-right: 2rem;
 
-  // Мобильная адаптивность
-  @media (max-width: 767.98px) {
-    height: 400px;
-    padding: 20px;
-    border-radius: 16px;
-    margin: 0;
-    width: 100%;
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-  
-  @media (max-width: 575.98px) {
-    height: 350px;
-    padding: 16px;
-    border-radius: 12px;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-  }
-
-  &__address,
-  &__description {
-    color: var(--blue);
-  }
-
-  &__slogan {
-    margin-top: 40px;
-    margin-bottom: 60px;
-    color: var(--yellow);
-    font-size: 36px;
-    font-weight: 700;
-    animation: slideInFromLeft 0.8s ease-out 0.3s both;
-    transition: all 0.3s ease;
-    
-    @media (max-width: 767.98px) {
-      font-size: 28px;
-      margin-top: 20px;
-      margin-bottom: 30px;
-    }
-    
-    @media (max-width: 575.98px) {
-      font-size: 24px;
-      margin-top: 16px;
-      margin-bottom: 24px;
-    }
-    
-    &:hover {
-      @media (min-width: 1200px) {
-        transform: scale(1.05);
-        text-shadow: 0 0 20px rgba(240, 220, 32, 0.5);
-      }
-    }
-  }
-
-  &__button {
-    width: fit-content;
+  &::before {
+    content: '';
     position: absolute;
-    bottom: 40px;
-    animation: slideInFromBottom 0.8s ease-out 0.6s both;
-    
-    @media (max-width: 767.98px) {
-      bottom: 20px;
-      width: 100%;
-      
-      .button {
-        width: 100%;
-        max-width: 280px;
-        margin: 0 auto;
-        display: block;
-      }
-    }
-    
-    @media (max-width: 575.98px) {
-      bottom: 16px;
-      
-      .button {
-        max-width: 240px;
-        font-size: 16px;
-        padding: 12px 20px;
-      }
-    }
-    
-    .button {
-      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      
-      @media (min-width: 1200px) {
-        &:hover {
-          transform: translateY(-5px) scale(1.05);
-          box-shadow: 0 15px 30px rgba(255, 255, 255, 0.3);
-          animation: pulse 1.5s ease-in-out infinite;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 20% 80%, rgba(240, 220, 32, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(240, 220, 32, 0.05) 0%, transparent 50%),
+      url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23ffffff" opacity="0.03"/><circle cx="75" cy="75" r="1" fill="%23ffffff" opacity="0.03"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.8;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .hero-logo {
+    margin-bottom: 3rem;
+    animation: fadeInUp 1s ease-out 0.2s both;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+
+      .logo-icon {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(45deg, #f0dc20, #ff6b35);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 25px rgba(240, 220, 32, 0.4);
+        animation: logoPulse 2s ease-in-out infinite;
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: -50%;
+          left: -50%;
+          width: 200%;
+          height: 200%;
+          background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+          animation: logoShine 3s ease-in-out infinite;
+        }
+
+        i {
+          font-size: 2.2rem;
+          color: #1a1a1a;
+          z-index: 2;
+          position: relative;
         }
       }
-      
-      &:active {
-        @media (max-width: 1199.98px) {
-          transform: scale(0.98);
+
+      .logo-text {
+        text-align: left;
+
+        .logo-brand {
+          display: block;
+          font-size: 2.5rem;
+          font-weight: 800;
+          color: #ffffff;
+          line-height: 1.2;
+          background: linear-gradient(45deg, #f0dc20, #ff6b35, #f0dc20);
+          background-size: 200% 200%;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          animation: logoTextShine 3s ease-in-out infinite;
+          text-shadow: 0 0 30px rgba(240, 220, 32, 0.3);
+        }
+
+        .logo-tagline {
+          display: block;
+          font-size: 1rem;
+          color: rgba(255, 255, 255, 0.8);
+          font-weight: 500;
+          margin-top: 0.5rem;
+          letter-spacing: 0.5px;
         }
       }
     }
   }
-  
-  // Hover эффекты для промо секции
-  @media (min-width: 1200px) {
-    &:hover {
-      transform: scale(1.02);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-      
-      &::before {
-        opacity: 1;
+
+  .hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    animation: fadeInUp 1s ease-out;
+
+    .brand-highlight {
+      background: linear-gradient(45deg, var(--yellow), var(--orange));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+    animation: fadeInUp 1s ease-out 0.3s both;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+    animation: fadeInUp 1s ease-out 0.6s both;
+
+    .btn {
+      padding: 12px 30px;
+      font-weight: 600;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
       }
     }
+  }
+
+  .hero-decoration {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+
+    .floating-elements {
+  position: relative;
+    width: 100%;
+      height: 100%;
+
+      .floating-element {
+        position: absolute;
+        border-radius: 50%;
+        background: linear-gradient(45deg, var(--yellow), var(--orange));
+        opacity: 0.1;
+        animation: float 6s ease-in-out infinite;
+
+        &.element-1 {
+          width: 100px;
+          height: 100px;
+          top: 20%;
+          left: 10%;
+          animation-delay: 0s;
+        }
+
+        &.element-2 {
+          width: 60px;
+          height: 60px;
+          top: 60%;
+          right: 15%;
+          animation-delay: 2s;
+        }
+
+        &.element-3 {
+          width: 80px;
+          height: 80px;
+          bottom: 20%;
+          left: 20%;
+          animation-delay: 4s;
+        }
+      }
+    }
+  }
+
+  // Modern Scroll Indicator - Futuristic Animation
+  .modern-scroll-indicator {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 0;
+    text-align: center;
+    animation: fadeInUp 1s ease-out 1.2s both;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 80px;
+    height: 80px;
+
+    &:hover {
+      transform: translateX(-50%) scale(1.1);
+      
+      .scroll-orb {
+        .orb-core {
+          background: radial-gradient(circle, #ff6b35, #f0dc20);
+          box-shadow: 0 0 40px rgba(255, 107, 53, 0.8);
+        }
+      }
+      
+      .scroll-text {
+        .text-line {
+          color: #f0dc20;
+        }
+      }
+    }
+
+    .scroll-orb {
+  position: relative;
+      width: 30px;
+      height: 30px;
+      margin: 0 auto 10px;
+
+      .orb-core {
+    width: 100%;
+        height: 100%;
+        background: radial-gradient(circle, #f0dc20, #ff6b35);
+        border-radius: 50%;
+        position: relative;
+        z-index: 3;
+        box-shadow: 
+          0 0 10px rgba(240, 220, 32, 0.5),
+          inset 0 0 10px rgba(255, 255, 255, 0.2);
+        animation: orbPulse 2s ease-in-out infinite;
+      }
+
+      .orb-ring {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 1px solid rgba(240, 220, 32, 0.2);
+        border-radius: 50%;
+        animation: ringRotate 4s linear infinite;
+
+        &.ring-1 {
+          width: 45px;
+          height: 45px;
+          animation-duration: 3s;
+        }
+
+        &.ring-2 {
+          width: 60px;
+          height: 60px;
+          animation-duration: 4s;
+          animation-direction: reverse;
+        }
+
+        &.ring-3 {
+          width: 75px;
+          height: 75px;
+          animation-duration: 5s;
+        }
+      }
+
+      .orb-pulse {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90px;
+        height: 90px;
+        background: radial-gradient(circle, rgba(240, 220, 32, 0.1) 0%, transparent 70%);
+        border-radius: 50%;
+        animation: pulseExpand 2s ease-in-out infinite;
+      }
+    }
+
+    .scroll-waves {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100px;
+      height: 100px;
+      pointer-events: none;
+
+      .wave {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 1px solid rgba(240, 220, 32, 0.1);
+        border-radius: 50%;
+        animation: waveExpand 3s ease-in-out infinite;
+
+        &.wave-1 {
+          width: 40px;
+          height: 40px;
+          animation-delay: 0s;
+        }
+
+        &.wave-2 {
+          width: 60px;
+          height: 60px;
+          animation-delay: 1s;
+        }
+
+        &.wave-3 {
+          width: 80px;
+          height: 80px;
+          animation-delay: 2s;
+        }
+      }
+    }
+
+    .scroll-text {
+      position: relative;
+      z-index: 2;
+
+      .text-line {
+        display: block;
+        font-size: 0.6rem;
+        color: rgba(255, 255, 255, 0.6);
+        font-weight: 400;
+        letter-spacing: 0.3px;
+        text-transform: uppercase;
+        animation: textGlow 2s ease-in-out infinite;
+        margin: 0.5px 0;
+
+        &:nth-child(2) {
+          animation-delay: 0.5s;
+        }
+      }
+    }
+
+    .scroll-particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+        width: 100%;
+      height: 100%;
+      pointer-events: none;
+
+      .particle {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        background: #f0dc20;
+        border-radius: 50%;
+        animation: particleOrbit 6s linear infinite;
+
+        &:nth-child(1) { animation-delay: 0s; }
+        &:nth-child(2) { animation-delay: 1s; }
+        &:nth-child(3) { animation-delay: 2s; }
+        &:nth-child(4) { animation-delay: 3s; }
+        &:nth-child(5) { animation-delay: 4s; }
+        &:nth-child(6) { animation-delay: 5s; }
+      }
+    }
+  }
+}
+
+// Section Styles
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+
+  .section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+    i {
+      color: var(--yellow);
+    }
+  }
+
+  .section-subtitle {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 600px;
+        margin: 0 auto;
+  }
+}
+
+// Recent Cars Section
+.recent-cars-section {
+  padding: 80px 0;
+  background: linear-gradient(180deg, var(--black-2) 0%, var(--black) 100%);
+  position: relative;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--yellow), transparent);
+  }
+
+  .loading-spinner {
+    text-align: center;
+    padding: 3rem 0;
+  }
+
+  .recent-cars-grid {
+    .row {
+      margin: 0 -10px;
+      
+      .col-xl-2,
+      .col-lg-3,
+      .col-md-4,
+      .col-sm-6,
+      .col-12 {
+        padding: 0 10px;
+        margin-bottom: 20px;
+      }
+    }
+  }
+}
+
+// Special Offer Section
+.special-offer-section {
+  padding: 80px 0;
+  background: var(--black);
+  position: relative;
+
+  .special-offer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .special-offer-card {
+    background: var(--black-2);
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s ease;
+    animation: slideInUp 0.6s ease-out both;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+        &:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(240, 220, 32, 0.2);
+      border-color: var(--yellow);
+    }
+
+    .discount-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: linear-gradient(45deg, #ff4757, #ff3838);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      z-index: 2;
+      box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4);
+    }
+
+    .car-image {
+      position: relative;
+      height: 200px;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+
+      &:hover img {
+        transform: scale(1.05);
+      }
+    }
+
+    .car-info {
+      padding: 1.5rem;
+
+      .car-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--white);
+        margin-bottom: 1rem;
+        line-height: 1.3;
+      }
+
+      .price-section {
+        margin-bottom: 1rem;
+
+        .original-price {
+          font-size: 1rem;
+          color: rgba(255, 255, 255, 0.5);
+          text-decoration: line-through;
+          margin-bottom: 0.25rem;
+        }
+
+        .discounted-price {
+          font-size: 1.4rem;
+          font-weight: 700;
+          color: var(--yellow);
+          text-shadow: 0 0 10px rgba(240, 220, 32, 0.3);
+        }
+      }
+
+      .car-specs {
+        display: flex;
+        gap: 1rem;
+      margin-bottom: 1.5rem;
+
+        .spec-item {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          font-size: 0.9rem;
+          color: rgba(255, 255, 255, 0.7);
+
+          i {
+            color: var(--yellow);
+          }
+        }
+      }
+    }
+  }
+}
+
+// Service Guarantee Section
+.service-guarantee-section {
+  padding: 80px 0;
+  background: linear-gradient(135deg, var(--black-2) 0%, var(--black) 100%);
+  position: relative;
     
     &::before {
       content: '';
@@ -242,275 +564,665 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: radial-gradient(circle at 50% 50%, rgba(255, 217, 0, 0.05) 0%, transparent 70%);
-      opacity: 0;
-      transition: opacity 0.6s ease-out;
-      pointer-events: none;
-    }
+    background: radial-gradient(circle at 50% 50%, rgba(240, 220, 32, 0.05) 0%, transparent 70%);
   }
-}
 
-.cars {
-  margin-top: 40px;
-  margin-left: 0;
-  margin-right: 0;
-  padding: 0;
-  width: 100%;
-  animation: fadeInUp 0.8s ease-out 0.9s both;
+  .guarantee-content {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
 
-  &__title {
-    margin-top: 40px;
-    margin-bottom: 60px;
-    font-size: 36px;
-    font-weight: 700;
-    animation: slideInFromRight 0.8s ease-out 1.2s both;
-    transition: all 0.3s ease;
-    text-align: center;
-    
-    @media (max-width: 767.98px) {
-      font-size: 28px;
-      margin-top: 30px;
-      margin-bottom: 40px;
-      text-align: center;
-    }
-    
-    @media (max-width: 575.98px) {
-      font-size: 24px;
-      margin-top: 24px;
-      margin-bottom: 32px;
-    }
-    
-    &:hover {
-      @media (min-width: 1200px) {
-        color: var(--yellow);
-        transform: scale(1.02);
+    .guarantee-shield {
+      flex-shrink: 0;
+      position: relative;
+      width: 140px;
+      height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .shield-icon {
+        width: 100px;
+        height: 100px;
+        background: linear-gradient(45deg, #f0dc20, #ff6b35);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 
+          0 0 30px rgba(240, 220, 32, 0.5),
+          0 0 60px rgba(240, 220, 32, 0.3),
+          inset 0 0 20px rgba(255, 255, 255, 0.1);
+        animation: shieldPulse 3s ease-in-out infinite;
+        position: relative;
+        z-index: 3;
+
+        i {
+          font-size: 2.5rem;
+          color: #1a1a1a;
+          text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
       }
-    }
-  }
 
-  & > .row {
-    margin: 0;
-    padding: 0;
-    width: 100%;
+      .shield-glow {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 140px;
+        height: 140px;
+        background: radial-gradient(circle, rgba(240, 220, 32, 0.3) 0%, transparent 70%);
+        border-radius: 50%;
+        animation: shieldGlow 2s ease-in-out infinite;
+        z-index: 1;
+      }
 
-    div {
-      animation: fadeInUp 0.8s cubic-bezier(0.22, 1.05, 0.51, 0.93) forwards;
-      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      
-      &:hover {
-        @media (min-width: 1200px) {
-          transform: translateY(-10px) scale(1.02);
-          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      .shield-particles {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 200px;
+        height: 200px;
+      pointer-events: none;
+
+        .particle {
+          position: absolute;
+          width: 4px;
+          height: 4px;
+          background: #f0dc20;
+          border-radius: 50%;
+          animation: particleFloat 4s ease-in-out infinite;
+
+          &.particle-1 {
+            top: 20%;
+            left: 30%;
+            animation-delay: 0s;
+          }
+
+          &.particle-2 {
+            top: 60%;
+            right: 25%;
+            animation-delay: 1s;
+          }
+
+          &.particle-3 {
+            bottom: 30%;
+            left: 20%;
+            animation-delay: 2s;
+          }
+
+          &.particle-4 {
+            top: 40%;
+            right: 15%;
+            animation-delay: 3s;
+          }
         }
       }
     }
 
-    div:nth-child(1) {
-      opacity: 0;
-      animation-delay: 1.5s;
-    }
-    div:nth-child(2) {
-      opacity: 0;
-      animation-delay: 1.6s;
-    }
-    div:nth-child(3) {
-      opacity: 0;
-      animation-delay: 1.7s;
-    }
-    div:nth-child(4) {
-      opacity: 0;
-      animation-delay: 1.8s;
-    }
-    div:nth-child(5) {
-      opacity: 0;
-      animation-delay: 1.9s;
-    }
-    div:nth-child(6) {
-      opacity: 0;
-      animation-delay: 2.0s;
-    }
+    .guarantee-text {
+      flex: 1;
 
-    // Улучшения для мобильных устройств
-    @media (max-width: 767.98px) {
-      margin: 0;
-      padding: 0;
-
-      div {
-        padding: 0.5rem;
+      .guarantee-title {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--white);
         margin-bottom: 1rem;
+      }
+
+      .guarantee-description {
+        font-size: 1.1rem;
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.6;
+        margin-bottom: 2rem;
+
+        strong {
+          color: var(--yellow);
+        }
+      }
+
+      .guarantee-features {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+
+        .feature-item {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          font-size: 1rem;
+          color: var(--white);
+
+          i {
+        color: var(--yellow);
+            font-size: 1.2rem;
+          }
+        }
       }
     }
   }
 }
 
-// Дополнительные улучшения для мобильных устройств
-@media (max-width: 767.98px) {
-  .cars {
-    margin-top: 30px;
-    padding: 0;
-    margin-left: 0;
-    margin-right: 0;
-
-    .row {
-      justify-content: center;
-      margin: 0;
-      padding: 0;
-    }
-  }
-
-  // Улучшаем отображение карточек на мобильных
-  .col-12 {
-    @media (max-width: 575.98px) {
-      margin-bottom: 1.5rem;
-    }
-  }
-}
-
-// Touch-friendly улучшения
-@media (max-width: 767.98px) {
-  .button {
-    touch-action: manipulation;
-    -webkit-tap-highlight-color: transparent;
-
-    &:active {
-      transform: scale(0.98);
-    }
-  }
-
-  // Улучшаем скролл на мобильных
-  .cars {
-    -webkit-overflow-scrolling: touch;
-  }
-}
-
-// Анимации для появления при скролле
-.animate-on-scroll {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  
-  &.animate {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-// Специальные анимации для карточек автомобилей
-.car-card {
+// CTA Section
+.cta-section {
+  padding: 80px 0;
+  background: linear-gradient(135deg, var(--black) 0%, var(--black-2) 100%);
+  text-align: center;
   position: relative;
-  overflow: hidden;
-  
+
   &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 217, 0, 0.1), transparent);
-    transition: left 0.8s ease-out;
-    z-index: 1;
-    pointer-events: none;
-  }
-  
-  &:hover::before {
-    @media (min-width: 1200px) {
-      left: 100%;
-    }
-  }
-  
-  &::after {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(0, 0, 0, 0.05) 100%);
-    opacity: 0;
-    transition: opacity 0.3s ease-out;
-    pointer-events: none;
+    background: 
+      radial-gradient(circle at 30% 30%, rgba(240, 220, 32, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 70% 70%, rgba(240, 220, 32, 0.05) 0%, transparent 50%);
   }
-  
-  &:hover::after {
-    @media (min-width: 1200px) {
-      opacity: 1;
-    }
-  }
-}
 
-// Анимации для изображений в карточках
-.car-card img {
-  transition: transform 0.5s ease-out;
-  
-  &:hover {
-    @media (min-width: 1200px) {
-      transform: scale(1.1);
-    }
-  }
-}
-
-// Анимации для кнопок в карточках
-.car-card .button {
-  position: relative;
-  overflow: hidden;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: all 0.4s ease-out;
-  }
-  
-  &:hover::before {
-    @media (min-width: 1200px) {
-      width: 300px;
-      height: 300px;
-    }
-  }
-  
-  span {
+  .cta-content {
     position: relative;
-    z-index: 1;
+    z-index: 2;
+    max-width: 600px;
+    margin: 0 auto;
+
+    .cta-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+
+    .cta-subtitle {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 2.5rem;
+      line-height: 1.6;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+
+      .btn {
+        padding: 15px 30px;
+        font-weight: 600;
+        border-radius: 50px;
+        transition: all 0.3s ease;
+        text-decoration: none;
+      
+      &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+      }
+    }
   }
 }
 
-// Анимации для мобильных устройств
-@media (max-width: 767.98px) {
-  .promo {
-    animation: fadeInUp 0.6s ease-out;
-    
-    &__slogan {
-      animation: slideInFromLeft 0.6s ease-out 0.2s both;
+// Animations
+@keyframes fadeInUp {
+  from {
+      opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+      opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 20px rgba(240, 220, 32, 0.5);
+  }
+  to {
+    text-shadow: 0 0 30px rgba(240, 220, 32, 0.8);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes scrollBounce {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(10px);
+    opacity: 0.7;
+  }
+}
+
+@keyframes arrowPulse {
+  0%, 100% {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(-50%) scale(1.2);
+    opacity: 0.8;
+  }
+}
+
+@keyframes textFade {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+// New Logo Animations
+@keyframes logoPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 8px 25px rgba(240, 220, 32, 0.4);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 12px 35px rgba(240, 220, 32, 0.6);
+  }
+}
+
+@keyframes logoShine {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
+}
+
+@keyframes logoTextShine {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+// Enhanced Scroll Arrow Animations
+@keyframes lineGlow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(240, 220, 32, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(240, 220, 32, 0.6);
+  }
+}
+
+@keyframes lineShadow {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scaleY(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scaleY(1.1);
+  }
+}
+
+@keyframes dotPulse {
+  0%, 100% {
+    transform: translateX(-50%) scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateX(-50%) scale(1.3);
+    opacity: 1;
+  }
+}
+
+@keyframes arrowInnerPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.9;
+  }
+}
+
+@keyframes textLine {
+  0%, 100% {
+  opacity: 0;
+    transform: translateX(-50%) scaleX(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) scaleX(1);
+  }
+}
+
+// Shield Animations
+@keyframes shieldPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 
+      0 0 30px rgba(240, 220, 32, 0.5),
+      0 0 60px rgba(240, 220, 32, 0.3),
+      inset 0 0 20px rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 
+      0 0 40px rgba(240, 220, 32, 0.7),
+      0 0 80px rgba(240, 220, 32, 0.5),
+      inset 0 0 30px rgba(255, 255, 255, 0.2);
+  }
+}
+
+@keyframes shieldGlow {
+  0%, 100% {
+    opacity: 0.3;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+@keyframes particleFloat {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-20px) scale(1.2);
+    opacity: 1;
+  }
+}
+
+// Modern Scroll Indicator Animations
+@keyframes orbPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 
+      0 0 20px rgba(240, 220, 32, 0.6),
+      inset 0 0 20px rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    transform: scale(1.1);
+    box-shadow: 
+      0 0 30px rgba(240, 220, 32, 0.8),
+      inset 0 0 30px rgba(255, 255, 255, 0.3);
+  }
+}
+
+@keyframes ringRotate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes pulseExpand {
+  0% {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes waveExpand {
+  0% {
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes textGlow {
+  0%, 100% {
+    opacity: 0.8;
+    text-shadow: 0 0 5px rgba(240, 220, 32, 0.3);
+  }
+  50% {
+      opacity: 1;
+    text-shadow: 0 0 15px rgba(240, 220, 32, 0.6);
+  }
+}
+
+@keyframes particleOrbit {
+  0% {
+    transform: rotate(0deg) translateX(60px) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(360deg) translateX(60px) rotate(-360deg);
+    opacity: 0;
+  }
+}
+
+// Mobile Responsiveness
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: 80vh;
+    padding: 2rem 0;
+
+    .hero-logo {
+      margin-bottom: 2rem;
+
+      .logo-container {
+        flex-direction: column;
+        gap: 0.75rem;
+
+        .logo-icon {
+          width: 50px;
+          height: 50px;
+
+          i {
+            font-size: 1.5rem;
+          }
+        }
+
+        .logo-text {
+          text-align: center;
+
+          .logo-brand {
+            font-size: 1.5rem;
+          }
+
+          .logo-tagline {
+            font-size: 0.8rem;
+          }
+        }
+      }
     }
-    
-    &__button {
-      animation: slideInFromBottom 0.6s ease-out 0.4s both;
+
+    .hero-title {
+      font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+    }
+
+    .hero-buttons {
+      flex-direction: column;
+      align-items: center;
+
+      .btn {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+
+    .modern-scroll-indicator {
+      bottom: 15px;
+      width: 60px;
+      height: 60px;
+
+      .scroll-orb {
+        width: 25px;
+        height: 25px;
+        margin-bottom: 8px;
+
+        .orb-core {
+          box-shadow: 
+            0 0 8px rgba(240, 220, 32, 0.4),
+            inset 0 0 8px rgba(255, 255, 255, 0.2);
+        }
+
+        .orb-ring {
+          &.ring-1 {
+            width: 35px;
+            height: 35px;
+          }
+
+          &.ring-2 {
+            width: 50px;
+            height: 50px;
+          }
+
+          &.ring-3 {
+            width: 65px;
+            height: 65px;
+          }
+        }
+
+        .orb-pulse {
+          width: 80px;
+          height: 80px;
+        }
+      }
+
+      .scroll-waves {
+        width: 90px;
+        height: 90px;
+
+        .wave {
+          &.wave-1 {
+            width: 30px;
+            height: 30px;
+          }
+
+          &.wave-2 {
+            width: 50px;
+            height: 50px;
+          }
+
+          &.wave-3 {
+            width: 70px;
+            height: 70px;
+          }
+        }
+      }
+
+      .scroll-text {
+        .text-line {
+          font-size: 0.5rem;
+          letter-spacing: 0.2px;
+        }
+      }
+
+      .scroll-particles {
+        .particle {
+          width: 0.8px;
+          height: 0.8px;
+        }
+      }
     }
   }
-  
-  .cars {
-    animation: fadeInUp 0.6s ease-out 0.6s both;
-    
-    &__title {
-      animation: slideInFromRight 0.6s ease-out 0.8s both;
+
+  .section-header .section-title {
+    font-size: 2rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .special-offer-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .service-guarantee-section .guarantee-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+
+    .guarantee-icon {
+      width: 100px;
+      height: 100px;
+
+      i {
+        font-size: 2.5rem;
+      }
     }
-    
-    .row div {
-      animation: fadeInUp 0.6s ease-out both;
-      
-      &:nth-child(1) { animation-delay: 1.0s; }
-      &:nth-child(2) { animation-delay: 1.1s; }
-      &:nth-child(3) { animation-delay: 1.2s; }
-      &:nth-child(4) { animation-delay: 1.3s; }
-      &:nth-child(5) { animation-delay: 1.4s; }
-      &:nth-child(6) { animation-delay: 1.5s; }
+  }
+
+  .cta-section .cta-content {
+    .cta-title {
+      font-size: 2rem;
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+      align-items: center;
+
+      .btn {
+        width: 100%;
+        max-width: 300px;
+      }
     }
   }
 }
