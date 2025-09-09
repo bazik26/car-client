@@ -25,7 +25,7 @@
           </div>
 
           <div class="card__title card__title-price">
-            {{ car.price | currency: "USD" : "symbol" : "1.0-0" }}
+            {{ car.price | currency: brandConfig.currency : "symbol" : "1.0-0" }} {{ brandConfig.currencySymbol }}
           </div>
 
           <div class="car__info row">
@@ -46,39 +46,43 @@
               <p><span>Пробег:</span>{{ car.mileage }} км</p>
             </div>
           </div>
+
+          <!-- Описание сразу после характеристик -->
+          <div class="mt-3">
+            <div class="card__title">Описание</div>
+            <div class="card__description" [innerHTML]="car.description"></div>
+          </div>
         </div>
       </div>
     </div>
 
+    <!-- Конфигурации в отдельном ряду -->
     <div class="mt-3 row">
-      <div class="col-lg-7 col-md-6 col-12">
-        <div class="car__card card">
-          <div class="card__title">Описание</div>
-
-          <div class="card__description" [innerHTML]="car.description"></div>
-        </div>
-      </div>
-
-      <div class="mt-3 mt-md-0 col-lg-5 col-md-6 col-12">
+      <div class="col-12">
         <div class="car__card card">
           <div class="card__title">Конфигурации</div>
-
-          <div class="card__description">
-            <div class="features-grid">
-              @if (features.length) {
-                @for (f of features; track f) {
-                  <div class="feature-item">
-                    <i class="fas fa-check-circle"></i>
-                    {{ f }}
+          
+          <div class="configurations-grid">
+            @if (groupedFeatures.length) {
+              @for (category of groupedFeatures; track category.name) {
+                <div class="config-category">
+                  <h4 class="category-title">{{ category.name }}</h4>
+                  <div class="features-grid">
+                    @for (feature of category.features; track feature) {
+                      <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        {{ feature }}
+                      </div>
+                    }
                   </div>
-                }
-              } @else {
-                <div class="feature-item">
-                  <i class="fas fa-check-circle"></i>
-                  Нет дополнительных опций
                 </div>
               }
-            </div>
+            } @else {
+              <div class="no-features">
+                <i class="fas fa-info-circle"></i>
+                Нет дополнительных опций
+              </div>
+            }
           </div>
         </div>
       </div>

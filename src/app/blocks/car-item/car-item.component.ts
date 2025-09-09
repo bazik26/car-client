@@ -8,6 +8,7 @@ import {
 import { RouterLink } from '@angular/router';
 
 import { AppService } from '../../app.service';
+import { BRAND_CONFIG } from '../../constants';
 
 @Component({
   selector: 'app-car-item',
@@ -19,6 +20,8 @@ import { AppService } from '../../app.service';
 })
 export class CarItemComponent {
   public readonly appService = inject(AppService);
+  
+  brandConfig = BRAND_CONFIG;
 
   @Input()
   public car!: any;

@@ -16,10 +16,9 @@ import {AppService} from '../../app.service';
 export class ContactUsComponent {
   public readonly activeModal = inject(BsModalRef);
 
-  selectedMessenger: string = 'whatsapp';
+  selectedMessenger: string = 'telegram';
   contactData = {
     firstName: '',
-    lastName: '',
     phone: '',
     message: ''
   };
@@ -37,7 +36,6 @@ export class ContactUsComponent {
     this.appService.contactUs({
       messenger: this.selectedMessenger,
       firstName: this.contactData.firstName,
-      lastName: this.contactData.lastName,
       phone: this.contactData.phone,
       message: this.contactData.message
     }).subscribe({

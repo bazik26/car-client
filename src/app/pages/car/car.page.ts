@@ -12,6 +12,7 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { switchMap } from 'rxjs';
 
 import { AppService } from '../../app.service';
+import { BRAND_CONFIG } from '../../constants';
 
 import { ContactUsComponent } from '../../blocks/contact-us/contact-us.component';
 
@@ -29,6 +30,8 @@ export class CarPage implements OnInit {
   public readonly modal = inject(BsModalService);
 
   public readonly appService = inject(AppService);
+  
+  brandConfig = BRAND_CONFIG;
 
   private readonly singleFeatureFields = [
     'conditionerType',
@@ -45,6 +48,85 @@ export class CarPage implements OnInit {
     'seatVentilation',
   ];
 
+  // Маппинг полей для более понятного отображения
+  private readonly fieldLabels = {
+    'conditionerType': 'Кондиционер',
+    'windowLifter': 'Электростеклоподъемники',
+    'interiorMaterials': 'Материалы салона',
+    'interiorColor': 'Цвет салона',
+    'powerSteering': 'Усилитель руля',
+    'steeringWheelAdjustment': 'Регулировка руля',
+    'seatAdjustment': 'Регулировка сидений',
+    'memorySeatModule': 'Память положения сидений',
+    'seatHeated': 'Подогрев сидений',
+    'seatVentilation': 'Вентиляция сидений',
+    'headlights': 'Фары',
+    'spareWheel': 'Запасное колесо'
+  };
+
+  // Специальная обработка для значений, которые могут дублироваться
+  private formatFeatureValue(field: string, value: string): string {
+    const fieldLabel = (this.fieldLabels as any)[field] || field;
+    
+    // Если значение совпадает с названием поля, показываем только значение
+    if (value === fieldLabel) {
+      return value;
+    }
+    
+    // Для полей сидений добавляем контекст
+    if (field === 'memorySeatModule' && value === 'Передние сиденья') {
+      return `${fieldLabel}: Память положения передних сидений`;
+    }
+    if (field === 'seatHeated' && value === 'Передние сиденья') {
+      return `${fieldLabel}: Подогрев передних сидений`;
+    }
+    if (field === 'seatVentilation' && value === 'Передние сиденья') {
+      return `${fieldLabel}: Вентиляция передних сидений`;
+    }
+    
+    // Для остальных случаев показываем "Название: Значение"
+    return `${fieldLabel}: ${value}`;
+  }
+
+  // Категории опций точно как в админке
+  private readonly featureCategories = {
+    'Салон и комфорт': {
+      fields: ['conditionerType', 'windowLifter', 'interiorMaterials', 'interiorColor', 'powerSteering', 'steeringWheelAdjustment', 'seatAdjustment', 'memorySeatModule', 'seatHeated', 'seatVentilation'],
+      group: 'group1'
+    },
+    'Система помощи при парковке': {
+      fields: [],
+      group: 'group2'
+    },
+    'Мультимедиа': {
+      fields: [],
+      group: 'group3'
+    },
+    'Оптика': {
+      fields: ['headlights'],
+      group: 'group4'
+    },
+    'Безопасность': {
+      fields: [],
+      group: 'group5'
+    },
+    'Состояние': {
+      fields: [],
+      group: 'group6'
+    },
+    'Кузов': {
+      fields: ['spareWheel'],
+      group: 'group7'
+    },
+    'Подушки безопасности': {
+      fields: [],
+      group: 'group8'
+    },
+    'Дополнительное оборудование': {
+      fields: [],
+      group: 'group9'
+    }
+  };
 
   public car!: any;
 
@@ -74,5 +156,47 @@ export class CarPage implements OnInit {
     }
 
     return Array.from(new Set([...singles, ...grouped]));
+  }
+
+  get groupedFeatures(): Array<{name: string, features: string[]}> {
+    const car: any = this.car;
+    if (!car) return [];
+
+    const result: Array<{name: string, features: string[]}> = [];
+
+    // Обрабатываем категории точно как в админке
+    Object.entries(this.featureCategories).forEach(([categoryName, config]) => {
+      const categoryFeatures: string[] = [];
+      
+      // Добавляем поля из singleFeatureFields с понятными названиями
+      config.fields.forEach(field => {
+        const value = car[field];
+        if (value) {
+          if (Array.isArray(value)) {
+            value.forEach(v => categoryFeatures.push(this.formatFeatureValue(field, v)));
+          } else {
+            categoryFeatures.push(this.formatFeatureValue(field, value));
+          }
+        }
+      });
+
+      // Добавляем групповые опции
+      const groupValue = car[config.group];
+      if (Array.isArray(groupValue) && groupValue.length > 0) {
+        categoryFeatures.push(...groupValue);
+      }
+
+      // Показываем категорию только если есть опции
+      if (categoryFeatures.length > 0) {
+        // Убираем дубликаты
+        const uniqueFeatures = Array.from(new Set(categoryFeatures));
+        result.push({
+          name: categoryName,
+          features: uniqueFeatures
+        });
+      }
+    });
+
+    return result;
   }
 }

@@ -1,6 +1,6 @@
 {
-  "name": "TopCars - Пригон автомобилей",
-  "short_name": "TopCars",
+  "name": "Vam Auto - Пригон автомобилей",
+  "short_name": "Vam Auto",
   "description": "Пригон автомобилей из Китая, США и Европы",
   "start_url": "/",
   "display": "standalone",

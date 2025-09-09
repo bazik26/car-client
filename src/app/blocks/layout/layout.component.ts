@@ -5,6 +5,7 @@ import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
 import {BsModalService} from 'ngx-bootstrap/modal';
 
 import {ContactUsComponent} from '../contact-us/contact-us.component';
+import {BRAND_CONFIG} from '../../constants';
 
 @Component({
   selector: 'app-layout',
@@ -16,6 +17,7 @@ import {ContactUsComponent} from '../contact-us/contact-us.component';
 export class LayoutComponent {
   public readonly modal = inject(BsModalService);
   public isMobileMenuOpen = false;
+  brandConfig = BRAND_CONFIG;
 
   menuItems = [
     {

@@ -2,7 +2,7 @@
   <!-- Герой-секция -->
   <section class="hero-section">
     <div class="container">
-      <h1>Почему выбирают <span class="highlight">TopCars</span>?</h1>
+      <h1>Почему выбирают <span class="highlight">{{ brandConfig.name }}</span>?</h1>
       <p class="subtitle">Пригон автомобилей из Китая, США и Европы с 2010 года</p>
       <div class="stats">
         <div class="stat-item">
@@ -129,7 +129,7 @@
             <i class="fas fa-phone"></i>
           </div>
           <h3>Телефон</h3>
-          <a href="tel:+380636670272">+38 (063) 667 0272</a>
+          <a href="{{ brandConfig.phoneLink }}">{{ brandConfig.phone }}</a>
         </div>
         
         <div class="contact-item">
@@ -137,7 +137,7 @@
             <i class="fas fa-envelope"></i>
           </div>
           <h3>Email</h3>
-          <a href="mailto:info@topcars.com">info@topcars.com</a>
+          <a href="mailto:{{ brandConfig.email }}">{{ brandConfig.email }}</a>
         </div>
         
         <div class="contact-item">

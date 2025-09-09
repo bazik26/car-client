@@ -22,7 +22,11 @@ export class SearchPage implements OnInit {
 
   public form!: FormGroup;
 
-  public cars!: any[];
+  public cars: any[] = [];
+  public pagination: any = null;
+  public currentPage = 1;
+  public pageSize = 12;
+  public showAdvancedFilters = false; // Для мобильной версии
 
   public BRANDS_AND_MODELS!: any[];
 
@@ -69,9 +73,12 @@ export class SearchPage implements OnInit {
         debounceTime(300),
         map((v) => this.cleanup(v)),
         distinctUntilChanged((a, b) => JSON.stringify(a) === JSON.stringify(b)),
-        switchMap((dto) => this.appService.searchCars(dto)),
+        switchMap((dto) => this.appService.searchCars({ ...dto, page: this.currentPage, limit: this.pageSize })),
       )
-      .subscribe((cars) => (this.cars = cars));
+      .subscribe((response) => {
+        this.cars = response.cars || [];
+        this.pagination = response.pagination || null;
+      });
   }
 
   private cleanup(v: any) {
@@ -354,5 +361,57 @@ export class SearchPage implements OnInit {
 
   clearControl(controlName: string) {
     this.form.get(controlName)?.reset();
+  }
+
+  // Методы пагинации
+  goToPage(page: number) {
+    if (page >= 1 && page <= (this.pagination?.totalPages || 1)) {
+      this.currentPage = page;
+      this.searchCars();
+    }
+  }
+
+  nextPage() {
+    if (this.pagination?.hasNext) {
+      this.goToPage(this.currentPage + 1);
+    }
+  }
+
+  prevPage() {
+    if (this.pagination?.hasPrev) {
+      this.goToPage(this.currentPage - 1);
+    }
+  }
+
+  private searchCars() {
+    const dto = this.cleanup(this.form.value);
+    this.appService.searchCars({ ...dto, page: this.currentPage, limit: this.pageSize })
+      .subscribe((response) => {
+        this.cars = response.cars || [];
+        this.pagination = response.pagination || null;
+      });
+  }
+
+  // Генерация массива страниц для отображения
+  get pageNumbers(): number[] {
+    if (!this.pagination) return [];
+    
+    const current = this.pagination.page;
+    const total = this.pagination.totalPages;
+    const pages: number[] = [];
+    
+    // Показываем максимум 5 страниц
+    const start = Math.max(1, current - 2);
+    const end = Math.min(total, current + 2);
+    
+    for (let i = start; i <= end; i++) {
+      pages.push(i);
+    }
+    
+    return pages;
+  }
+
+  toggleAdvancedFilters() {
+    this.showAdvancedFilters = !this.showAdvancedFilters;
   }
 }

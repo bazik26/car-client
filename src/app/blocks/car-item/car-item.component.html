@@ -51,7 +51,7 @@
 
   <div class="car-item__price">
     <p>Цена</p>
-    <p>{{ car.price | currency: "USD" : "symbol" : "1.0-0" }}</p>
+    <p>{{ car.price | currency: brandConfig.currency : "symbol" : "1.0-0" }}</p>
   </div>
 
   <div class="car-item__more">

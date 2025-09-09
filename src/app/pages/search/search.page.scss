@@ -233,7 +233,50 @@
 // Мобильная оптимизация
 @media (max-width: 767.98px) {
   .search-page {
-    padding: 1rem;
+    padding: 0.5rem;
+    position: relative;
+    z-index: 1; // Чтобы не перекрывало бургер-меню
+    
+    // Убираем отступы у row для мобильных
+    .row {
+      margin: 0;
+      
+      .col-xl-3,
+      .col-lg-4,
+      .col-md-12 {
+        padding: 0;
+        margin-bottom: 1rem;
+      }
+    }
+    
+    // Стили для кнопки дополнительных фильтров
+    .btn-outline-warning {
+      border-color: var(--yellow);
+      color: var(--yellow);
+      background: transparent;
+      
+      &:hover,
+      &:focus {
+        background-color: var(--yellow);
+        color: var(--black);
+        border-color: var(--yellow);
+      }
+      
+      i {
+        margin-right: 0.5rem;
+      }
+    }
+    
+    // Дополнительные фильтры
+    .advanced-filters {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      
+      &.d-none {
+        display: none !important;
+      }
+    }
     
     .search-header {
       text-align: center;
@@ -252,32 +295,45 @@
     }
     
     .search-form {
+      .form-control {
+        padding: 0.75rem;
+        background-color: var(--black-2);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+      }
+      
       .form-row {
         flex-direction: column;
-        gap: 1rem;
+        gap: 0.75rem;
         
         .form-group {
           width: 100%;
+          margin-bottom: 0.75rem;
           
           label {
             font-size: 0.9rem;
             margin-bottom: 0.5rem;
+            color: var(--white);
+            font-weight: 500;
           }
           
           .ng-select {
             .ng-select-container {
-              min-height: 48px;
+              min-height: 44px;
+              background-color: var(--black);
+              border: 1px solid rgba(255, 255, 255, 0.1);
               
               .ng-value-container {
-                padding-left: 16px;
+                padding-left: 12px;
                 
                 .ng-placeholder {
-                  font-size: 16px; // Предотвращает зум на iOS
+                  font-size: 14px;
+                  color: rgba(255, 255, 255, 0.6);
                 }
                 
                 .ng-input > input {
-                  font-size: 16px; // Предотвращает зум на iOS
-                  padding: 12px 16px;
+                  font-size: 14px;
+                  padding: 10px 12px;
                 }
               }
             }
@@ -285,9 +341,16 @@
           
           input[type="text"],
           input[type="number"] {
-            min-height: 48px;
-            padding: 12px 16px;
-            font-size: 16px; // Предотвращает зум на iOS
+            min-height: 44px;
+            padding: 10px 12px;
+            font-size: 14px;
+            background-color: var(--black);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            
+            &::placeholder {
+              color: rgba(255, 255, 255, 0.6);
+            }
           }
         }
       }
@@ -563,5 +626,131 @@
     .results-grid {
       grid-template-columns: repeat(2, 1fr);
     }
+  }
+}
+
+// Стили для пагинации
+.search-results-info {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1rem;
+  border-radius: 8px;
+  border-left: 4px solid var(--yellow);
+  
+  p {
+    margin: 0;
+    color: var(--white);
+    
+    strong {
+      color: var(--yellow);
+    }
+  }
+}
+
+// Исправление проблемы с читаемостью текста "Найдено автомобилей"
+.search-results-header {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  
+  .results-count {
+    color: var(--white) !important; // Принудительно делаем белым
+    font-weight: 500;
+    
+    .highlight {
+      color: var(--yellow) !important;
+      font-weight: 700;
+    }
+  }
+}
+
+// Исправление проблемы с полями года
+.form-row {
+  .form-group {
+    margin-bottom: 1rem;
+    
+    // Убеждаемся, что поля не перекрываются
+    &:nth-child(3),
+    &:nth-child(4) {
+      margin-right: 0;
+      margin-left: 0;
+    }
+  }
+  
+  // Специально для полей года
+  .year-fields {
+    display: flex;
+    gap: 1rem;
+    
+    .form-group {
+      flex: 1;
+      margin-bottom: 0;
+    }
+  }
+}
+
+.pagination-container {
+  .pagination {
+    .page-item {
+      margin: 0 2px;
+      
+      .page-link {
+        background-color: var(--black-2);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: var(--white);
+        padding: 0.5rem 0.75rem;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+        
+        &:hover {
+          background-color: var(--black-1);
+          border-color: var(--yellow);
+          color: var(--yellow);
+        }
+        
+        &:focus {
+          box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2);
+        }
+      }
+      
+      &.active .page-link {
+        background-color: var(--yellow);
+        border-color: var(--yellow);
+        color: var(--black);
+        font-weight: 600;
+      }
+      
+      &.disabled .page-link {
+        background-color: var(--black-3);
+        border-color: rgba(255, 255, 255, 0.05);
+        color: rgba(255, 255, 255, 0.3);
+        cursor: not-allowed;
+        
+        &:hover {
+          background-color: var(--black-3);
+          border-color: rgba(255, 255, 255, 0.05);
+          color: rgba(255, 255, 255, 0.3);
+        }
+      }
+    }
+  }
+}
+
+.no-results {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  
+  i {
+    color: rgba(255, 255, 255, 0.3);
+  }
+  
+  h4 {
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+  
+  p {
+    color: rgba(255, 255, 255, 0.7);
   }
 }

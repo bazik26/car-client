@@ -2,8 +2,7 @@
   <div class="logo">
     <a routerLink="/home" class="logo-link">
       <div class="logo__title d-flex align-items-center">
-        <div class="logo__title__1">TOP</div>
-        <div class="logo__title__2 ms-1">CARS</div>
+        <div class="logo__title__1">{{ brandConfig.name }}</div>
 
         <div class="logo__stars ms-3 d-flex align-items-center">
           <div class="d-flex align-items-center">★</div>
@@ -32,6 +31,7 @@
       <li><a routerLink="/cars/search" routerLinkActive="active">Автомобили</a></li>
       <li><a routerLink="/about-us" routerLinkActive="active">О нас</a></li>
       <li><a routerLink="/team" routerLinkActive="active">Команда</a></li>
+      <li><a routerLink="/contacts" routerLinkActive="active">Контакты</a></li>
     </ul>
   </nav>
 </header>
@@ -52,18 +52,19 @@
         <li><a routerLink="/cars/search" routerLinkActive="active" (click)="closeMobileMenu()">Автомобили</a></li>
         <li><a routerLink="/about-us" routerLinkActive="active" (click)="closeMobileMenu()">О нас</a></li>
         <li><a routerLink="/team" routerLinkActive="active" (click)="closeMobileMenu()">Команда</a></li>
+        <li><a routerLink="/contacts" routerLinkActive="active" (click)="closeMobileMenu()">Контакты</a></li>
         <li><a routerLink="/admin" routerLinkActive="active" (click)="closeMobileMenu()">Админ</a></li>
       </ul>
     </nav>
     <div class="mobile-menu-footer">
       <div class="contact-info">
-        <a href="tel:+380636670272" class="phone-link">
+        <a href="{{ brandConfig.phoneLink }}" class="phone-link">
           <i class="fas fa-phone"></i>
-          +38 (063) 667 0272
+          {{ brandConfig.phone }}
         </a>
-        <a href="mailto:info@topcars.com" class="email-link">
+        <a href="mailto:{{ brandConfig.email }}" class="email-link">
           <i class="fas fa-envelope"></i>
-          info@topcars.com
+          {{ brandConfig.email }}
         </a>
       </div>
     </div>
@@ -99,16 +100,16 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-logo">
-        <h2>TopCars</h2>
+        <h2>{{ brandConfig.name }}</h2>
         <p>Пригон автомобилей из Китая, США и Европы</p>
         <div class="contact-info">
-          <a href="tel:+380636670272" class="phone-link">
+          <a href="{{ brandConfig.phoneLink }}" class="phone-link">
             <i class="fas fa-phone"></i>
-            +38 (063) 667 0272
+            {{ brandConfig.phone }}
           </a>
-          <a href="mailto:info@topcars.com" class="email-link">
+          <a href="mailto:{{ brandConfig.email }}" class="email-link">
             <i class="fas fa-envelope"></i>
-            info@topcars.com
+            {{ brandConfig.email }}
           </a>
         </div>
       </div>
@@ -120,6 +121,7 @@
           <li><a routerLink="/cars/search">Автомобили</a></li>
           <li><a routerLink="/about-us">О нас</a></li>
           <li><a routerLink="/team">Наша команда</a></li>
+          <li><a routerLink="/contacts">Контакты</a></li>
           <li><a routerLink="/admin">Админ-панель</a></li>
         </ul>
       </div>
@@ -160,11 +162,11 @@
 
     <div class="footer-bottom">
       <div class="copyright">
-        © 2010 TopCars. Все права защищены.
+        © 2010 {{ brandConfig.name }}. Все права защищены.
       </div>
       <div class="legal-links">
-        <a href="#">Политика конфиденциальности</a>
-        <a href="#">Пользовательское соглашение</a>
+        <a routerLink="/privacy-policy">Политика конфиденциальности</a>
+        <a routerLink="/terms-of-service">Пользовательское соглашение</a>
       </div>
     </div>
   </div>

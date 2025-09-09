@@ -91,6 +91,47 @@
       color: var(--yellow);
     }
   }
+
+  // Стили для категорий конфигураций
+  .configurations-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .config-category {
+    .category-title {
+      color: var(--yellow);
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+  }
+
+  .no-features {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.5rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-style: italic;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+
+    i {
+      color: var(--yellow);
+      font-size: 1.25rem;
+    }
+  }
 }
 
 // Мобильная оптимизация
@@ -98,9 +139,21 @@
   .car {
     padding: 1rem;
     
+    // Улучшаем структуру для мобильных
+    .row {
+      margin: 0;
+      
+      .col-lg-7,
+      .col-md-6,
+      .col-12 {
+        padding: 0;
+        margin-bottom: 1rem;
+      }
+    }
+    
     swiper-container {
-      height: 300px;
-      margin-bottom: 1.5rem;
+      height: 250px;
+      margin-bottom: 1rem;
       
       &,
       swiper-slide,
@@ -112,29 +165,35 @@
     &__card {
       padding: 1rem;
       border-radius: 8px;
+      margin-top: 0;
       
       & .card {
         &__title {
           margin-bottom: 1rem;
           padding-bottom: 0.75rem;
-          font-size: 1.25rem;
+          font-size: 1.4rem;
           
           &-car {
-            font-size: 1.75rem;
-            margin-bottom: 0.5rem;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
             display: block;
+            line-height: 1.2;
+            word-wrap: break-word;
+            hyphens: auto;
           }
           
           &-price {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             display: block;
-            margin-top: 0.5rem;
+            margin-top: 0.75rem;
+            font-weight: 600;
           }
         }
         
         &__description {
-          font-size: 0.9rem;
-          line-height: 1.5;
+          font-size: 1rem;
+          line-height: 1.6;
         }
       }
     }
@@ -143,12 +202,13 @@
       margin-top: 1.5rem;
       
       p {
-        font-size: 0.9rem;
+        font-size: 1rem;
         margin-bottom: 0.75rem;
-        line-height: 1.5;
+        line-height: 1.6;
         
         span {
           font-weight: 600;
+          color: var(--yellow);
         }
       }
     }
@@ -172,6 +232,22 @@
         }
       }
     }
+
+    .configurations-grid {
+      gap: 1.5rem;
+    }
+
+    .config-category {
+      .category-title {
+        font-size: 1.1rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+    }
   }
 }
 
@@ -181,7 +257,7 @@
     padding: 0.75rem;
     
     swiper-container {
-      height: 250px;
+      height: 200px;
       margin-bottom: 1rem;
       
       &,
@@ -197,27 +273,39 @@
       
       & .card {
         &__title {
-          font-size: 1.1rem;
+          font-size: 1.2rem;
           
           &-car {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+            line-height: 1.1;
+            word-wrap: break-word;
+            hyphens: auto;
           }
           
           &-price {
-            font-size: 1.25rem;
+            font-size: 1.4rem;
+            font-weight: 600;
           }
         }
         
         &__description {
-          font-size: 0.85rem;
+          font-size: 0.9rem;
+          line-height: 1.5;
         }
       }
     }
     
     &__info {
       p {
-        font-size: 0.85rem;
+        font-size: 0.9rem;
         margin-bottom: 0.5rem;
+        line-height: 1.5;
+        
+        span {
+          font-weight: 600;
+          color: var(--yellow);
+        }
       }
     }
     
