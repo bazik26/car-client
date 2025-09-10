@@ -48,12 +48,12 @@
     </div>
     <nav class="mobile-menu-nav">
       <ul>
-        <li><a routerLink="/home" routerLinkActive="active" (click)="closeMobileMenu()">Главная</a></li>
-        <li><a routerLink="/cars/search" routerLinkActive="active" (click)="closeMobileMenu()">Автомобили</a></li>
-        <li><a routerLink="/about-us" routerLinkActive="active" (click)="closeMobileMenu()">О нас</a></li>
-        <li><a routerLink="/team" routerLinkActive="active" (click)="closeMobileMenu()">Команда</a></li>
-        <li><a routerLink="/contacts" routerLinkActive="active" (click)="closeMobileMenu()">Контакты</a></li>
-        <li><a routerLink="/admin" routerLinkActive="active" (click)="closeMobileMenu()">Админ</a></li>
+        <li><a routerLink="/home" routerLinkActive="active" (click)="onMenuClick()">Главная</a></li>
+        <li><a routerLink="/cars/search" routerLinkActive="active" (click)="onMenuClick()">Автомобили</a></li>
+        <li><a routerLink="/about-us" routerLinkActive="active" (click)="onMenuClick()">О нас</a></li>
+        <li><a routerLink="/team" routerLinkActive="active" (click)="onMenuClick()">Команда</a></li>
+        <li><a routerLink="/contacts" routerLinkActive="active" (click)="onMenuClick()">Контакты</a></li>
+        <li><a routerLink="/admin" routerLinkActive="active" (click)="onMenuClick()">Админ</a></li>
       </ul>
     </nav>
     <div class="mobile-menu-footer">
@@ -117,12 +117,12 @@
       <div class="footer-links">
         <h3>Навигация</h3>
         <ul>
-          <li><a routerLink="/home">Главная</a></li>
-          <li><a routerLink="/cars/search">Автомобили</a></li>
-          <li><a routerLink="/about-us">О нас</a></li>
-          <li><a routerLink="/team">Наша команда</a></li>
-          <li><a routerLink="/contacts">Контакты</a></li>
-          <li><a routerLink="/admin">Админ-панель</a></li>
+          <li><a routerLink="/home" (click)="onMenuClick()">Главная</a></li>
+          <li><a routerLink="/cars/search" (click)="onMenuClick()">Автомобили</a></li>
+          <li><a routerLink="/about-us" (click)="onMenuClick()">О нас</a></li>
+          <li><a routerLink="/team" (click)="onMenuClick()">Наша команда</a></li>
+          <li><a routerLink="/contacts" (click)="onMenuClick()">Контакты</a></li>
+          <li><a routerLink="/admin" (click)="onMenuClick()">Админ-панель</a></li>
         </ul>
       </div>
 
@@ -143,7 +143,7 @@
           <a href="#" class="social-icon" aria-label="Telegram">
             <i class="fab fa-telegram"></i>
           </a>
-          <a href="#" class="social-icon" aria-label="WhatsApp">
+          <!-- <a href="#" class="social-icon" aria-label="WhatsApp">
             <i class="fab fa-whatsapp"></i>
           </a>
           <a href="#" class="social-icon" aria-label="Instagram">
@@ -151,7 +151,7 @@
           </a>
           <a href="#" class="social-icon" aria-label="YouTube">
             <i class="fab fa-youtube"></i>
-          </a>
+          </a> -->
         </div>
         <button class="contact-button" (click)="openContactUsModal()">
           <i class="fas fa-paper-plane"></i>
@@ -165,8 +165,8 @@
         © 2010 {{ brandConfig.name }}. Все права защищены.
       </div>
       <div class="legal-links">
-        <a routerLink="/privacy-policy">Политика конфиденциальности</a>
-        <a routerLink="/terms-of-service">Пользовательское соглашение</a>
+        <a routerLink="/privacy-policy" (click)="onMenuClick()">Политика конфиденциальности</a>
+        <a routerLink="/terms-of-service" (click)="onMenuClick()">Пользовательское соглашение</a>
       </div>
     </div>
   </div>

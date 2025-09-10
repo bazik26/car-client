@@ -184,6 +184,28 @@ button, a, input, select, textarea {
   }
 }
 
+// Глобальные стили для модальных окон ngx-bootstrap
+.modal {
+  z-index: 10000 !important;
+  
+  .modal-dialog {
+    z-index: 10001 !important;
+    margin-top: 120px !important; // Увеличенный отступ сверху чтобы не залезать на хедер
+    
+    @media (max-width: 767.98px) {
+      margin-top: 100px !important; // Увеличенный отступ на мобильных
+    }
+  }
+  
+  .modal-content {
+    z-index: 10002 !important;
+  }
+}
+
+.modal-backdrop {
+  z-index: 9999 !important;
+}
+
 // Глобальные стили для контейнеров
 .container {
   max-width: 1200px;

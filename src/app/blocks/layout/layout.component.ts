@@ -1,6 +1,7 @@
-import {Component, inject} from '@angular/core';
-import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
+import {Component, inject, OnInit, OnDestroy} from '@angular/core';
+import {RouterLink, RouterLinkActive, RouterOutlet, Router, NavigationEnd} from '@angular/router';
 import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
+import {filter, Subscription} from 'rxjs';
 
 import {BsModalService} from 'ngx-bootstrap/modal';
 
@@ -14,10 +15,12 @@ import {BRAND_CONFIG} from '../../constants';
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss'],
 })
-export class LayoutComponent {
+export class LayoutComponent implements OnInit, OnDestroy {
   public readonly modal = inject(BsModalService);
+  public readonly router = inject(Router);
   public isMobileMenuOpen = false;
   brandConfig = BRAND_CONFIG;
+  private routerSubscription?: Subscription;
 
   menuItems = [
     {
@@ -50,6 +53,26 @@ export class LayoutComponent {
   constructor(private sanitizer: DomSanitizer) {
   }
 
+  ngOnInit(): void {
+    // Подписываемся на события роутинга для автоматического скролла вверх
+    this.routerSubscription = this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => {
+        // Плавный скролл вверх
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+  }
+
+  ngOnDestroy(): void {
+    // Отписываемся от событий роутинга
+    if (this.routerSubscription) {
+      this.routerSubscription.unsubscribe();
+    }
+  }
+
   openContactUsModal() {
     this.modal.show(ContactUsComponent);
   }
@@ -70,5 +93,10 @@ export class LayoutComponent {
   closeMobileMenu(): void {
     this.isMobileMenuOpen = false;
     document.body.style.overflow = '';
+  }
+
+  onMenuClick(): void {
+    // Закрываем мобильное меню при клике на пункт меню
+    this.closeMobileMenu();
   }
 }

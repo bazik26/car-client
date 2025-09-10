@@ -5,5 +5,6 @@ export const BRAND_CONFIG = {
   phone: '+38 (063) 667 0272',
   phoneLink: 'tel:+380636670272',
   currency: 'RUB ',
-  currencySymbol: '₽ '
+  currencySymbol: '₽ ',
+  address: 'Саратов, Россия'
 } as const;

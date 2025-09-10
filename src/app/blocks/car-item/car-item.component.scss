@@ -58,13 +58,46 @@ p {
       height: 100%;
       width: 100%;
       display: block;
-      object-fit: cover;
+      object-fit: contain;
+      background: linear-gradient(135deg, var(--black-2) 0%, var(--gray) 50%, var(--black-3) 100%);
       border-top-right-radius: 4px;
       border-top-left-radius: 4px;
+      position: relative;
       
       @media (max-width: 767.98px) {
         border-top-right-radius: 8px;
         border-top-left-radius: 8px;
+      }
+      
+      // Размытый логотип как фон
+      &::before {
+        content: 'VAM AUTO';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 3rem;
+        font-weight: 900;
+        color: rgba(240, 220, 32, 0.15);
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        pointer-events: none;
+        z-index: 1;
+        filter: blur(12px);
+        text-shadow: 0 0 30px rgba(240, 220, 32, 0.2);
+        font-family: 'Arial', sans-serif;
+        
+        @media (max-width: 767.98px) {
+          font-size: 2.5rem;
+          letter-spacing: 3px;
+          filter: blur(10px);
+        }
+        
+        @media (max-width: 575.98px) {
+          font-size: 2rem;
+          letter-spacing: 2px;
+          filter: blur(8px);
+        }
       }
     }
   }

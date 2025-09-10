@@ -1025,10 +1025,17 @@ header {
   }
   
   .footer-social {
+    text-align: center;
+    
+    h3 {
+      text-align: center;
+    }
+    
     .social-icons {
       display: flex;
       gap: 1rem;
       margin-bottom: 1.5rem;
+      justify-content: center;
       
       @media (max-width: 767.98px) {
         justify-content: center;
