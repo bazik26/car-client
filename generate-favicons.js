@@ -10,19 +10,29 @@
 const fs = require('fs');
 const path = require('path');
 
-// SVG содержимое для favicon
-const svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
-  <!-- Фон -->
-  <rect width="32" height="32" fill="#217e02" rx="4"/>
-  
-  <!-- Буква V -->
-  <path d="M8 8 L16 24 L24 8 L20 8 L16 18 L12 8 Z" fill="white"/>
-  
-  <!-- Автомобиль (упрощенный) -->
-  <rect x="6" y="20" width="20" height="6" fill="white" rx="1"/>
-  <circle cx="10" cy="26" r="2" fill="#217e02"/>
-  <circle cx="22" cy="26" r="2" fill="#217e02"/>
-</svg>`;
+// Проверяем, установлен ли sharp
+let sharp;
+try {
+  sharp = require('sharp');
+} catch (error) {
+  console.log('❌ Sharp не установлен. Установите его командой:');
+  console.log('   npm install -g sharp');
+  console.log('');
+  console.log('📝 Альтернативные способы генерации PNG:');
+  console.log('1. Онлайн генератор: https://realfavicongenerator.net/');
+  console.log('2. Онлайн генератор: https://favicon.io/');
+  console.log('3. Используйте только SVG favicon (современные браузеры)');
+  process.exit(1);
+}
+
+// Читаем SVG файл
+const svgPath = path.join(__dirname, 'public', 'favicon.svg');
+if (!fs.existsSync(svgPath)) {
+  console.log('❌ Файл favicon.svg не найден в папке public/');
+  process.exit(1);
+}
+
+const svgContent = fs.readFileSync(svgPath, 'utf8');
 
 // Размеры для генерации
 const sizes = [
@@ -33,22 +43,37 @@ const sizes = [
   { size: 512, name: 'android-chrome-512x512.png' }
 ];
 
-console.log('🎨 Генерация favicon для Vam Auto...');
+console.log('🎨 Генерация PNG favicon из SVG для Vam Auto...');
 console.log('');
-console.log('📝 Инструкции:');
-console.log('1. Установите sharp: npm install -g sharp');
-console.log('2. Запустите: node generate-favicons.js');
-console.log('');
-console.log('📁 Файлы, которые будут созданы:');
-sizes.forEach(({ size, name }) => {
-  console.log(`   - ${name} (${size}x${size})`);
-});
-console.log('');
-console.log('💡 Альтернативно, вы можете:');
-console.log('   - Использовать онлайн генератор favicon');
-console.log('   - Создать PNG файлы вручную в графическом редакторе');
-console.log('   - Использовать только SVG favicon (современные браузеры)');
 
-// Сохраняем SVG файл
-fs.writeFileSync(path.join(__dirname, 'public', 'favicon.svg'), svgContent);
-console.log('✅ SVG favicon создан: public/favicon.svg');
+// Генерируем PNG файлы
+async function generateFavicons() {
+  try {
+    for (const { size, name } of sizes) {
+      const outputPath = path.join(__dirname, 'public', name);
+      
+      await sharp(Buffer.from(svgContent))
+        .resize(size, size)
+        .png()
+        .toFile(outputPath);
+      
+      console.log(`✅ Создан: ${name} (${size}x${size})`);
+    }
+    
+    console.log('');
+    console.log('🎉 Все favicon файлы успешно созданы!');
+    console.log('');
+    console.log('📁 Созданные файлы:');
+    sizes.forEach(({ size, name }) => {
+      console.log(`   - public/${name} (${size}x${size})`);
+    });
+    console.log('');
+    console.log('🚀 Теперь можете собрать проект: npm run build');
+    
+  } catch (error) {
+    console.error('❌ Ошибка при генерации favicon:', error.message);
+    process.exit(1);
+  }
+}
+
+generateFavicons();
