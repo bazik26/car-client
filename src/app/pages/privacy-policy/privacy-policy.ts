@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { BRAND_CONFIG } from '../../constants';
+import { SEOService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-privacy-policy',
@@ -6,6 +8,12 @@ import { Component } from '@angular/core';
   templateUrl: './privacy-policy.html',
   styleUrl: './privacy-policy.scss'
 })
-export class PrivacyPolicy {
+export class PrivacyPolicy implements OnInit {
   currentDate = new Date().toLocaleDateString('ru-RU');
+  private readonly seoService = inject(SEOService);
+  public readonly brandConfig = BRAND_CONFIG;
+
+  ngOnInit() {
+    this.seoService.setSEO('privacy');
+  }
 }

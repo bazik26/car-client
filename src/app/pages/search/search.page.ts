@@ -6,6 +6,8 @@ import { debounceTime, distinctUntilChanged, startWith } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
 import { AppService } from '../../app.service';
+import { BRAND_CONFIG } from '../../constants';
+import { SEOService } from '../../services/seo.service';
 import { CarItemComponent } from '../../blocks/car-item/car-item.component';
 
 @Component({
@@ -19,6 +21,8 @@ export class SearchPage implements OnInit {
   public readonly fb = inject(FormBuilder);
 
   public readonly appService = inject(AppService);
+  private readonly seoService = inject(SEOService);
+  public readonly brandConfig = BRAND_CONFIG;
 
   public form!: FormGroup;
 
@@ -31,6 +35,7 @@ export class SearchPage implements OnInit {
   public BRANDS_AND_MODELS!: any[];
 
   ngOnInit() {
+    this.seoService.setSEO('search');
     this.form = this.fb.group({
       brand: [null],
       model: [null],

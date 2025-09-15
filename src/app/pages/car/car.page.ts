@@ -13,6 +13,7 @@ import { switchMap } from 'rxjs';
 
 import { AppService } from '../../app.service';
 import { BRAND_CONFIG } from '../../constants';
+import { SEOService } from '../../services/seo.service';
 
 import { ContactUsComponent } from '../../blocks/contact-us/contact-us.component';
 
@@ -32,6 +33,7 @@ export class CarPage implements OnInit {
   public readonly appService = inject(AppService);
   
   brandConfig = BRAND_CONFIG;
+  private readonly seoService = inject(SEOService);
 
   private readonly singleFeatureFields = [
     'conditionerType',
@@ -133,7 +135,10 @@ export class CarPage implements OnInit {
   ngOnInit() {
     this.activatedRoute.params
       .pipe(switchMap(({ carId }) => this.appService.getCar(carId)))
-      .subscribe((car) => (this.car = car));
+      .subscribe((car) => {
+        this.car = car;
+        this.seoService.setCarSEO(car);
+      });
   }
 
   openContactUsModal() {

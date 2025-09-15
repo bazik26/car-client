@@ -33,6 +33,7 @@ export const routes: Routes = [
       {
         path: 'home',
         component: HomePage,
+        title: `${BRAND_CONFIG.name} - Продажа автомобилей в Саратове`,
       },
 
       {
@@ -41,11 +42,13 @@ export const routes: Routes = [
           {
             path: 'search',
             component: SearchPage,
+            title: `Поиск автомобилей | ${BRAND_CONFIG.name}`,
           },
 
           {
             path: ':carId',
             component: CarPage,
+            title: 'Автомобиль',
           },
         ],
       },

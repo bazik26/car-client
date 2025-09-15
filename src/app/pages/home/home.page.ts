@@ -9,6 +9,7 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 
 import { AppService } from '../../app.service';
 import { BRAND_CONFIG } from '../../constants';
+import { SEOService } from '../../services/seo.service';
 
 import { CarItemComponent } from '../../blocks/car-item/car-item.component';
 import { ContactUsComponent } from '../../blocks/contact-us/contact-us.component';
@@ -28,12 +29,14 @@ export class HomePage implements OnInit {
   public readonly modal = inject(BsModalService);
   public readonly appService = inject(AppService);
   public readonly brandConfig = BRAND_CONFIG;
+  private readonly seoService = inject(SEOService);
 
   public recentCars: any[] = []; // Последние 10 добавленных машин
   public specialOfferCars: any[] = []; // 10 случайных машин со скидкой
   public isLoading = true;
 
   public ngOnInit() {
+    this.seoService.setSEO('home');
     this.loadRecentCars();
     this.loadSpecialOfferCars();
   }

@@ -1,17 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { BRAND_CONFIG } from '../../constants';
 import { AppService } from '../../app.service';
+import { SEOService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-contacts',
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './contacts.html',
   styleUrl: './contacts.scss'
 })
-export class Contacts {
+export class Contacts implements OnInit {
   brandConfig = BRAND_CONFIG;
+  private readonly seoService = inject(SEOService);
   
   mapUrl: SafeResourceUrl;
   
@@ -31,6 +34,10 @@ export class Contacts {
     this.mapUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
       'https://yandex.ru/map-widget/v1/?um=constructor%3Af5645be8693c0f08c0fd3415c4355b42182db5e4ee778a68062b49b859adf9eb&source=constructor'
     );
+  }
+
+  ngOnInit() {
+    this.seoService.setSEO('contacts');
   }
   
   submitContactForm() {
