@@ -1,7 +1,7 @@
 export const BRAND_CONFIG = {
-  name: 'Vam Auto',
+  name: 'Adena Trans',
   email: 'info@vamauto.com',
-  shortName: 'Vam Auto',
+  shortName: 'Adena Trans',
   phone: '+38 (063) 667 0272',
   phoneLink: 'tel:+380636670272',
   currency: 'RUB ',
