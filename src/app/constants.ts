@@ -6,5 +6,6 @@ export const BRAND_CONFIG = {
   phoneLink: 'tel:+380636670272',
   currency: 'RUB ',
   currencySymbol: '₽ ',
-  address: 'Саратов, Россия'
+  address: 'Саратов, Россия',
+  ogImage: '/public/favicon.ico'
 } as const;
