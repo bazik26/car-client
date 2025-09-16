@@ -29,10 +29,16 @@ export class SEOService {
     // Устанавливаем Open Graph теги
     this.meta.updateTag({ property: 'og:title', content: config.ogTitle || config.title });
     this.meta.updateTag({ property: 'og:description', content: config.ogDescription || config.description });
+    if (config.ogImage) {
+      this.meta.updateTag({ property: 'og:image', content: config.ogImage });
+    }
     
     // Устанавливаем Twitter Card теги
     this.meta.updateTag({ name: 'twitter:title', content: config.twitterTitle || config.title });
     this.meta.updateTag({ name: 'twitter:description', content: config.twitterDescription || config.description });
+    if (config.twitterImage) {
+      this.meta.updateTag({ name: 'twitter:image', content: config.twitterImage });
+    }
   }
 
   /**

@@ -91,3 +91,34 @@ export const SEO_CONFIG: Record<string, SEOConfig> = {
     twitterImage: `${BRAND_CONFIG.ogImage}`
   }
 };
+
+// Функция для замены плейсхолдеров в SEO конфиге
+export function replaceSEOTemplate(template: string, data: Record<string, any>): string {
+  return template.replace(/\{(\w+)\}/g, (match, key) => {
+    return data[key] || match;
+  });
+}
+
+// Функция для получения SEO конфига с заменой плейсхолдеров
+export function getSEOConfig(page: string, data?: Record<string, any>): SEOConfig {
+  const config = SEO_CONFIG[page];
+  if (!config) {
+    throw new Error(`SEO config not found for page: ${page}`);
+  }
+
+  if (!data) {
+    return config;
+  }
+
+  return {
+    title: replaceSEOTemplate(config.title, data),
+    description: replaceSEOTemplate(config.description, data),
+    keywords: replaceSEOTemplate(config.keywords, data),
+    ogTitle: replaceSEOTemplate(config.ogTitle, data),
+    ogDescription: replaceSEOTemplate(config.ogDescription, data),
+    ogImage: replaceSEOTemplate(config.ogImage, data),
+    twitterTitle: replaceSEOTemplate(config.twitterTitle, data),
+    twitterDescription: replaceSEOTemplate(config.twitterDescription, data),
+    twitterImage: replaceSEOTemplate(config.twitterImage, data)
+  };
+}
