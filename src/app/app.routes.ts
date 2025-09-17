@@ -19,6 +19,7 @@ import { SigninPage } from './pages/admin/pages/signin/signin.page';
 import { AdminAdminsPage } from './pages/admin/pages/admins/admins.page';
 import { AdminCarsPage } from './pages/admin/pages/cars/cars.page';
 import { AdminProblematicCarsPage } from './pages/admin/pages/problematic-cars/problematic-cars.page';
+import { AdminDatabasePage } from './pages/admin/pages/database/database.page';
 
 export const routes: Routes = [
   {
@@ -118,6 +119,11 @@ export const routes: Routes = [
           {
             path: 'problematic-cars',
             component: AdminProblematicCarsPage,
+          },
+
+          {
+            path: 'database',
+            component: AdminDatabasePage,
           },
         ],
       },
