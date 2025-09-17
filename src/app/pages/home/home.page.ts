@@ -12,18 +12,15 @@ import { BRAND_CONFIG } from '../../constants';
 import { SEOService } from '../../services/seo.service';
 
 import { CarItemComponent } from '../../blocks/car-item/car-item.component';
-import { CarItemConfigurableComponent } from '../../blocks/car-item-configurable/car-item-configurable.component';
-import { ProjectSwitcherComponent } from '../../blocks/project-switcher/project-switcher.component';
 import { ContactUsComponent } from '../../blocks/contact-us/contact-us.component';
 import { RouterModule } from '@angular/router';
 import { CurrencyPipe } from '@angular/common';
 import { NgOptimizedImage } from '@angular/common';
-import { ProjectService } from '../../services/project.service';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CarItemConfigurableComponent, ProjectSwitcherComponent, RouterModule, CurrencyPipe, NgOptimizedImage],
+  imports: [CarItemComponent, RouterModule, CurrencyPipe, NgOptimizedImage],
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -33,7 +30,6 @@ export class HomePage implements OnInit {
   public readonly appService = inject(AppService);
   public readonly brandConfig = BRAND_CONFIG;
   private readonly seoService = inject(SEOService);
-  private readonly projectService = inject(ProjectService);
 
   public recentCars: any[] = []; // Последние 10 добавленных машин
   public specialOfferCars: any[] = []; // 10 случайных машин со скидкой
@@ -41,7 +37,6 @@ export class HomePage implements OnInit {
 
   public ngOnInit() {
     this.seoService.setSEO('home');
-    this.projectService.applyColorScheme(); // Применяем цветовую схему проекта
     this.loadRecentCars();
     this.loadSpecialOfferCars();
   }
