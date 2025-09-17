@@ -32,7 +32,7 @@ export class Contacts implements OnInit {
     private appService: AppService
   ) {
     this.mapUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
-      'https://yandex.ru/map-widget/v1/?um=constructor%3Af5645be8693c0f08c0fd3415c4355b42182db5e4ee778a68062b49b859adf9eb&source=constructor'
+      'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A3ca29e7c16d215562ea78b27e719611a6fcbae544830917830778aca09467a9f&width=100%25&height=400&lang=ru_RU&scroll=true'
     );
   }
 
