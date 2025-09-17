@@ -119,3 +119,4 @@ node generate-favicons.js
 3. Сохраните как `public/favicon.svg`
 4. Запустите генератор PNG файлов
 5. Протестируйте в браузере
+

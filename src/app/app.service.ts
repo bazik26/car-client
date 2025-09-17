@@ -110,6 +110,24 @@ export class AppService {
       .pipe(map((response) => response));
   }
 
+  markCarAsSold(carId: number): Observable<any> {
+    return this.http
+      .patch(`${this.API_URL}/cars/car/${carId}/mark-sold`, {})
+      .pipe(map((response) => response));
+  }
+
+  markCarAsAvailable(carId: number): Observable<any> {
+    return this.http
+      .patch(`${this.API_URL}/cars/car/${carId}/mark-available`, {})
+      .pipe(map((response) => response));
+  }
+
+  getCarsByAdmin(adminId: number): Observable<any> {
+    return this.http
+      .get(`${this.API_URL}/cars/by-admin/${adminId}`)
+      .pipe(map((response) => response));
+  }
+
   auth(): Observable<any> {
     return this.http
       .get(`${this.API_URL}/auth`)

@@ -480,6 +480,329 @@ export class AdminCarsManagementModal implements OnInit {
     'Пандус для людей с инвалидностью',
   ];
 
+  canAutoFill(): boolean {
+    const brand = this.form.get('brand')?.value;
+    const model = this.form.get('model')?.value;
+    const year = this.form.get('year')?.value;
+    return !!(brand && model && year);
+  }
+
+  getSelectedCarInfo(): string {
+    const brand = this.form.get('brand')?.value;
+    const model = this.form.get('model')?.value;
+    const year = this.form.get('year')?.value;
+    return `${brand} ${model} ${year}`;
+  }
+
+  autoFillForm() {
+    const carInfo = this.getSelectedCarInfo();
+    if (confirm(`Автозаполнить форму для ${carInfo}? Это перезапишет текущие значения.`)) {
+      this.fillRealisticData();
+    }
+  }
+
+  private fillRealisticData() {
+    const brand = this.form.get('brand')?.value;
+    const model = this.form.get('model')?.value;
+    const year = parseInt(this.form.get('year')?.value);
+    
+    // Генерируем реалистичные данные для конкретной марки и года
+    const autoData = this.generateBrandSpecificData(brand, model, year);
+    
+    // Заполняем форму
+    this.form.patchValue({
+      mileage: autoData.mileage,
+      gearbox: autoData.gearbox,
+      fuel: autoData.fuel,
+      powerValue: autoData.powerValue,
+      powerType: autoData.powerType,
+      engine: autoData.engine,
+      drive: autoData.drive,
+      price: autoData.price,
+      vin: autoData.vin,
+      conditionerType: autoData.conditionerType,
+      windowLifter: autoData.windowLifter,
+      interiorMaterials: autoData.interiorMaterials,
+      interiorColor: autoData.interiorColor,
+      powerSteering: autoData.powerSteering,
+      steeringWheelAdjustment: autoData.steeringWheelAdjustment,
+      spareWheel: autoData.spareWheel,
+      headlights: autoData.headlights,
+      seatAdjustment: autoData.seatAdjustment,
+      memorySeatModule: autoData.memorySeatModule,
+      seatHeated: autoData.seatHeated,
+      seatVentilation: autoData.seatVentilation
+    });
+
+    // Заполняем группы опций специфичные для марки и года
+    this.fillBrandSpecificOptions(brand, year);
+
+    this.showNotification(`Форма автозаполнена для ${brand} ${model} ${year}!`, 'success');
+  }
+
+  private generateBrandSpecificData(brand: string, model: string, year: number) {
+    const currentYear = new Date().getFullYear();
+    const age = currentYear - year;
+    
+    // Генерируем пробег в зависимости от возраста автомобиля
+    const baseMileage = age * 15000; // 15к км в год в среднем
+    const mileage = baseMileage + Math.floor(Math.random() * 50000) - 25000; // ±25к км
+    
+    // Генерируем цену в зависимости от марки, года и пробега
+    const basePrice = this.getBrandBasePrice(brand, year);
+    const mileageFactor = Math.max(0.3, 1 - (mileage / 200000)); // коэффициент износа
+    const price = Math.floor(basePrice * mileageFactor * (0.8 + Math.random() * 0.4));
+
+    // Получаем характеристики специфичные для марки
+    const brandSpecs = this.getBrandSpecifications(brand, year);
+
+    return {
+      mileage: Math.max(1000, mileage),
+      gearbox: brandSpecs.gearbox,
+      fuel: brandSpecs.fuel,
+      powerValue: brandSpecs.powerValue,
+      powerType: brandSpecs.powerType,
+      engine: brandSpecs.engine,
+      drive: brandSpecs.drive,
+      price: price,
+      vin: this.generateVIN(),
+      conditionerType: brandSpecs.conditionerType,
+      windowLifter: brandSpecs.windowLifter,
+      interiorMaterials: brandSpecs.interiorMaterials,
+      interiorColor: brandSpecs.interiorColor,
+      powerSteering: brandSpecs.powerSteering,
+      steeringWheelAdjustment: brandSpecs.steeringWheelAdjustment,
+      spareWheel: brandSpecs.spareWheel,
+      headlights: brandSpecs.headlights,
+      seatAdjustment: brandSpecs.seatAdjustment,
+      memorySeatModule: brandSpecs.memorySeatModule,
+      seatHeated: brandSpecs.seatHeated,
+      seatVentilation: brandSpecs.seatVentilation
+    };
+  }
+
+  private getBrandBasePrice(brand: string, year: number): number {
+    // Базовые цены для разных марок
+    const brandMultipliers: { [key: string]: number } = {
+      'BMW': 1.5,
+      'Mercedes-Benz': 1.4,
+      'Audi': 1.3,
+      'Lexus': 1.3,
+      'Porsche': 2.0,
+      'Toyota': 1.0,
+      'Honda': 1.0,
+      'Nissan': 0.9,
+      'Hyundai': 0.8,
+      'Kia': 0.8,
+      'Volkswagen': 1.1,
+      'Skoda': 0.9,
+      'Ford': 0.9,
+      'Chevrolet': 0.8,
+      'Renault': 0.8,
+      'Peugeot': 0.8,
+      'Citroen': 0.7,
+      'Opel': 0.8,
+      'Fiat': 0.7,
+      'Lada': 0.5
+    };
+
+    const basePrice = 500000 + (year - 2010) * 100000;
+    const multiplier = brandMultipliers[brand] || 1.0;
+    return basePrice * multiplier;
+  }
+
+  private getBrandSpecifications(brand: string, year: number) {
+    // Спецификации для разных марок
+    const brandSpecs: { [key: string]: any } = {
+      'BMW': {
+        gearbox: Math.random() > 0.3 ? 'Автомат' : 'Механика',
+        fuel: Math.random() > 0.7 ? 'Бензин' : 'Дизель',
+        powerValue: Math.floor(Math.random() * 150) + 150, // 150-300 л.с.
+        powerType: 'Л/C',
+        engine: (Math.random() * 2 + 2).toFixed(1), // 2.0-4.0 л
+        drive: Math.random() > 0.6 ? 'Полный' : 'Задний',
+        conditionerType: 'Климат-контроль 2-зонный',
+        windowLifter: 'Передние и задние',
+        interiorMaterials: Math.random() > 0.5 ? 'Кожа' : 'Комбинированный',
+        interiorColor: Math.random() > 0.5 ? 'Светлый' : 'Тёмный',
+        powerSteering: 'Электро',
+        steeringWheelAdjustment: 'По высоте и по вылету',
+        spareWheel: 'Докатка',
+        headlights: Math.random() > 0.5 ? 'Ксенон/Биксенон' : 'Светодиодные',
+        seatAdjustment: 'Электрорегулировка передних сидений',
+        memorySeatModule: 'Передние сиденья',
+        seatHeated: 'Передние сиденья',
+        seatVentilation: Math.random() > 0.7 ? 'Передние сиденья' : null
+      },
+      'Toyota': {
+        gearbox: Math.random() > 0.4 ? 'Автомат' : 'Механика',
+        fuel: Math.random() > 0.6 ? 'Бензин' : 'Гибрид',
+        powerValue: Math.floor(Math.random() * 100) + 100, // 100-200 л.с.
+        powerType: 'Л/C',
+        engine: (Math.random() * 1.5 + 1.5).toFixed(1), // 1.5-3.0 л
+        drive: Math.random() > 0.7 ? 'Полный' : 'Передний',
+        conditionerType: 'Климат-контроль 1-зонный',
+        windowLifter: 'Передние и задние',
+        interiorMaterials: Math.random() > 0.6 ? 'Ткань' : 'Комбинированный',
+        interiorColor: Math.random() > 0.4 ? 'Светлый' : 'Тёмный',
+        powerSteering: 'Электро',
+        steeringWheelAdjustment: 'По высоте и по вылету',
+        spareWheel: 'Полноразмерное',
+        headlights: Math.random() > 0.6 ? 'Галогенные' : 'Светодиодные',
+        seatAdjustment: 'Ручная регулировка передних сидений',
+        memorySeatModule: null,
+        seatHeated: Math.random() > 0.7 ? 'Передние сиденья' : null,
+        seatVentilation: null
+      },
+      'Lada': {
+        gearbox: Math.random() > 0.7 ? 'Механика' : 'Автомат',
+        fuel: 'Бензин',
+        powerValue: Math.floor(Math.random() * 50) + 80, // 80-130 л.с.
+        powerType: 'Л/C',
+        engine: (Math.random() * 0.8 + 1.2).toFixed(1), // 1.2-2.0 л
+        drive: 'Передний',
+        conditionerType: Math.random() > 0.5 ? 'Кондиционер' : null,
+        windowLifter: 'Передние',
+        interiorMaterials: 'Ткань',
+        interiorColor: Math.random() > 0.5 ? 'Светлый' : 'Тёмный',
+        powerSteering: 'Электро',
+        steeringWheelAdjustment: 'По высоте',
+        spareWheel: 'Полноразмерное',
+        headlights: 'Галогенные',
+        seatAdjustment: 'Ручная регулировка сиденья водителя',
+        memorySeatModule: null,
+        seatHeated: null,
+        seatVentilation: null
+      }
+    };
+
+    // Возвращаем спецификации для марки или дефолтные
+    return brandSpecs[brand] || this.getDefaultSpecifications(year);
+  }
+
+  private getDefaultSpecifications(year: number) {
+    const isModern = year > 2018;
+    return {
+      gearbox: isModern ? 'Автомат' : (Math.random() > 0.5 ? 'Автомат' : 'Механика'),
+      fuel: isModern ? 'Бензин' : this.fuels[Math.floor(Math.random() * this.fuels.length)],
+      powerValue: Math.floor(Math.random() * 120) + 100, // 100-220 л.с.
+      powerType: 'Л/C',
+      engine: (Math.random() * 2 + 1.5).toFixed(1), // 1.5-3.5 л
+      drive: this.drives[Math.floor(Math.random() * this.drives.length)],
+      conditionerType: this.options[0].values[Math.floor(Math.random() * this.options[0].values.length)],
+      windowLifter: this.options[1].values[Math.floor(Math.random() * this.options[1].values.length)],
+      interiorMaterials: this.options[2].values[Math.floor(Math.random() * this.options[2].values.length)],
+      interiorColor: this.options[3].values[Math.floor(Math.random() * this.options[3].values.length)],
+      powerSteering: this.options[4].values[Math.floor(Math.random() * this.options[4].values.length)],
+      steeringWheelAdjustment: this.options[5].values[Math.floor(Math.random() * this.options[5].values.length)],
+      spareWheel: this.options[6].values[Math.floor(Math.random() * this.options[6].values.length)],
+      headlights: this.options[7].values[Math.floor(Math.random() * this.options[7].values.length)],
+      seatAdjustment: this.options[8].values[Math.floor(Math.random() * this.options[8].values.length)],
+      memorySeatModule: this.options[9].values[Math.floor(Math.random() * this.options[9].values.length)],
+      seatHeated: this.options[10].values[Math.floor(Math.random() * this.options[10].values.length)],
+      seatVentilation: this.options[11].values[Math.floor(Math.random() * this.options[11].values.length)]
+    };
+  }
+
+  private generateVIN(): string {
+    const chars = 'ABCDEFGHJKLMNPRSTUVWXYZ0123456789';
+    let vin = '';
+    for (let i = 0; i < 17; i++) {
+      vin += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return vin;
+  }
+
+  private fillBrandSpecificOptions(brand: string, year: number) {
+    // Заполняем опции специфичные для марки и года
+    const groups = [
+      { name: 'group1', options: this.group1 },
+      { name: 'group2', options: this.group2 },
+      { name: 'group3', options: this.group3 },
+      { name: 'group4', options: this.group4 },
+      { name: 'group5', options: this.group5 },
+      { name: 'group6', options: this.group6 },
+      { name: 'group7', options: this.group7 },
+      { name: 'group8', options: this.group8 },
+      { name: 'group9', options: this.group9 }
+    ];
+
+    groups.forEach(group => {
+      const formArray = this.form.get(group.name) as FormArray;
+      formArray.clear();
+      
+      // Выбираем опции в зависимости от марки и года
+      const selectedOptions = this.getBrandSpecificOptions(group.options, brand, year);
+      
+      selectedOptions.forEach(option => {
+        formArray.push(this.fb.control(option));
+      });
+    });
+  }
+
+  private getBrandSpecificOptions(options: string[], brand: string, year: number): string[] {
+    const isModern = year > 2018;
+    const isLuxury = ['BMW', 'Mercedes-Benz', 'Audi', 'Lexus', 'Porsche'].includes(brand);
+    const isBudget = ['Lada', 'Fiat', 'Citroen'].includes(brand);
+    
+    // Фильтруем опции в зависимости от марки и года
+    let filteredOptions = options;
+    
+    if (isBudget) {
+      // Для бюджетных марок убираем дорогие опции
+      filteredOptions = options.filter(option => 
+        !option.includes('Электро') && 
+        !option.includes('Память') &&
+        !option.includes('Вентиляция') &&
+        !option.includes('Массаж')
+      );
+    } else if (isLuxury) {
+      // Для люксовых марок добавляем больше опций
+      filteredOptions = options;
+    } else if (isModern) {
+      // Для современных автомобилей убираем устаревшие опции
+      filteredOptions = options.filter(option => 
+        !option.includes('Прикуриватель') &&
+        !option.includes('Пепельница')
+      );
+    }
+    
+    // Выбираем случайное количество опций (от 2 до 6 для бюджетных, от 4 до 8 для люксовых)
+    const minOptions = isBudget ? 2 : (isLuxury ? 4 : 3);
+    const maxOptions = isBudget ? 6 : (isLuxury ? 8 : 7);
+    const numOptions = Math.floor(Math.random() * (maxOptions - minOptions + 1)) + minOptions;
+    
+    return this.getRandomItems(filteredOptions, numOptions);
+  }
+
+  private getRandomItems(array: any[], count: number): any[] {
+    const shuffled = array.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count);
+  }
+
+  private showNotification(message: string, type: 'success' | 'error' | 'info') {
+    // Простое уведомление (можно заменить на toast или другой компонент)
+    const alertClass = type === 'success' ? 'alert-success' : 
+                      type === 'error' ? 'alert-danger' : 'alert-info';
+    
+    const notification = document.createElement('div');
+    notification.className = `alert ${alertClass} alert-dismissible fade show position-fixed`;
+    notification.style.cssText = 'top: 20px; right: 20px; z-index: 9999; min-width: 300px;';
+    notification.innerHTML = `
+      ${message}
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Автоматически скрыть через 3 секунды
+    setTimeout(() => {
+      if (notification.parentNode) {
+        notification.parentNode.removeChild(notification);
+      }
+    }, 3000);
+  }
+
   onSubmit() {
     if (this.car) {
       this.appService

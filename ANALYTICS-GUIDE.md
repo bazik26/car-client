@@ -3,8 +3,9 @@
 ## 🎯 Яндекс.Метрика
 
 ### 📍 Расположение кода
-Код Яндекс.Метрики добавлен в файл `src/index.html` в секции `<head>`:
+Код Яндекс.Метрики добавлен в файл `src/index.html`:
 
+**JavaScript код** - в секции `<head>`:
 ```html
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
@@ -17,9 +18,17 @@
 
     ym(104180964, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
 </script>
-<noscript><div><img src="https://mc.yandex.ru/watch/104180964" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
 ```
+
+**Noscript код** - в начале `<body>`:
+```html
+<!-- Yandex.Metrika noscript -->
+<noscript><div><img src="https://mc.yandex.ru/watch/104180964" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika noscript -->
+```
+
+> ⚠️ **Важно**: `<noscript>` должен находиться в `<body>`, а не в `<head>`, чтобы соответствовать HTML стандартам.
 
 ### 🔧 Настройки счетчика
 

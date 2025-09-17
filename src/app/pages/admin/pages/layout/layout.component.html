@@ -1,31 +1,35 @@
 @if(admin) {
-<div class="container">
-  <header class="d-flex justify-content-center py-3">
-    <ul class="nav nav-pills">
-      @if(admin.isSuper) {
-      <li class="nav-item">
-        <a
-          class="nav-link"
-          [routerLink]="['/admin', 'admins']"
-          routerLinkActive="active"
-        >
-          Менеджеры
-        </a>
-      </li>
-      }
+<div class="admin-layout">
+  <div class="container">
+    <header class="admin-header d-flex justify-content-center py-3">
+      <ul class="nav nav-pills">
+        @if(admin.isSuper) {
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            [routerLink]="['/admin', 'admins']"
+            routerLinkActive="active"
+          >
+            Менеджеры
+          </a>
+        </li>
+        }
 
-      <li class="nav-item">
-        <a
-          class="nav-link"
-          [routerLink]="['/admin', 'cars']"
-          routerLinkActive="active"
-        >
-          Бибики
-        </a>
-      </li>
-    </ul>
-  </header>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            [routerLink]="['/admin', 'cars']"
+            routerLinkActive="active"
+          >
+            Автомобили
+          </a>
+        </li>
+      </ul>
+    </header>
+  </div>
+  
+  <div class="admin-content">
+    <router-outlet></router-outlet>
+  </div>
 </div>
 }
-
-<router-outlet></router-outlet>

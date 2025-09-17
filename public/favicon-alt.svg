@@ -20,3 +20,4 @@
   <!-- Точка под буквой V (стилизованное колесо) -->
   <circle cx="16" cy="28" r="2" fill="url(#textGradient)" stroke="#ffffff" stroke-width="0.3"/>
 </svg>
+

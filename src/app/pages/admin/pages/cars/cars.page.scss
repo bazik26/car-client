@@ -1,0 +1,85 @@
+// Стили для страницы управления автомобилями
+.admin {
+  .container {
+    max-width: 1200px;
+  }
+  
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding: 1rem 0;
+    border-bottom: 2px solid #dee2e6;
+    
+    .page-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #212529;
+      margin: 0;
+    }
+    
+    .cars-count {
+      font-size: 1rem;
+      color: #6c757d;
+      font-weight: 500;
+    }
+  }
+  
+  .table {
+    margin-top: 1rem;
+    
+    .status-badge {
+      &.sold {
+        background-color: #ffc107 !important;
+        color: #212529 !important;
+      }
+      
+      &.active {
+        background-color: #28a745 !important;
+      }
+      
+      &.deleted {
+        background-color: #dc3545 !important;
+      }
+    }
+    
+    .action-buttons {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      
+      .btn {
+        min-width: 80px;
+      }
+    }
+  }
+}
+
+// Стили для модального окна
+.modal-content {
+  border-radius: 0.5rem;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  
+  .modal-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    border-radius: 0.5rem 0.5rem 0 0;
+    
+    .modal-title {
+      font-weight: 600;
+      color: #212529;
+    }
+  }
+  
+  .modal-body {
+    padding: 1.5rem;
+  }
+  
+  .modal-footer {
+    background-color: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+    border-radius: 0 0 0.5rem 0.5rem;
+  }
+}
