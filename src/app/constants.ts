@@ -1,11 +1,11 @@
 export const BRAND_CONFIG = {
   name: 'Adena Trans',
-  email: 'info@vamauto.com',
+  email: 'info@adenatrans.com',
   shortName: 'Adena Trans',
-  phone: '+38 (063) 667 0272',
-  phoneLink: 'tel:+380636670272',
+  phone: '+7 (994) 5142 649',
+  phoneLink: 'tel:+79945142649',
   currency: 'RUB ',
   currencySymbol: '₽ ',
-  address: 'Саратов, Россия',
+  address: 'Екатеринбург, Россия',
   ogImage: '/public/favicon.ico'
 } as const;

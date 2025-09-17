@@ -53,7 +53,7 @@ export class SEOService {
       price: car.price ? car.price.toLocaleString() : '',
       mileage: car.mileage ? car.mileage.toLocaleString() : 'не указан',
       color: car.color ? `Цвет: ${car.color}.` : '',
-      brandName: 'Vam Auto'
+      brandName: 'Adena Trans'
     };
 
     this.setSEO('car', data);
