@@ -20,6 +20,7 @@ import { AdminAdminsPage } from './pages/admin/pages/admins/admins.page';
 import { AdminCarsPage } from './pages/admin/pages/cars/cars.page';
 import { AdminProblematicCarsPage } from './pages/admin/pages/problematic-cars/problematic-cars.page';
 import { AdminDatabasePage } from './pages/admin/pages/database/database.page';
+import { AdminThemeSettingsPage } from './pages/admin/pages/theme-settings/theme-settings.page';
 
 export const routes: Routes = [
   {
@@ -124,6 +125,11 @@ export const routes: Routes = [
           {
             path: 'database',
             component: AdminDatabasePage,
+          },
+
+          {
+            path: 'theme-settings',
+            component: AdminThemeSettingsPage,
           },
         ],
       },

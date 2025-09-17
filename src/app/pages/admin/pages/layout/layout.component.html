@@ -46,6 +46,19 @@
             База данных
           </a>
         </li>
+
+                 @if (admin.isSuper) {
+                 <li class="nav-item">
+                   <a
+                     class="nav-link"
+                     [routerLink]="['/admin', 'theme-settings']"
+                     routerLinkActive="active"
+                   >
+                     <i class="fas fa-palette me-1"></i>
+                     Дизайн (Beta)
+                   </a>
+                 </li>
+                 }
       </ul>
     </header>
   </div>

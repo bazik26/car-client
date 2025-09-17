@@ -1,4 +1,56 @@
 :root {
+  // Тематические переменные (управляются через ThemeService)
+  --primary-color: #217e02;
+  --secondary-color: #1a6b02;
+  --accent-color: #28a745;
+  --background-color: #1a1a1a;
+  --text-color: #ffffff;
+  --card-background: #2d2d2d;
+  --border-color: #404040;
+  --success-color: #28a745;
+  --warning-color: #ffc107;
+  --danger-color: #dc3545;
+  --link-color: #217e02;
+  --link-hover-color: #1a6b02;
+  
+  // Шрифты
+  --primary-font: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --secondary-font: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --heading-font: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-size: 16px;
+  --font-weight: 400;
+  --heading-size: 1.75rem;
+  --line-height: 1.5;
+  
+  // Изображения
+  --image-border-radius: 8px;
+  --image-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  --image-hover-transform: scale(1.05);
+  --image-opacity: 1;
+  --image-filter: none;
+  
+  // Макет
+  --card-padding: 20px;
+  --card-spacing: 16px;
+  --border-radius: 8px;
+  --layout-gap: 24px;
+  --container-max-width: 1200px;
+  --grid-columns: 3;
+  
+  // Анимации
+  --animation-duration: 0.3s;
+  --hover-transition: all 0.3s ease;
+  --page-transition: all 0.3s ease;
+  
+  // Дополнительные стили
+  --button-style: raised;
+  --button-size: 0.75rem 1.5rem;
+  --input-style: outlined;
+  --shadow-intensity: 0 4px 8px rgba(0,0,0,0.2);
+  --gradient-enabled: 0;
+  --gradient-direction: horizontal;
+
+  // Существующие переменные
   --white: #fff;
   --black: #000;
   --black-1: #070707;

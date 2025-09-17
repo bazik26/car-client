@@ -803,10 +803,10 @@
 
 @keyframes glow {
   from {
-    text-shadow: 0 0 20px rgba(240, 220, 32, 0.5);
+    text-shadow: 0 0 4px rgba(240, 220, 32, 0.2);
   }
   to {
-    text-shadow: 0 0 30px rgba(240, 220, 32, 0.8);
+    text-shadow: 0 0 6px rgba(240, 220, 32, 0.3);
   }
 }
 
