@@ -12,15 +12,18 @@ import { BRAND_CONFIG } from '../../constants';
 import { SEOService } from '../../services/seo.service';
 
 import { CarItemComponent } from '../../blocks/car-item/car-item.component';
+import { CarItemConfigurableComponent } from '../../blocks/car-item-configurable/car-item-configurable.component';
+import { ProjectSwitcherComponent } from '../../blocks/project-switcher/project-switcher.component';
 import { ContactUsComponent } from '../../blocks/contact-us/contact-us.component';
 import { RouterModule } from '@angular/router';
 import { CurrencyPipe } from '@angular/common';
 import { NgOptimizedImage } from '@angular/common';
+import { ProjectService } from '../../services/project.service';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CarItemComponent, RouterModule, CurrencyPipe, NgOptimizedImage],
+  imports: [CarItemConfigurableComponent, ProjectSwitcherComponent, RouterModule, CurrencyPipe, NgOptimizedImage],
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -30,6 +33,7 @@ export class HomePage implements OnInit {
   public readonly appService = inject(AppService);
   public readonly brandConfig = BRAND_CONFIG;
   private readonly seoService = inject(SEOService);
+  private readonly projectService = inject(ProjectService);
 
   public recentCars: any[] = []; // Последние 10 добавленных машин
   public specialOfferCars: any[] = []; // 10 случайных машин со скидкой
@@ -37,6 +41,7 @@ export class HomePage implements OnInit {
 
   public ngOnInit() {
     this.seoService.setSEO('home');
+    this.projectService.applyColorScheme(); // Применяем цветовую схему проекта
     this.loadRecentCars();
     this.loadSpecialOfferCars();
   }
@@ -45,8 +50,12 @@ export class HomePage implements OnInit {
     // Загружаем последние 10 добавленных машин
     this.appService.getCars({ limit: 10, sortBy: 'createdAt', sortOrder: 'DESC' })
       .subscribe((cars: any[]) => {
-        console.log('Recent cars loaded:', cars.length, cars);
-        this.recentCars = cars;
+        // Дополнительная фильтрация на фронтенде (на всякий случай)
+        const availableCars = cars.filter(car => !car.isSold && !car.sale && !car.deletedAt);
+        // Случайно перемешиваем автомобили для разнообразия
+        const shuffledCars = this.shuffleArray(availableCars);
+        console.log('Recent cars loaded:', shuffledCars.length, shuffledCars);
+        this.recentCars = shuffledCars;
         this.isLoading = false;
       });
   }
@@ -55,8 +64,12 @@ export class HomePage implements OnInit {
     // Загружаем 10 случайных машин для спецпредложения
     this.appService.getCars({ limit: 10, random: true })
       .subscribe((cars: any[]) => {
+        // Дополнительная фильтрация на фронтенде (на всякий случай)
+        const availableCars = cars.filter(car => !car.isSold && !car.sale && !car.deletedAt);
+        // Случайно перемешиваем автомобили для разнообразия
+        const shuffledCars = this.shuffleArray(availableCars);
         // Ограничиваем до 10 машин и добавляем скидки
-        this.specialOfferCars = cars.slice(0, 10).map((car: any) => ({
+        this.specialOfferCars = shuffledCars.slice(0, 10).map((car: any) => ({
           ...car,
           originalPrice: car.price,
           discountedPrice: Math.round(car.price * (0.92 + Math.random() * 0.08)) // Скидка 5-10%
@@ -82,5 +95,19 @@ export class HomePage implements OnInit {
         block: 'start'
       });
     }
+  }
+
+  /**
+   * Случайно перемешивает массив автомобилей
+   * @param array - массив автомобилей для перемешивания
+   * @returns перемешанный массив
+   */
+  private shuffleArray(array: any[]): any[] {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
   }
 }
