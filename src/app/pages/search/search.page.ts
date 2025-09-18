@@ -82,7 +82,7 @@ export class SearchPage implements OnInit {
       )
       .subscribe((response) => {
         // Дополнительная фильтрация на фронтенде (на всякий случай)
-        const availableCars = (response.cars || []).filter((car: any) => !car.isSold && !car.sale && !car.deletedAt);
+        const availableCars = (response.cars || []).filter((car: any) => !car.isSold && !car.deletedAt);
         // Случайно перемешиваем автомобили для разнообразия
         const shuffledCars = this.shuffleArray(availableCars);
         this.cars = shuffledCars;
@@ -397,7 +397,7 @@ export class SearchPage implements OnInit {
     this.appService.searchCars({ ...dto, page: this.currentPage, limit: this.pageSize })
       .subscribe((response) => {
         // Дополнительная фильтрация на фронтенде (на всякий случай)
-        const availableCars = (response.cars || []).filter((car: any) => !car.isSold && !car.sale && !car.deletedAt);
+        const availableCars = (response.cars || []).filter((car: any) => !car.isSold && !car.deletedAt);
         // Случайно перемешиваем автомобили для разнообразия
         const shuffledCars = this.shuffleArray(availableCars);
         this.cars = shuffledCars;

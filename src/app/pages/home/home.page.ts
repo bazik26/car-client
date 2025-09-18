@@ -46,7 +46,7 @@ export class HomePage implements OnInit {
     this.appService.getCars({ limit: 10, sortBy: 'createdAt', sortOrder: 'DESC' })
       .subscribe((cars: any[]) => {
         // Дополнительная фильтрация на фронтенде (на всякий случай)
-        const availableCars = cars.filter(car => !car.isSold && !car.sale && !car.deletedAt);
+        const availableCars = cars.filter(car => !car.isSold && !car.deletedAt);
         // Случайно перемешиваем автомобили для разнообразия
         const shuffledCars = this.shuffleArray(availableCars);
         console.log('Recent cars loaded:', shuffledCars.length, shuffledCars);
@@ -60,7 +60,7 @@ export class HomePage implements OnInit {
     this.appService.getCars({ limit: 10, random: true })
       .subscribe((cars: any[]) => {
         // Дополнительная фильтрация на фронтенде (на всякий случай)
-        const availableCars = cars.filter(car => !car.isSold && !car.sale && !car.deletedAt);
+        const availableCars = cars.filter(car => !car.isSold && !car.deletedAt);
         // Случайно перемешиваем автомобили для разнообразия
         const shuffledCars = this.shuffleArray(availableCars);
         // Ограничиваем до 10 машин и добавляем скидки
