@@ -89,6 +89,32 @@ export const SEO_CONFIG: Record<string, SEOConfig> = {
     twitterTitle: `Контакты | ${BRAND_CONFIG.name}`,
     twitterDescription: `Свяжитесь с ${BRAND_CONFIG.name} для консультации по пригону авто из Европы.`,
     twitterImage: `${BRAND_CONFIG.ogImage}`
+  },
+
+  // Пользовательское соглашение
+  terms: {
+    title: `Пользовательское соглашение | ${BRAND_CONFIG.name}`,
+    description: `Пользовательское соглашение ${BRAND_CONFIG.name}. Условия использования сайта и услуг по пригону автомобилей из Европы в Россию.`,
+    keywords: 'пользовательское соглашение, условия использования, ${BRAND_CONFIG.name}, пригон авто',
+    ogTitle: `Пользовательское соглашение | ${BRAND_CONFIG.name}`,
+    ogDescription: `Условия использования сайта ${BRAND_CONFIG.name} для пригона авто из Европы.`,
+    ogImage: `${BRAND_CONFIG.ogImage}`,
+    twitterTitle: `Пользовательское соглашение | ${BRAND_CONFIG.name}`,
+    twitterDescription: `Условия использования ${BRAND_CONFIG.name} для пригона авто из Европы.`,
+    twitterImage: `${BRAND_CONFIG.ogImage}`
+  },
+
+  // Политика конфиденциальности
+  privacy: {
+    title: `Политика конфиденциальности | ${BRAND_CONFIG.name}`,
+    description: `Политика конфиденциальности ${BRAND_CONFIG.name}. Как мы обрабатываем персональные данные клиентов при пригоне автомобилей из Европы в Россию.`,
+    keywords: 'политика конфиденциальности, персональные данные, ${BRAND_CONFIG.name}, пригон авто',
+    ogTitle: `Политика конфиденциальности | ${BRAND_CONFIG.name}`,
+    ogDescription: `Политика обработки персональных данных ${BRAND_CONFIG.name} при пригоне авто из Европы.`,
+    ogImage: `${BRAND_CONFIG.ogImage}`,
+    twitterTitle: `Политика конфиденциальности | ${BRAND_CONFIG.name}`,
+    twitterDescription: `Политика конфиденциальности ${BRAND_CONFIG.name} для пригона авто из Европы.`,
+    twitterImage: `${BRAND_CONFIG.ogImage}`
   }
 };
 
