@@ -98,6 +98,12 @@
             height: 40px;
             margin-bottom: 8px;
             display: flex;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            
+            &:hover {
+              transform: scale(1.1);
+            }
             align-items: center;
             justify-content: center;
 
@@ -356,6 +362,12 @@
               width: 30px;
               height: 30px;
               margin-bottom: 0.25rem;
+              cursor: pointer;
+              transition: transform 0.2s ease;
+              
+              &:hover {
+                transform: scale(1.1);
+              }
 
               .logo-icon {
                 box-shadow: 
@@ -519,6 +531,12 @@
           label .telegram-logo {
             width: 25px;
             height: 25px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            
+            &:hover {
+              transform: scale(1.1);
+            }
 
             .logo-icon {
               box-shadow: 
@@ -595,6 +613,12 @@
       width: 20px;
       height: 20px;
       margin-bottom: 0.25rem;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      
+      &:hover {
+        transform: scale(1.1);
+      }
 
       .logo-icon {
         box-shadow: 

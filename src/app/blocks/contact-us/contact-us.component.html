@@ -25,7 +25,8 @@
           <input type="radio" id="telegram" name="messenger" value="telegram"
                  [(ngModel)]="selectedMessenger" required>
           <label for="telegram">
-            <div class="telegram-logo">
+            <div class="telegram-logo" (click)="openTelegramChannel()" 
+                 title="Перейти в наш Telegram канал">
               <div class="logo-icon">
                 <i class="fab fa-telegram-plane"></i>
               </div>

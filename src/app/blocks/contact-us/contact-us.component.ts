@@ -23,11 +23,17 @@ export class ContactUsComponent {
     message: ''
   };
 
+  // URL вашего Telegram канала (замените на актуальный)
+  private readonly telegramChannelUrl = 'https://t.me/your_channel_name';
 
   constructor(protected readonly appService: AppService) {}
 
-
-
+  /**
+   * Переход на Telegram канал
+   */
+  openTelegramChannel() {
+    window.open(this.telegramChannelUrl, '_blank');
+  }
 
   submitContactForm() {
     console.log('Выбран мессенджер:', this.selectedMessenger);
