@@ -17,7 +17,7 @@ export const SEO_CONFIG: Record<string, SEOConfig> = {
   home: {
     title: `${BRAND_CONFIG.name} - Пригон автомобилей из Европы в Россию`,
     description: `${BRAND_CONFIG.name} - компания по пригону авто из Европы в Россию. Подбор, покупка, доставка и растаможка автомобилей под ключ. Гарантия прозрачности сделки и выгодные условия. Звоните: ${BRAND_CONFIG.phone}`,
-    keywords: 'пригон авто, авто из Европы, купить авто, растаможка, доставка авто, автомобили под ключ, ${BRAND_CONFIG.name}',
+    keywords: 'пригон авто, авто из Европы, купить авто, растаможка, доставка авто, автомобили под ключ, Adena Trans, Екатеринбург',
     ogTitle: `${BRAND_CONFIG.name} - Авто из Европы под ключ`,
     ogDescription: `Пригон авто из Европы в Россию с ${BRAND_CONFIG.name}. Подбор, доставка и растаможка. Надежно и выгодно.`,
     ogImage: `${BRAND_CONFIG.ogImage}`,
@@ -30,7 +30,7 @@ export const SEO_CONFIG: Record<string, SEOConfig> = {
   search: {
     title: `Поиск автомобилей из Европы | ${BRAND_CONFIG.name}`,
     description: `Поиск автомобилей для пригона из Европы в Россию. Удобные фильтры по марке, модели, году, цене и характеристикам. ${BRAND_CONFIG.name} - пригон под ключ.`,
-    keywords: 'поиск авто Европа, каталог автомобилей, пригон машин, купить авто из Европы, ${BRAND_CONFIG.name}',
+    keywords: 'поиск авто Европа, каталог автомобилей, пригон машин, купить авто из Европы, Adena Trans, Екатеринбург',
     ogTitle: `Поиск авто из Европы | ${BRAND_CONFIG.name}`,
     ogDescription: `Найдите авто из Европы для пригона в Россию. ${BRAND_CONFIG.name} - удобный поиск и полное сопровождение сделки.`,
     ogImage: `${BRAND_CONFIG.ogImage}`,
@@ -43,7 +43,7 @@ export const SEO_CONFIG: Record<string, SEOConfig> = {
   car: {
     title: `{brand} {model} {year} - {price} ₽ | ${BRAND_CONFIG.name}`,
     description: `{brand} {model} {year} года. Пробег: {mileage} км. Цена: {price} ₽. Автомобиль с Европы. Полное сопровождение: покупка, доставка и растаможка с ${BRAND_CONFIG.name}.`,
-    keywords: '{brand}, {model}, {year}, авто Европа, пригон авто, купить автомобиль, ${BRAND_CONFIG.name}',
+    keywords: '{brand}, {model}, {year}, авто Европа, пригон авто, купить автомобиль, Adena Trans, Екатеринбург',
     ogTitle: `{brand} {model} {year} | ${BRAND_CONFIG.name}`,
     ogDescription: `{brand} {model} {year}. Цена {price} ₽. Пригон авто из Европы с ${BRAND_CONFIG.name}.`,
     ogImage: `${BRAND_CONFIG.ogImage}`,
@@ -56,7 +56,7 @@ export const SEO_CONFIG: Record<string, SEOConfig> = {
   about: {
     title: `О компании ${BRAND_CONFIG.name}`,
     description: `${BRAND_CONFIG.name} - эксперт в пригоне автомобилей из Европы. Работаем по всей России. Предлагаем подбор, проверку, доставку и оформление авто под ключ. Надежность и опыт на каждом этапе.`,
-    keywords: 'о компании, пригон авто, авто Европа, доставка автомобилей, ${BRAND_CONFIG.name}',
+    keywords: 'о компании, пригон авто, авто Европа, доставка автомобилей, Adena Trans, Екатеринбург',
     ogTitle: `О компании ${BRAND_CONFIG.name}`,
     ogDescription: `Узнайте больше о ${BRAND_CONFIG.name} - эксперт по пригону авто из Европы в Россию.`,
     ogImage: `${BRAND_CONFIG.ogImage}`,
@@ -69,7 +69,7 @@ export const SEO_CONFIG: Record<string, SEOConfig> = {
   team: {
     title: `Наша команда | ${BRAND_CONFIG.name}`,
     description: `Познакомьтесь с командой ${BRAND_CONFIG.name}. Специалисты по подбору и пригону автомобилей из Европы в Россию. Опытные менеджеры, брокеры и логисты помогут вам получить идеальное авто под ключ.`,
-    keywords: 'команда, эксперты, пригон авто, специалисты, ${BRAND_CONFIG.name}',
+    keywords: 'команда, эксперты, пригон авто, специалисты, Adena Trans, Екатеринбург',
     ogTitle: `Команда ${BRAND_CONFIG.name}`,
     ogDescription: `Специалисты ${BRAND_CONFIG.name} по подбору и пригону авто из Европы. Опыт и надежность.`,
     ogImage: `${BRAND_CONFIG.ogImage}`,
@@ -82,7 +82,7 @@ export const SEO_CONFIG: Record<string, SEOConfig> = {
   contacts: {
     title: `Контакты | ${BRAND_CONFIG.name}`,
     description: `Свяжитесь с ${BRAND_CONFIG.name}. Консультации по пригону авто из Европы, расчет стоимости и ответы на все вопросы. Телефон: ${BRAND_CONFIG.phone}.`,
-    keywords: 'контакты, ${BRAND_CONFIG.name}, телефон, пригон авто, авто Европа',
+    keywords: 'контакты, Adena Trans, телефон, пригон авто, авто Европа, Екатеринбург',
     ogTitle: `Контакты | ${BRAND_CONFIG.name}`,
     ogDescription: `Контакты ${BRAND_CONFIG.name} - консультации по пригону авто из Европы в Россию.`,
     ogImage: `${BRAND_CONFIG.ogImage}`,
@@ -95,7 +95,7 @@ export const SEO_CONFIG: Record<string, SEOConfig> = {
   terms: {
     title: `Пользовательское соглашение | ${BRAND_CONFIG.name}`,
     description: `Пользовательское соглашение ${BRAND_CONFIG.name}. Условия использования сайта и услуг по пригону автомобилей из Европы в Россию.`,
-    keywords: 'пользовательское соглашение, условия использования, ${BRAND_CONFIG.name}, пригон авто',
+    keywords: 'пользовательское соглашение, условия использования, Adena Trans, пригон авто, Екатеринбург',
     ogTitle: `Пользовательское соглашение | ${BRAND_CONFIG.name}`,
     ogDescription: `Условия использования сайта ${BRAND_CONFIG.name} для пригона авто из Европы.`,
     ogImage: `${BRAND_CONFIG.ogImage}`,
@@ -108,7 +108,7 @@ export const SEO_CONFIG: Record<string, SEOConfig> = {
   privacy: {
     title: `Политика конфиденциальности | ${BRAND_CONFIG.name}`,
     description: `Политика конфиденциальности ${BRAND_CONFIG.name}. Как мы обрабатываем персональные данные клиентов при пригоне автомобилей из Европы в Россию.`,
-    keywords: 'политика конфиденциальности, персональные данные, ${BRAND_CONFIG.name}, пригон авто',
+    keywords: 'политика конфиденциальности, персональные данные, Adena Trans, пригон авто, Екатеринбург',
     ogTitle: `Политика конфиденциальности | ${BRAND_CONFIG.name}`,
     ogDescription: `Политика обработки персональных данных ${BRAND_CONFIG.name} при пригоне авто из Европы.`,
     ogImage: `${BRAND_CONFIG.ogImage}`,
