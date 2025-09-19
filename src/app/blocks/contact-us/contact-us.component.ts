@@ -23,8 +23,8 @@ export class ContactUsComponent {
     message: ''
   };
 
-  // URL вашего Telegram канала (замените на актуальный)
-  private readonly telegramChannelUrl = 'https://t.me/your_channel_name';
+  // URL вашего Telegram канала Adena Trans
+  private readonly telegramChannelUrl = 'https://t.me/+hVO_6kT2CjFlNTVh';
 
   constructor(protected readonly appService: AppService) {}
 
