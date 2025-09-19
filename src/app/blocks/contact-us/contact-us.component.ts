@@ -23,11 +23,17 @@ export class ContactUsComponent {
     message: ''
   };
 
+  // URL вашего Telegram канала Adena Trans
+  private readonly telegramChannelUrl = 'https://t.me/+hVO_6kT2CjFlNTVh';
 
   constructor(protected readonly appService: AppService) {}
 
-
-
+  /**
+   * Переход на Telegram канал
+   */
+  openTelegramChannel() {
+    window.open(this.telegramChannelUrl, '_blank');
+  }
 
   submitContactForm() {
     console.log('Выбран мессенджер:', this.selectedMessenger);
