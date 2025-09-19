@@ -1,6 +1,6 @@
 export const BRAND_CONFIG = {
   name: 'Adena Trans',
-  email: 'info@adenatrans.com',
+  email: 'info@adenatrans.ru',
   shortName: 'Adena Trans',
   phone: '+7 (994) 5142 649',
   phoneLink: 'tel:+79945142649',
