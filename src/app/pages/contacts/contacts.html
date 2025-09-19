@@ -1,12 +1,12 @@
 <div class="contacts">
   <div class="container">
     <h1>Как нас найти и связаться</h1>
-    
+
     <div class="contacts-content">
       <!-- Контактная информация -->
       <div class="contact-info-section">
         <h2>Контактная информация</h2>
-        
+
         <div class="contact-cards">
           <div class="contact-card">
             <div class="contact-icon">
@@ -51,38 +51,38 @@
       <!-- Юридическая информация -->
       <div class="legal-info-section">
         <h2>Юридическая информация</h2>
-        
+
         <div class="legal-info">
           <div class="legal-item">
             <strong>Полное наименование:</strong>
             <span>Общество с ограниченной ответственностью "Адена транс"</span>
           </div>
-          
+
           <div class="legal-item">
             <strong>Сокращенное наименование:</strong>
             <span>ООО "Адена транс"</span>
           </div>
-          
+
           <div class="legal-item">
             <strong>ОГРН:</strong>
             <span>1076658040150</span>
           </div>
-          
+
           <div class="legal-item">
             <strong>ИНН:</strong>
             <span>6658291141</span>
           </div>
-          
+
           <div class="legal-item">
             <strong>КПП:</strong>
             <span>665801001</span>
           </div>
-          
+
           <div class="legal-item">
             <strong>Дата регистрации:</strong>
-            <span>19 ноября 2007 г.</span>
+            <span>19 ноября 2007г.</span>
           </div>
-          
+
           <div class="legal-item">
             <strong>Юридический адрес:</strong>
             <span>620028, Свердловская область, город Екатеринбург, ул. Крылова, д.35 офис 2, пом. 4</span>
@@ -94,17 +94,9 @@
       <div class="map-section">
         <h2>Наше местоположение</h2>
         <p>Мы находимся в Екатеринбурге. Посетите нас или свяжитесь для получения дополнительной информации.</p>
-        
+
         <div class="map-container">
-          <iframe 
-            [src]="mapUrl" 
-            width="100%" 
-            height="400" 
-            frameborder="0"
-            allowfullscreen="true"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade">
-          </iframe>
+          <iframe src="https://yandex.ru/map-widget/v1/?z=12&ol=biz&oid=211066840889" height="400" frameborder="0"></iframe>
         </div>
       </div>
 
@@ -112,50 +104,50 @@
       <div class="contact-form-section">
         <h2>Свяжитесь с нами</h2>
         <p>Оставьте заявку, и мы свяжемся с вами в ближайшее время</p>
-        
+
         <form class="contact-form" (ngSubmit)="submitContactForm()" #contactFormRef="ngForm">
           <div class="form-group">
             <label for="name">Ваше имя *</label>
-            <input 
-              type="text" 
-              id="name" 
-              name="name" 
+            <input
+              type="text"
+              id="name"
+              name="name"
               [(ngModel)]="contactForm.name"
               required>
           </div>
-          
+
           <div class="form-group">
             <label for="phone">Телефон *</label>
-            <input 
-              type="tel" 
-              id="phone" 
-              name="phone" 
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
               [(ngModel)]="contactForm.phone"
               required>
           </div>
-          
+
           <div class="form-group">
             <label for="email">Email</label>
-            <input 
-              type="email" 
-              id="email" 
+            <input
+              type="email"
+              id="email"
               name="email"
               [(ngModel)]="contactForm.email">
           </div>
-          
+
           <div class="form-group">
             <label for="message">Сообщение *</label>
-            <textarea 
-              id="message" 
-              name="message" 
-              rows="5" 
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
               [(ngModel)]="contactForm.message"
-              required 
+              required
               placeholder="Расскажите, какой автомобиль вас интересует..."></textarea>
           </div>
-          
-          <button 
-            type="submit" 
+
+          <button
+            type="submit"
             class="submit-btn"
             [disabled]="isSubmitting || !contactFormRef.form.valid">
             <i class="fas fa-paper-plane" *ngIf="!isSubmitting"></i>
@@ -168,7 +160,7 @@
       <!-- Дополнительная информация -->
       <div class="additional-info">
         <h2>Почему выбирают нас</h2>
-        
+
         <div class="info-grid">
           <div class="info-item">
             <div class="info-icon">
@@ -177,7 +169,7 @@
             <h3>Надежность</h3>
             <p>Более 18 лет успешной работы на рынке автомобилей</p>
           </div>
-          
+
           <div class="info-item">
             <div class="info-icon">
               <i class="fas fa-handshake"></i>
@@ -185,7 +177,7 @@
             <h3>Честность</h3>
             <p>Прозрачные условия сотрудничества без скрытых платежей</p>
           </div>
-          
+
           <div class="info-item">
             <div class="info-icon">
               <i class="fas fa-tools"></i>
@@ -193,7 +185,7 @@
             <h3>Сервис</h3>
             <p>Полный цикл услуг от подбора до сервисного обслуживания</p>
           </div>
-          
+
           <div class="info-item">
             <div class="info-icon">
               <i class="fas fa-globe"></i>
