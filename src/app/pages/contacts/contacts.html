@@ -27,8 +27,8 @@
             </div>
             <div class="contact-details">
               <h3>Email</h3>
-              <a href="mailto:{{ brandConfig.email }}" class="contact-link">
-                {{ brandConfig.email }}
+              <a href="mailto:{{ brandConfig.email || 'adenatrans@yandex.ru' }}" class="contact-link">
+                {{ brandConfig.email || 'adenatrans@yandex.ru' }}
               </a>
               <p>Напишите нам, и мы ответим в течение 24 часов</p>
             </div>

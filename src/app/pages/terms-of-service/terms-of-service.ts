@@ -15,5 +15,7 @@ export class TermsOfService implements OnInit {
 
   ngOnInit() {
     this.seoService.setSEO('terms');
+    console.log('Terms of Service - brandConfig:', this.brandConfig);
+    console.log('Terms of Service - email:', this.brandConfig.email);
   }
 }

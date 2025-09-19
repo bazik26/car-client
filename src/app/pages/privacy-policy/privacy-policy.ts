@@ -15,5 +15,7 @@ export class PrivacyPolicy implements OnInit {
 
   ngOnInit() {
     this.seoService.setSEO('privacy');
+    console.log('Privacy Policy - brandConfig:', this.brandConfig);
+    console.log('Privacy Policy - email:', this.brandConfig.email);
   }
 }
