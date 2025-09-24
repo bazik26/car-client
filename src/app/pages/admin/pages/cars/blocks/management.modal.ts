@@ -62,8 +62,7 @@ export class AdminCarsManagementModal implements OnInit {
       engine: [null, [Validators.required]],
       drive: [null, [Validators.required]],
       price: [null, [Validators.required]],
-      isSold: [false],
-      promo: [null],
+      description: [null],
 
       conditionerType: [null],
       windowLifter: [null],

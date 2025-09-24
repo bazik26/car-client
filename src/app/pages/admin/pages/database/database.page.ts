@@ -54,6 +54,7 @@ export class AdminDatabasePage implements OnInit {
     { key: 'gearbox', label: 'КПП', type: 'text', editable: true },
     { key: 'fuel', label: 'Топливо', type: 'text', editable: true },
     { key: 'drive', label: 'Привод', type: 'text', editable: true },
+    { key: 'sale', label: 'Продано', type: 'boolean', editable: true },
     { key: 'isSold', label: 'Статус', type: 'boolean', editable: true },
     { key: 'createdAt', label: 'Создано', type: 'date', editable: false },
     { key: 'updatedAt', label: 'Обновлено', type: 'date', editable: false }
