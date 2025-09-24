@@ -1,0 +1,243 @@
+@if (cityConfig) {
+  <div class="city-page">
+    <!-- Hero Section -->
+    <section class="hero-section bg-primary text-white py-5">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-8">
+            <h1 class="display-4 fw-bold mb-3">
+              Пригон автомобилей из Европы в {{ cityConfig.name }}
+            </h1>
+            <p class="lead mb-4">
+              {{ brandConfig.name }} - ваш надежный партнер по пригону автомобилей из Европы в {{ cityConfig.name }}, {{ cityConfig.region }}. 
+              Полное сопровождение сделки от подбора до постановки на учет.
+            </p>
+            <div class="d-flex flex-wrap gap-3">
+              <a href="tel:{{ brandConfig.phoneLink }}" class="btn btn-light btn-lg">
+                <i class="fas fa-phone me-2"></i>{{ brandConfig.phone }}
+              </a>
+              <a href="#contact" class="btn btn-outline-light btn-lg">
+                <i class="fas fa-envelope me-2"></i>Получить консультацию
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="city-info-card bg-white text-dark p-4 rounded shadow">
+              <h3 class="h5 mb-3">Информация о городе</h3>
+              <ul class="list-unstyled mb-0">
+                <li class="mb-2">
+                  <i class="fas fa-map-marker-alt text-primary me-2"></i>
+                  <strong>Город:</strong> {{ cityConfig.name }}
+                </li>
+                <li class="mb-2">
+                  <i class="fas fa-globe text-primary me-2"></i>
+                  <strong>Регион:</strong> {{ cityConfig.region }}
+                </li>
+                @if (cityConfig.population) {
+                  <li class="mb-2">
+                    <i class="fas fa-users text-primary me-2"></i>
+                    <strong>Население:</strong> {{ getCityPopulation() }} чел.
+                  </li>
+                }
+                <li class="mb-0">
+                  <i class="fas fa-car text-primary me-2"></i>
+                  <strong>Услуги:</strong> Пригон авто из Европы
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h2 class="text-center mb-5">Наши услуги в {{ cityConfig.name }}</h2>
+          </div>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="service-card text-center p-4 h-100">
+              <div class="service-icon mb-3">
+                <i class="fas fa-search fa-3x text-primary"></i>
+              </div>
+              <h3 class="h5 mb-3">Подбор автомобиля</h3>
+              <p class="text-muted">
+                Профессиональный подбор автомобиля в Европе с учетом ваших требований и бюджета.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="service-card text-center p-4 h-100">
+              <div class="service-icon mb-3">
+                <i class="fas fa-shipping-fast fa-3x text-primary"></i>
+              </div>
+              <h3 class="h5 mb-3">Доставка в {{ cityConfig.name }}</h3>
+              <p class="text-muted">
+                Безопасная доставка автомобиля из Европы в {{ cityConfig.name }} с полным страхованием.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="service-card text-center p-4 h-100">
+              <div class="service-icon mb-3">
+                <i class="fas fa-file-contract fa-3x text-primary"></i>
+              </div>
+              <h3 class="h5 mb-3">Растаможка и оформление</h3>
+              <p class="text-muted">
+                Полное оформление документов, растаможка и постановка на учет в {{ cityConfig.region }}.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cars Section -->
+    <section class="cars-section py-5 bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h2 class="text-center mb-5">Популярные автомобили для пригона в {{ cityConfig.name }}</h2>
+          </div>
+        </div>
+        
+        @if (isLoading) {
+          <div class="row">
+            <div class="col-12 text-center">
+              <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Загрузка...</span>
+              </div>
+            </div>
+          </div>
+        } @else {
+          <div class="row g-4">
+            @for (car of cars; track car.id) {
+              <div class="col-lg-4 col-md-6">
+                <app-car-item [car]="car"></app-car-item>
+              </div>
+            }
+          </div>
+          
+          <div class="row mt-4">
+            <div class="col-12 text-center">
+              <a href="/cars/search" class="btn btn-primary btn-lg">
+                <i class="fas fa-search me-2"></i>Посмотреть все автомобили
+              </a>
+            </div>
+          </div>
+        }
+      </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="why-choose-section py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h2 class="text-center mb-5">Почему выбирают {{ brandConfig.name }} в {{ cityConfig.name }}</h2>
+          </div>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-3">
+            <div class="feature-card text-center p-4">
+              <div class="feature-icon mb-3">
+                <i class="fas fa-shield-alt fa-2x text-success"></i>
+              </div>
+              <h3 class="h6 mb-3">Гарантия качества</h3>
+              <p class="text-muted small">
+                Все автомобили проходят тщательную проверку перед отправкой в {{ cityConfig.name }}.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="feature-card text-center p-4">
+              <div class="feature-icon mb-3">
+                <i class="fas fa-clock fa-2x text-info"></i>
+              </div>
+              <h3 class="h6 mb-3">Быстрые сроки</h3>
+              <p class="text-muted small">
+                Оперативная доставка и оформление документов в {{ cityConfig.region }}.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="feature-card text-center p-4">
+              <div class="feature-icon mb-3">
+                <i class="fas fa-ruble-sign fa-2x text-warning"></i>
+              </div>
+              <h3 class="h6 mb-3">Прозрачные цены</h3>
+              <p class="text-muted small">
+                Никаких скрытых платежей. Все расходы известны заранее.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="feature-card text-center p-4">
+              <div class="feature-icon mb-3">
+                <i class="fas fa-headset fa-2x text-danger"></i>
+              </div>
+              <h3 class="h6 mb-3">Поддержка 24/7</h3>
+              <p class="text-muted small">
+                Круглосуточная поддержка клиентов в {{ cityConfig.name }}.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section py-5 bg-primary text-white">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h2 class="text-center mb-5">Свяжитесь с нами</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <div class="contact-info text-center">
+              <h3 class="h4 mb-4">Готовы пригнать автомобиль в {{ cityConfig.name }}?</h3>
+              <p class="lead mb-4">
+                Получите бесплатную консультацию по пригону автомобиля из Европы в {{ cityConfig.name }}, {{ cityConfig.region }}.
+              </p>
+              <div class="d-flex flex-wrap justify-content-center gap-3">
+                <a href="tel:{{ brandConfig.phoneLink }}" class="btn btn-light btn-lg">
+                  <i class="fas fa-phone me-2"></i>{{ brandConfig.phone }}
+                </a>
+                <a href="mailto:{{ brandConfig.email }}" class="btn btn-outline-light btn-lg">
+                  <i class="fas fa-envelope me-2"></i>{{ brandConfig.email }}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Keywords Section (скрытый для SEO) -->
+    <section class="keywords-section d-none">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h2>Ключевые слова для {{ cityConfig.name }}</h2>
+            <p>
+              @for (keyword of getCityKeywords(); track keyword) {
+                {{ keyword }}, 
+              }
+              пригон авто {{ cityConfig.name }}, авто из Европы {{ cityConfig.region }}, 
+              купить авто {{ cityConfig.name }}, растаможка {{ cityConfig.name }}, 
+              доставка авто {{ cityConfig.region }}, автомобили под ключ {{ cityConfig.name }}, 
+              {{ brandConfig.name }} {{ cityConfig.name }}, пригон машин {{ cityConfig.name }}, 
+              европейские автомобили {{ cityConfig.name }}, импорт авто {{ cityConfig.name }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+}

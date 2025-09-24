@@ -15,27 +15,27 @@ export interface SEOConfig {
 export const SEO_CONFIG: Record<string, SEOConfig> = {
   // Главная страница
   home: {
-    title: `${BRAND_CONFIG.name} - Пригон автомобилей из Европы в Россию`,
-    description: `${BRAND_CONFIG.name} - компания по пригону авто из Европы в Россию. Подбор, покупка, доставка и растаможка автомобилей под ключ. Гарантия прозрачности сделки и выгодные условия. Звоните: ${BRAND_CONFIG.phone}`,
-    keywords: 'пригон авто, авто из Европы, купить авто, растаможка, доставка авто, автомобили под ключ, Adena Trans, Екатеринбург',
-    ogTitle: `${BRAND_CONFIG.name} - Авто из Европы под ключ`,
-    ogDescription: `Пригон авто из Европы в Россию с ${BRAND_CONFIG.name}. Подбор, доставка и растаможка. Надежно и выгодно.`,
+    title: `${BRAND_CONFIG.name} - Пригон автомобилей из Европы в ${BRAND_CONFIG.city}`,
+    description: `${BRAND_CONFIG.name} - компания по пригону авто из Европы в ${BRAND_CONFIG.city}, ${BRAND_CONFIG.region}. Подбор, покупка, доставка и растаможка автомобилей под ключ. Гарантия прозрачности сделки и выгодные условия. Звоните: ${BRAND_CONFIG.phone}`,
+    keywords: `пригон авто ${BRAND_CONFIG.city}, авто из Европы ${BRAND_CONFIG.region}, купить авто ${BRAND_CONFIG.city}, растаможка ${BRAND_CONFIG.city}, доставка авто ${BRAND_CONFIG.region}, автомобили под ключ ${BRAND_CONFIG.city}, Adena Trans, ${BRAND_CONFIG.city}, ${BRAND_CONFIG.region}`,
+    ogTitle: `${BRAND_CONFIG.name} - Авто из Европы в ${BRAND_CONFIG.city}`,
+    ogDescription: `Пригон авто из Европы в ${BRAND_CONFIG.city} с ${BRAND_CONFIG.name}. Подбор, доставка и растаможка. Надежно и выгодно.`,
     ogImage: `${BRAND_CONFIG.ogImage}`,
-    twitterTitle: `${BRAND_CONFIG.name} - Пригон авто из Европы`,
-    twitterDescription: `Купи автомобиль из Европы с ${BRAND_CONFIG.name}. Подбор, доставка, растаможка и оформление под ключ.`,
+    twitterTitle: `${BRAND_CONFIG.name} - Пригон авто в ${BRAND_CONFIG.city}`,
+    twitterDescription: `Купи автомобиль из Европы в ${BRAND_CONFIG.city} с ${BRAND_CONFIG.name}. Подбор, доставка, растаможка и оформление под ключ.`,
     twitterImage: `${BRAND_CONFIG.ogImage}`
   },
 
   // Страница поиска
   search: {
-    title: `Поиск автомобилей из Европы | ${BRAND_CONFIG.name}`,
-    description: `Поиск автомобилей для пригона из Европы в Россию. Удобные фильтры по марке, модели, году, цене и характеристикам. ${BRAND_CONFIG.name} - пригон под ключ.`,
-    keywords: 'поиск авто Европа, каталог автомобилей, пригон машин, купить авто из Европы, Adena Trans, Екатеринбург',
-    ogTitle: `Поиск авто из Европы | ${BRAND_CONFIG.name}`,
-    ogDescription: `Найдите авто из Европы для пригона в Россию. ${BRAND_CONFIG.name} - удобный поиск и полное сопровождение сделки.`,
+    title: `Поиск автомобилей из Европы в ${BRAND_CONFIG.city} | ${BRAND_CONFIG.name}`,
+    description: `Поиск автомобилей для пригона из Европы в ${BRAND_CONFIG.city}, ${BRAND_CONFIG.region}. Удобные фильтры по марке, модели, году, цене и характеристикам. ${BRAND_CONFIG.name} - пригон под ключ в ${BRAND_CONFIG.city}.`,
+    keywords: `поиск авто Европа ${BRAND_CONFIG.city}, каталог автомобилей ${BRAND_CONFIG.region}, пригон машин ${BRAND_CONFIG.city}, купить авто из Европы ${BRAND_CONFIG.city}, Adena Trans, ${BRAND_CONFIG.city}, ${BRAND_CONFIG.region}`,
+    ogTitle: `Поиск авто из Европы в ${BRAND_CONFIG.city} | ${BRAND_CONFIG.name}`,
+    ogDescription: `Найдите авто из Европы для пригона в ${BRAND_CONFIG.city}. ${BRAND_CONFIG.name} - удобный поиск и полное сопровождение сделки.`,
     ogImage: `${BRAND_CONFIG.ogImage}`,
-    twitterTitle: `Поиск авто | ${BRAND_CONFIG.name}`,
-    twitterDescription: `Подбор и пригон авто из Европы в Россию с ${BRAND_CONFIG.name}. Полный каталог и фильтры.`,
+    twitterTitle: `Поиск авто в ${BRAND_CONFIG.city} | ${BRAND_CONFIG.name}`,
+    twitterDescription: `Подбор и пригон авто из Европы в ${BRAND_CONFIG.city} с ${BRAND_CONFIG.name}. Полный каталог и фильтры.`,
     twitterImage: `${BRAND_CONFIG.ogImage}`
   },
 

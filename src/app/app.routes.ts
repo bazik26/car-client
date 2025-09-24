@@ -21,6 +21,7 @@ import { AdminCarsPage } from './pages/admin/pages/cars/cars.page';
 import { AdminProblematicCarsPage } from './pages/admin/pages/problematic-cars/problematic-cars.page';
 import { AdminDatabasePage } from './pages/admin/pages/database/database.page';
 import { AdminThemeSettingsPage } from './pages/admin/pages/theme-settings/theme-settings.page';
+import { CityPage } from './pages/city/city.page';
 
 export const routes: Routes = [
   {
@@ -84,6 +85,12 @@ export const routes: Routes = [
         path: 'contacts',
         component: Contacts,
         title: 'Контакты',
+      },
+
+      {
+        path: 'city/:cityName',
+        component: CityPage,
+        title: 'Пригон авто в город',
       },
     ],
   },

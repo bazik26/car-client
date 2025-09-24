@@ -7,5 +7,13 @@ export const BRAND_CONFIG = {
   currency: 'RUB ',
   currencySymbol: '₽ ',
   address: 'Екатеринбург, Россия',
-  ogImage: '/public/favicon.ico'
+  city: 'Екатеринбург',
+  region: 'Свердловская область',
+  country: 'Россия',
+  coordinates: {
+    latitude: 56.8431,
+    longitude: 60.6454
+  },
+  ogImage: '/public/favicon.ico',
+  website: 'https://adenatrans.ru'
 } as const;

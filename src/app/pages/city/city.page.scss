@@ -1,0 +1,121 @@
+.city-page {
+  .hero-section {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .city-info-card {
+    border: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    
+    .list-unstyled li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #f8f9fa;
+      
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+
+  .service-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #f8f9fa;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    }
+
+    .service-icon {
+      color: #007bff;
+    }
+  }
+
+  .feature-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+    border: 1px solid #f8f9fa;
+
+    &:hover {
+      transform: translateY(-3px);
+    }
+
+    .feature-icon {
+      i {
+        transition: transform 0.3s ease;
+      }
+    }
+
+    &:hover .feature-icon i {
+      transform: scale(1.1);
+    }
+  }
+
+  .contact-section {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+  }
+
+  .keywords-section {
+    // Скрытая секция для SEO, не отображается пользователям
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  // Адаптивность
+  @media (max-width: 768px) {
+    .hero-section {
+      min-height: 50vh;
+      text-align: center;
+      
+      .display-4 {
+        font-size: 2rem;
+      }
+      
+      .lead {
+        font-size: 1rem;
+      }
+    }
+
+    .city-info-card {
+      margin-top: 2rem;
+    }
+
+    .service-card,
+    .feature-card {
+      margin-bottom: 1rem;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .hero-section {
+      .display-4 {
+        font-size: 1.75rem;
+      }
+      
+      .btn-lg {
+        font-size: 1rem;
+        padding: 0.75rem 1.5rem;
+      }
+    }
+
+    .contact-info {
+      .btn-lg {
+        font-size: 1rem;
+        padding: 0.75rem 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+}

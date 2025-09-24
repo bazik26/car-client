@@ -82,4 +82,13 @@ export class SEOService {
   setKeywords(keywords: string): void {
     this.meta.updateTag({ name: 'keywords', content: keywords });
   }
+
+  /**
+   * Устанавливает произвольный meta тег
+   * @param property - свойство тега (name или property)
+   * @param content - содержимое тега
+   */
+  setMetaTag(property: string, content: string): void {
+    this.meta.updateTag({ [property]: content });
+  }
 }
