@@ -176,7 +176,12 @@ export class AppService {
       return `${image.path}`;
     } else {
       // Относительный путь - добавляем API_URL
-      const normalizedPath = image.path.startsWith('/') ? image.path : `/${image.path}`;
+      // Убираем 'images/' из начала пути, так как ServeStaticModule раздаёт файлы из /images по корню
+      let cleanPath = image.path;
+      if (cleanPath.startsWith('images/')) {
+        cleanPath = cleanPath.replace('images/', '');
+      }
+      const normalizedPath = cleanPath.startsWith('/') ? cleanPath : `/${cleanPath}`;
       return `${this.API_URL}${normalizedPath}`;
     }
   }
