@@ -757,3 +757,5 @@ export function getTopCitiesByPopulation(limit: number = 50): CityConfig[] {
     .sort((a, b) => (b.population || 0) - (a.population || 0))
     .slice(0, limit);
 }
+
+
