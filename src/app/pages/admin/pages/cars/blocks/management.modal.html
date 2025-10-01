@@ -430,10 +430,15 @@
               <button
                 class="btn btn-primary btn-lg"
                 (click)="onSubmit()"
-                [disabled]="form.invalid || previews.length < 8"
+                [disabled]="form.invalid || previews.length < 8 || isSubmitting"
                 [title]="previews.length < 8 ? 'Загрузите минимум 8 изображений' : ''"
               >
-                {{ car ? "Обновить" : "Добавить" }} ({{ previews.length }}/8)
+                @if (isSubmitting) {
+                  <span class="spinner-border spinner-border-sm me-2" role="status"></span>
+                  Сохранение...
+                } @else {
+                  {{ car ? "Обновить" : "Добавить" }} ({{ previews.length }}/8)
+                }
               </button>
             </div>
           </form>
