@@ -40,6 +40,8 @@ export class AdminCarsPage implements OnInit {
       initialState: {
         car,
       },
+      backdrop: 'static', // Отключает закрытие по клику на фон
+      keyboard: false, // Отключает закрытие по ESC
     });
 
     modalRef.onHide?.subscribe(() => {

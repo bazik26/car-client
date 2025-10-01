@@ -804,6 +804,12 @@ export class AdminCarsManagementModal implements OnInit {
     }, 3000);
   }
 
+  closeModal() {
+    // Закрываем модалку без сохранения
+    this.result = { reload: false };
+    this.activeModal.hide();
+  }
+
   onSubmit() {
     if (this.car) {
       this.appService

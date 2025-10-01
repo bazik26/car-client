@@ -3,6 +3,10 @@
     <div class="container">
       <div class="row">
         <div class="col-12">
+          <!-- Кнопка закрытия -->
+          <div class="d-flex justify-content-end mb-2">
+            <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
+          </div>
           <form [formGroup]="form">
             <!-- Умная кнопка автозаполнения -->
             @if (canAutoFill()) {
@@ -400,7 +404,14 @@
               </accordion>
             </div>
 
-            <div class="mt-3 d-flex justify-content-center">
+            <div class="mt-3 d-flex justify-content-center gap-3">
+              <button
+                class="btn btn-secondary btn-lg"
+                (click)="closeModal()"
+                type="button"
+              >
+                Отменить
+              </button>
               <button
                 class="btn btn-primary btn-lg"
                 (click)="onSubmit()"
