@@ -234,6 +234,46 @@ export class AdminCarsManagementModal implements OnInit {
     this.ensureTailSlot();
   }
 
+  // Пакетная загрузка изображений
+  onMultipleFilesSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const files = input.files;
+    if (!files || files.length === 0) return;
+
+    // Фильтруем только изображения
+    const imageFiles = Array.from(files).filter(file => file.type.startsWith('image/'));
+    
+    if (imageFiles.length === 0) {
+      alert('Выберите хотя бы одно изображение');
+      input.value = '';
+      return;
+    }
+
+    // Находим первый пустой слот
+    let currentIndex = this.files.controls.findIndex((_, i) => !this.previews[i]);
+    if (currentIndex === -1) currentIndex = 0;
+
+    // Загружаем файлы в слоты
+    imageFiles.forEach((file, i) => {
+      const targetIndex = currentIndex + i;
+      
+      // Добавляем слоты если нужно
+      while (this.files.length <= targetIndex) {
+        this.files.push(this.fb.control(null));
+        this.previews.push(null);
+      }
+
+      this.files.at(targetIndex).setValue(file);
+      if (this.previews[targetIndex]) {
+        URL.revokeObjectURL(this.previews[targetIndex]!);
+      }
+      this.previews[targetIndex] = URL.createObjectURL(file);
+    });
+
+    input.value = '';
+    this.ensureTailSlot();
+  }
+
   removeFile(index: number, preview: any) {
     if (preview.id) {
       if (confirm(`Удалить изображение из базы?`)) {
