@@ -47,6 +47,8 @@ export class AdminCarsManagementModal implements OnInit {
   public previews: (string | null)[] = [];
 
   result?: { reload: boolean };
+  
+  public isSubmitting = false; // Флаг для предотвращения множественных отправок
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -231,6 +233,46 @@ export class AdminCarsManagementModal implements OnInit {
 
     input.value = '';
 
+    this.ensureTailSlot();
+  }
+
+  // Пакетная загрузка изображений
+  onMultipleFilesSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const files = input.files;
+    if (!files || files.length === 0) return;
+
+    // Фильтруем только изображения
+    const imageFiles = Array.from(files).filter(file => file.type.startsWith('image/'));
+    
+    if (imageFiles.length === 0) {
+      alert('Выберите хотя бы одно изображение');
+      input.value = '';
+      return;
+    }
+
+    // Находим первый пустой слот
+    let currentIndex = this.files.controls.findIndex((_, i) => !this.previews[i]);
+    if (currentIndex === -1) currentIndex = 0;
+
+    // Загружаем файлы в слоты
+    imageFiles.forEach((file, i) => {
+      const targetIndex = currentIndex + i;
+      
+      // Добавляем слоты если нужно
+      while (this.files.length <= targetIndex) {
+        this.files.push(this.fb.control(null));
+        this.previews.push(null);
+      }
+
+      this.files.at(targetIndex).setValue(file);
+      if (this.previews[targetIndex]) {
+        URL.revokeObjectURL(this.previews[targetIndex]!);
+      }
+      this.previews[targetIndex] = URL.createObjectURL(file);
+    });
+
+    input.value = '';
     this.ensureTailSlot();
   }
 
@@ -804,7 +846,37 @@ export class AdminCarsManagementModal implements OnInit {
     }, 3000);
   }
 
+  showSuccessNotification(message: string) {
+    // Простое уведомление без дополнительных библиотек
+    const notification = document.createElement('div');
+    notification.className = 'alert alert-success position-fixed top-0 start-50 translate-middle-x mt-3';
+    notification.style.zIndex = '9999';
+    notification.innerHTML = `<i class="fas fa-check-circle me-2"></i>${message}`;
+    document.body.appendChild(notification);
+    setTimeout(() => notification.remove(), 3000);
+  }
+
+  showErrorNotification(message: string) {
+    const notification = document.createElement('div');
+    notification.className = 'alert alert-danger position-fixed top-0 start-50 translate-middle-x mt-3';
+    notification.style.zIndex = '9999';
+    notification.innerHTML = `<i class="fas fa-exclamation-circle me-2"></i>${message}`;
+    document.body.appendChild(notification);
+    setTimeout(() => notification.remove(), 5000);
+  }
+
+  closeModal() {
+    // Закрываем модалку без сохранения
+    this.result = { reload: false };
+    this.activeModal.hide();
+  }
+
   onSubmit() {
+    // Защита от множественных кликов
+    if (this.isSubmitting) return;
+    
+    this.isSubmitting = true;
+    
     if (this.car) {
       this.appService
         .updateCar(this.car.id, this.form.value)
@@ -816,9 +888,16 @@ export class AdminCarsManagementModal implements OnInit {
             ),
           ),
         )
-        .subscribe(() => {
-          this.result = { reload: true };
-          this.activeModal.hide();
+        .subscribe({
+          next: () => {
+            this.showSuccessNotification('Автомобиль успешно обновлён!');
+            this.result = { reload: true };
+            setTimeout(() => this.activeModal.hide(), 500); // Небольшая задержка для показа уведомления
+          },
+          error: (err) => {
+            this.isSubmitting = false;
+            this.showErrorNotification('Ошибка при обновлении автомобиля: ' + err.message);
+          }
         });
     } else {
       this.appService
@@ -831,9 +910,16 @@ export class AdminCarsManagementModal implements OnInit {
             ),
           ),
         )
-        .subscribe(() => {
-          this.result = { reload: true };
-          this.activeModal.hide();
+        .subscribe({
+          next: () => {
+            this.showSuccessNotification('Автомобиль успешно добавлен!');
+            this.result = { reload: true };
+            setTimeout(() => this.activeModal.hide(), 500); // Небольшая задержка для показа уведомления
+          },
+          error: (err) => {
+            this.isSubmitting = false;
+            this.showErrorNotification('Ошибка при создании автомобиля: ' + err.message);
+          }
         });
     }
   }

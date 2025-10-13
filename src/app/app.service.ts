@@ -165,10 +165,24 @@ export class AppService {
   }
 
   getFileUrl(image: any) {
+    // Если path содержит старый домен shop-ytb-client, заменяем на наш API
+    if (image.path && image.path.includes('shop-ytb-client.onrender.com')) {
+      const relativePath = image.path.replace(/https?:\/\/shop-ytb-client\.onrender\.com/, '');
+      const normalizedPath = relativePath.startsWith('/') ? relativePath : `/${relativePath}`;
+      return `${this.API_URL}${normalizedPath}`;
+    }
+    // Если полный URL (другой домен) - используем как есть
     if (image.path.startsWith('http')) {
       return `${image.path}`;
     } else {
-      return `${this.API_URL}/${image.path}`;
+      // Относительный путь - добавляем API_URL
+      // Убираем 'images/' из начала пути, так как ServeStaticModule раздаёт файлы из /images по корню
+      let cleanPath = image.path;
+      if (cleanPath.startsWith('images/')) {
+        cleanPath = cleanPath.replace('images/', '');
+      }
+      const normalizedPath = cleanPath.startsWith('/') ? cleanPath : `/${cleanPath}`;
+      return `${this.API_URL}${normalizedPath}`;
     }
   }
   contactUs(payload: any) {
