@@ -7,6 +7,7 @@ import {
 } from '@angular/router';
 
 import { AppService } from '../../../../app.service';
+import { AuthService } from '../../../../services/auth.service';
 
 @Component({
   selector: 'app-admin-layout',
@@ -17,15 +18,26 @@ import { AppService } from '../../../../app.service';
 })
 export class AdminLayoutComponent implements OnInit {
   public router = inject(Router);
-
   public appService = inject(AppService);
+  public authService = inject(AuthService);
 
   public admin!: any;
 
   ngOnInit() {
-    this.appService.auth().subscribe(
-      (admin) => (this.admin = admin),
-      () => this.router.navigate(['/admin']),
-    );
+    this.appService.auth().subscribe({
+      next: (admin) => {
+        this.admin = admin;
+      },
+      error: () => {
+        this.authService.handleTokenExpiry();
+      }
+    });
+  }
+
+  /**
+   * Выход из системы
+   */
+  logout() {
+    this.authService.logout();
   }
 }

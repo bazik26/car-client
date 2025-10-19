@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AppService } from '../../../../app.service';
+import { AuthService } from '../../../../services/auth.service';
 import { NgIf } from '@angular/common';
 
 @Component({
@@ -24,6 +25,7 @@ export class SigninPage {
   constructor(
     private fb: FormBuilder,
     private appService: AppService,
+    private authService: AuthService,
     private router: Router,
   ) {
     this.form = this.fb.group({
@@ -33,7 +35,12 @@ export class SigninPage {
 
     this.appService
       .auth()
-      .subscribe((auth) => this.router.navigate(['/admin/cars']));
+      .subscribe({
+        next: (auth) => this.router.navigate(['/admin/cars']),
+        error: () => {
+          this.authService.logout();
+        }
+      });
   }
 
   signin() {
@@ -42,7 +49,7 @@ export class SigninPage {
     this.error = null;
     this.appService.signin(this.form.value).subscribe({
       next: (res) => {
-        localStorage.setItem('AUTH_KEY', res.AUTH_KEY);
+        this.authService.setToken(res.AUTH_KEY);
         this.router.navigate(['/admin/cars']);
       },
       error: () => {

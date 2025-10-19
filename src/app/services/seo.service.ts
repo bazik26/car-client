@@ -26,6 +26,11 @@ export class SEOService {
     // Устанавливаем keywords
     this.meta.updateTag({ name: 'keywords', content: config.keywords });
     
+    // Устанавливаем canonical URL
+    if (config.canonical) {
+      this.meta.updateTag({ rel: 'canonical', href: config.canonical });
+    }
+    
     // Устанавливаем Open Graph теги
     this.meta.updateTag({ property: 'og:title', content: config.ogTitle || config.title });
     this.meta.updateTag({ property: 'og:description', content: config.ogDescription || config.description });
@@ -53,7 +58,8 @@ export class SEOService {
       price: car.price ? car.price.toLocaleString() : '',
       mileage: car.mileage ? car.mileage.toLocaleString() : 'не указан',
       color: car.color ? `Цвет: ${car.color}.` : '',
-      brandName: 'Adena Trans'
+      brandName: 'Adena Trans',
+      id: car.id || car._id || ''
     };
 
     this.setSEO('car', data);
@@ -90,5 +96,13 @@ export class SEOService {
    */
   setMetaTag(property: string, content: string): void {
     this.meta.updateTag({ [property]: content });
+  }
+
+  /**
+   * Устанавливает canonical URL
+   * @param url - canonical URL
+   */
+  setCanonical(url: string): void {
+    this.meta.updateTag({ rel: 'canonical', href: url });
   }
 }
