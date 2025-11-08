@@ -83,7 +83,7 @@
   <button type="button" class="btn btn-secondary" (click)="activeModal.hide()">
     Отменить
   </button>
-  <button type="submit" class="btn btn-primary" (click)="submitContactForm()" 
+  <button id="form-submit-btn" type="submit" class="btn btn-primary" (click)="submitContactForm()" 
           [disabled]="!selectedMessenger || !contactData.firstName || !contactData.phone">
     Отправить заявку
   </button>
