@@ -3,6 +3,7 @@ import { Component, inject } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import {FormsModule} from '@angular/forms';
 import {AppService} from '../../app.service';
+import { BRAND_CONFIG } from '../../constants';
 
 @Component({
   selector: 'app-contact-us',
@@ -43,7 +44,8 @@ export class ContactUsComponent {
       messenger: this.selectedMessenger,
       firstName: this.contactData.firstName,
       phone: this.contactData.phone,
-      message: this.contactData.message
+      message: this.contactData.message,
+      projectSource: BRAND_CONFIG.website
     }).subscribe({
       next: () => {
         this.showSuccessMessage();
