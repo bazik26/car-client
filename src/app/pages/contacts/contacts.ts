@@ -49,7 +49,8 @@ export class Contacts implements OnInit {
       messenger: 'telegram',
       firstName: this.contactForm.name,
       phone: this.contactForm.phone,
-      message: `Email: ${this.contactForm.email || 'Не указан'}\n\nСообщение: ${this.contactForm.message}`
+      message: `Email: ${this.contactForm.email || 'Не указан'}\n\nСообщение: ${this.contactForm.message}`,
+      projectSource: BRAND_CONFIG.website
     };
     
     this.appService.contactUs(payload).subscribe({
