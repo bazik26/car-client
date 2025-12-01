@@ -42,14 +42,16 @@ export class HomePage implements OnInit {
   }
 
   private loadRecentCars() {
-    // Загружаем последние 10 добавленных машин
-    this.appService.getCars({ limit: 10, sortBy: 'createdAt', sortOrder: 'DESC' })
+    // Загружаем больше машин (50), чтобы гарантировать наличие 10 непроданных
+    this.appService.getCars({ limit: 50, sortBy: 'createdAt', sortOrder: 'DESC' })
       .subscribe((cars: any[]) => {
         // Дополнительная фильтрация на фронтенде (на всякий случай)
         const availableCars = cars.filter(car => !car.isSold && !car.deletedAt);
+        // Берём первые 10 из доступных
+        const limitedCars = availableCars.slice(0, 10);
         // Случайно перемешиваем автомобили для разнообразия
-        const shuffledCars = this.shuffleArray(availableCars);
-        console.log('Recent cars loaded:', shuffledCars.length, shuffledCars);
+        const shuffledCars = this.shuffleArray(limitedCars);
+        console.log('Recent cars loaded:', shuffledCars.length, 'from', availableCars.length, 'available');
         this.recentCars = shuffledCars;
         this.isLoading = false;
       });
