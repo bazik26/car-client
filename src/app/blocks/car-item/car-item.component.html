@@ -15,7 +15,7 @@
   </div>
 
   <div class="car-item__details details">
-    <a class="details__title" [routerLink]="['/cars', car.id]">
+    <a class="details__title" [routerLink]="['/cars', car.id]" target="_blank">
       <p>{{ car.brand }}</p>
 
       <p>
@@ -55,6 +55,6 @@
   </div>
 
   <div class="car-item__more">
-    <a class="button" [routerLink]="['/cars', car.id]"> Подробнее </a>
+    <a class="button" [routerLink]="['/cars', car.id]" target="_blank"> Подробнее </a>
   </div>
 </div>

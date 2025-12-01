@@ -37,6 +37,9 @@
                 >
               </p>
               <p><span>Двигатель:</span>{{ car.engine }} л</p>
+              @if (car.powerValue) {
+                <p><span>Мощность:</span>{{ car.powerValue }} л.с.</p>
+              }
               <p><span>Коробка передач:</span>{{ car.gearbox }}</p>
             </div>
 
